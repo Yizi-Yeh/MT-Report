@@ -5,14 +5,12 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
-    <div class="carousel-item">
-  <div class="carousel-caption d-none d-md-block">
-    <p>LIFE IS AN ADVENTURE .</p>
-  </div>
-</div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="https://mt10x10.files.wordpress.com/2020/12/13242794388326.jpg" alt="First slide">
+     <div class="carousel-caption d-flex flex-row justify-content-center align-items-center">
+    <p>LIFE IS AN ADVENTURE</p>
+  </div>
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="https://mt10x10.files.wordpress.com/2020/07/12431975077973.jpg?w=1500" alt="Second slide">

@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Brand from '../components/pages/brand.vue'
+import Plan from '../components/pages/plan.vue'
+import NewPlan from '../components/pages/newplan.vue'
+import Member from '../components/pages/member.vue'
+import Join from '../components/pages/join.vue'
+import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
-import Dashboard from '../components/Dashboard.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
@@ -21,15 +26,39 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/brand',
+    name: 'Brand',
+    component: Brand
+  },
+  {
+    path: '/plan',
+    name: 'Plan',
+    component: Plan
+  },
+  {
+    path: '/newplan',
+    name: 'NewPlan',
+    component: NewPlan
+  },
+  {
+    path: '/member',
+    name: 'Member',
+    component: Member
+  },
+  {
+    path: '/join',
+    name: 'Join',
+    component: Join
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/admin',
-    name: 'Home',
-    component: Dashboard,
-    // meta: { requireAuth: true }
   }
 ]
 

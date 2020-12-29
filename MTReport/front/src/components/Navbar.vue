@@ -8,25 +8,25 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav d-flex  justify-content-center w-100">
       <li class="nav-item active ml-3 ">
-        <a class="nav-link" href="#">品牌故事 <span class="sr-only">(current)</span></a>
+        <router-link class="nav-link" to="/brand">品牌故事</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">行程資訊</a>
+       <router-link class="nav-link" to="/plan">行程資訊</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">近期開團</a>
+        <router-link class="nav-link" to="/newplan">近期開團</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">會員專區</a>
+        <router-link class="nav-link" to="/member">會員專區</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">加入我們</a>
+        <router-link class="nav-link" to="/join">加入我們</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">聯絡我們</a>
+        <router-link class="nav-link" to="/contact">聯絡我們</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">管理員登入</a>
+        <router-link class="nav-link" to="/login">管理員登入</router-link>
       </li>
 
     </ul>

@@ -18,15 +18,15 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data () {
-      return {
-          user: {
-              username: '',
-              password: ''
-          }
-      }
-  },
+    return {
+      user: {
+          username: '',
+          password: ''
+        }
+    }
+  }
 //   methods: {
 //       signin()
 //   }
