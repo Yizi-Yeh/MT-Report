@@ -1,5 +1,5 @@
 <template>
-<div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade h-100"  data-ride="carousel" data-interval="5000">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -7,16 +7,37 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://mt10x10.files.wordpress.com/2020/12/13242794388326.jpg" alt="First slide">
-     <div class="carousel-caption d-flex flex-row justify-content-center align-items-center">
-    <p>LIFE IS AN ADVENTURE</p>
+      <img class="d-block w-100 brightness img-movedown" src="..\assets\carousel1.jpg" alt="First slide" height="1024px">
+     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+    <p class="mb-3">LIFE IS AN ADVENTURE.</p>
+    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
+    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
+    <h2>在山的溫暖懷抱中</h2>
+    <h2>我們每個人都很渺小卻也很偉大</h2>
+    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
   </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://mt10x10.files.wordpress.com/2020/07/12431975077973.jpg?w=1500" alt="Second slide">
+      <img class="d-block w-100 brightness img-movedown" src="..\assets\carousel2.jpg" alt="First slide" height="1024px">
+           <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+    <p class="mb-5">LIFE IS AN ADVENTURE.</p>
+    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
+    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
+    <h2>在山的溫暖懷抱中</h2>
+    <h2>我們每個人都很渺小卻也很偉大</h2>
+    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
+  </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://mt10x10.files.wordpress.com/2020/07/12431975077973.jpg?w=1500" alt="Third slide">
+      <img class="d-block w-100 brightness img-movedown" src="..\assets\carousel3.jpg" alt="First slide" height="1024px">
+           <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+    <p class="mb-5">LIFE IS AN ADVENTURE.</p>
+    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
+    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
+    <h2>在山的溫暖懷抱中</h2>
+    <h2>我們每個人都很渺小卻也很偉大</h2>
+    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
+  </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

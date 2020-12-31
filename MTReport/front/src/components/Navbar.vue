@@ -2,7 +2,7 @@
 <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
   <!-- <a class="navbar-brand" href="#section01"><img src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="MT10x10登山社" width="60"></a> -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -28,7 +28,6 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/login">管理員登入</router-link>
       </li>
-
     </ul>
   </div>
 </nav>
