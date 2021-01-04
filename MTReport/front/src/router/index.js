@@ -2,12 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Brand from '../components/pages/brand.vue'
+import Dashboard from '../components/Dashboard.vue'
 import Plan from '../components/pages/plan.vue'
 import NewPlan from '../components/pages/newplan.vue'
 import Member from '../components/pages/member.vue'
 import Join from '../components/pages/join.vue'
 import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
+import Products from '../components/adminpages/Products.vue'
 
 Vue.use(VueRouter)
 
@@ -59,6 +61,19 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/admin',
+    name: 'Dashboard',
+    component: Dashboard,
+    children: [
+      {
+        path: 'products',
+        name: 'Products',
+        component: Products,
+        meta: { requiresAuth: true },
+      },
+    ],
   }
 ]
 

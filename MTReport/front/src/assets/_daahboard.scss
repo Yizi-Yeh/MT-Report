@@ -43,7 +43,7 @@ body {
   padding-bottom: 20px;
   color: #fff;
   text-align: center;
-  font-size: 5.5rem;
+  font-size: 4.5rem;
   font-weight: bold;
 }
 
@@ -57,12 +57,20 @@ body {
 }
 
 .carousel-control-prev:hover {
-  background: linear-gradient(90deg, rgba(247, 240, 240, 0.5), rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    90deg,
+    rgba(247, 240, 240, 0.5),
+    rgba(0, 0, 0, 0)
+  );
   opacity: 1;
 }
 
 .carousel-control-next:hover {
-  background: linear-gradient(270deg, rgba(221, 211, 211, 0.5), rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    270deg,
+    rgba(221, 211, 211, 0.5),
+    rgba(0, 0, 0, 0)
+  );
   opacity: 1;
 }
 

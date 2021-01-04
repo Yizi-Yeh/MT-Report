@@ -9,7 +9,8 @@
       <img class="jarallax-img" src="./images/parallax_01.jpg">
     </div> -->
 
-    <div id="section03" class="container">
+    <div id="section03" class="container vh-100">
+      <div class="row">
       <h1>活動歷誌</h1>
       <div class="row justify-content-lg-center">
         <div class="col-6 col-lg-4">
@@ -112,6 +113,7 @@
           </a>
         </div>
       </div>
+    </div>
     </div>
   <!-- </section> -->
 </div>

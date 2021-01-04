@@ -26,10 +26,21 @@ export default {
           password: ''
         }
     }
+  },
+  methods: {
+      signin() {
+        const api = `${process.env.VUE_APP_API}/signin`;
+        const vm = this
+        console.log(process.env.APIPATH,process.env.CUSTOMPATH);
+        this.$http.post(api, vm.user).then((response)=>{
+          console.log(response.data);
+          if(response.data.success){
+            vm.$router.push('/admin')
+          }
+        })
+      }
+        
   }
-//   methods: {
-//       signin()
-//   }
 }
 </script>
 
