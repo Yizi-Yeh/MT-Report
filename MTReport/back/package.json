@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "SET DEV=true&& nodemon index.js",
+    "start": "SET DEV=false&& node index.js"
   },
   "keywords": [],
   "author": "",
