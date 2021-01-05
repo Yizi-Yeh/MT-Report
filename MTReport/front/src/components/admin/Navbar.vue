@@ -17,10 +17,9 @@ export default {
 
   methods: {
     signout() {
-      const api = `${process.env.VUE_APP_API}/logout`;
+      const api = `${process.env.VUE_APP_API}/adminusers/logout`;
         const vm = this
-        console.log(process.env.APIPATH,process.env.CUSTOMPATH);
-        this.$http.post(api).then((response)=>{
+        this.$http.delete(api).then((response)=>{
           console.log(response.data);
           if(response.data.success){
             vm.$router.push('/')

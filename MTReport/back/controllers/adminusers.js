@@ -52,6 +52,8 @@ export const login = async (req, res) => {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
       res.status(400).send({ success: false, message })
+    } else if (error.name === 'MOngoError' && error.code === 11000) {
+      res.status(400).send({ success: false, message: '帳號已使用' })
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }

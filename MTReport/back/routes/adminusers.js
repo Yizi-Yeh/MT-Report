@@ -6,6 +6,6 @@ const router = express.Router()
 router.post('/', create)
 router.post('/login', login)
 router.delete('/logout', logout)
-router.get('/hearbeat', heartbeat)
+router.get('/heartbeat', heartbeat)
 
 export default router

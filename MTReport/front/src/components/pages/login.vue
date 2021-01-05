@@ -3,7 +3,7 @@
   <img class="mb-4" src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="" >
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.username" required autofocus>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.account" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="user.password" required>
   <div class="checkbox mb-3">
@@ -22,18 +22,18 @@ export default {
   data () {
     return {
       user: {
-          username: '',
+          account: '',
           password: ''
         }
     }
   },
   methods: {
       signin() {
-        const api = `${process.env.VUE_APP_API}/signin`;
+        const api = `${process.env.VUE_APP_API}/adminusers/login`;
         const vm = this
-        console.log(process.env.APIPATH,process.env.CUSTOMPATH);
+        // console.log(process.env.VUE_APP_API,vm.user);
         this.$http.post(api, vm.user).then((response)=>{
-          console.log(response.data);
+          // console.log(response.data);
           if(response.data.success){
             vm.$router.push('/admin')
           }

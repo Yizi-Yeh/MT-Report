@@ -2,7 +2,6 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import beautify from 'mongoose-beautiful-unique-validation'
 import connectMongo from 'connect-mongo'
 import cors from 'cors'
 import session from 'express-session'
@@ -14,7 +13,6 @@ import routerProducts from './routes/products.js'
 dotenv.config()
 
 mongoose.connect(process.env.DBURL)
-mongoose.plugin(beautify)
 
 const app = express()
 // bodyParser.json returns middleware that only parses json.

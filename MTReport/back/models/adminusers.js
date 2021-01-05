@@ -8,7 +8,7 @@ const adminuserSchema = new Schema(
       type: String,
       minlength: [4, '帳號必須四個字以上'],
       maxlength: [20, '帳號必須二十個字以下'],
-      unique: '帳號已使用',
+      unique: true,
       required: '帳號必須'
     },
     password: {

@@ -15,9 +15,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item) in products" :key="item.id">
+        <tr v-for="(item) in plans" :key="item.id">
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
+          <td>{{ item.file }}</td>
+          <td>{{ item.user }}</td>
           <td class="text-right">
             {{ item.origin_price}}
           </td>
@@ -41,17 +43,16 @@
 export default {
     data() {
         return {
-            products:[],
+            plans:[],
         }
     },
     methods: {
         getProducts() {
-             const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products`
-             const vm = this;
-             console.log(process.env.VUE_APP_API,process.env.VUE_APP_CUSTOMPATH)
-                this.$http.get(api).then((response) => {
-                console.log(response.data)
-                vm.products = response.data.products;
+        const api = `${process.env.VUE_APP_API}/products`
+        const vm = this;
+        this.$http.get(api).then((response) => {
+        console.log(response.data)
+        vm.plans = response.data.plans
     })
         }
     },
