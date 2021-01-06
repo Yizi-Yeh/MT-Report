@@ -2,44 +2,163 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+// 開團model
+const newPlanSchema = new Schema({
+// 與行程model關聯
+  p_id: {
+    type: mongoose.ObjectId,
+    ref: 'products'
+  },
+  // 與訂單model關聯
+  order_id: {
+    type: mongoose.ObjectId,
+    ref: 'orders'
+  },
+  date: {
+    type: Date,
+    required: [true, '請輸入開團時間']
+  },
+  price: {
+    type: String,
+    required: [true, '請輸入上架金額']
+  },
+  is_enabled: {
+    type: Number,
+    required: [true, '請確認是否上架']
+  },
+  totalNumber: {
+    type: Number,
+    required: [true, '請輸入開團人數']
+  },
+  participants: {
+    type: Number,
+    required: [true, '請輸入報名人數']
+  },
+  remainNumber: {
+    type: Number,
+    required: [true, '請輸入尚餘人數']
+  },
+  status: {
+    type: String,
+    required: [true, '請輸入募集狀況']
+  }
+})
+
+// 活動圖片model
+const imgSchema = new Schema({
+  // 與行程model關聯
+  p_id: {
+    type: mongoose.ObjectId,
+    ref: 'products'
+  },
+  description: {
+    type: String,
+    required: [true, '請輸入活動圖片說明']
+  },
+  title: {
+    type: String,
+    required: [true, '請輸入活動圖片名稱']
+  },
+  file: {
+    type: String,
+    required: [true, '請上傳檔案活動圖片']
+  }
+  // imgUrl: {
+  //   type: String,
+  //   required: [true, '請輸入圖片位置']
+  // }
+})
+
+// 行程安排model
+const scheduleSchema = new Schema({
+  // 與行程model關聯
+  p_id: {
+    type: mongoose.ObjectId,
+    ref: 'products'
+  },
+  date: {
+    type: Date,
+    required: [true, '請輸入行程安排日程']
+  },
+  content: {
+    type: String,
+    required: [true, '請輸入行程安排內容']
+  }
+})
+
+// 餐食model
+const mealSchema = new Schema({
+  // 與行程model關聯
+  p_id: {
+    type: mongoose.ObjectId,
+    ref: 'products'
+  },
+  time: {
+    type: String,
+    required: [true, '請輸入餐點時間']
+  },
+  meal: {
+    type: String,
+    required: [true, '請輸入餐點']
+  },
+  content: {
+    type: String,
+    required: [true, '請輸入餐食內容']
+  }
+})
+
+// productSchema-----------------------------------------------------------------------------------------------------------------------------------------------------------
 const productSchema = new Schema(
   {
-    plans: [{
-      category: {
-        type: String
-      // required: [true, '請輸入分類']
-      },
-      content: {
-        type: String
-      // required: [true, '請輸入內容']
-      },
-      imageUrl: {
-        type: String
-      },
-      price: {
-        type: Number
-      // required: [true, '請輸入價格']
-      },
-      file: {
-        type: String,
-        required: [true, '缺少檔案名稱']
-      },
-      user: {
-        type: String,
-        required: [true, '缺少使用者欄位']
-      },
-      description: {
-        type: String,
-        maxlength: [200, '說明必須 200 字以下']
-      },
-      title: {
-        type: String
-      // required: [true, '請輸入標題']
-      },
-      messages: []
-    }]
-  },
-  {
+    category: {
+      type: String,
+      required: [true, '請輸入活動分類']
+    },
+    title: {
+      type: String,
+      required: [true, '請輸入活動名稱']
+    },
+    newplan: {
+      type: [newPlanSchema]
+      // required: [true, '請輸入開團內容']
+    },
+    site: {
+      type: String,
+      required: [true, '請輸入活動地點']
+    },
+    cost: {
+      type: Number,
+      required: [true, '請輸入活動成本']
+    },
+    introduction: {
+      type: String,
+      required: [true, '請輸入活動說明']
+    },
+    costinclude: {
+      type: String,
+      required: [true, '請輸入活動費用包含事項']
+    },
+    attention: {
+      type: String,
+      required: [true, '請輸入注意事項']
+    },
+    // 1 or 0
+    is_enabled: {
+      type: Number,
+      required: [true, '請確認是否上架']
+    },
+    images: {
+      type: [imgSchema],
+      required: [true, '請上傳活動圖片']
+    },
+    schedule: {
+      type: [scheduleSchema],
+      required: [true, '請輸入行程安排']
+    },
+    meal: {
+      type: [mealSchema],
+      required: [true, '請輸入餐食安排']
+    },
     versionKey: false
   }
 )

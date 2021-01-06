@@ -12,7 +12,7 @@ import routerProducts from './routes/products.js'
 // 設置dotenv
 dotenv.config()
 
-mongoose.connect(process.env.DBURL)
+mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 const app = express()
 // bodyParser.json returns middleware that only parses json.

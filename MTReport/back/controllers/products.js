@@ -4,8 +4,8 @@ import FTPStorage from 'multer-ftp'
 // 透過axios 導向到herolku 再到220拿圖片 回來
 import axios from 'axios'
 import path from 'path'
+import fs from 'fs'
 import products from '../models/products.js'
-
 let storage
 
 // 本機開發，檔案存電腦
@@ -88,17 +88,27 @@ export const uploadProduct = async (req, res) => {
         } else {
           file = path.basename(req.file.path)
         }
+
+        const newplan = {
+
+        }
+        const images =
+        const schedule =
+        const meal =
+
         const result = await products.create({
-          plans: [{
-            user: req.session.user._id,
-            description: req.body.plans.description,
-            file,
-            category: req.body.category,
-            content: req.body.content,
-            price: req.body.price,
-            title: req.body.title,
-            message: req.body.message
-          }]
+          category: req.body.category,
+          title: req.body.title,
+          newplan: [newplan],
+          site: req.body.site,
+          cost: req.body.cost,
+          introduction: req.body.introduction,
+          costinclude: req.body.costinclude,
+          attention: req.body.attention,
+          is_enabled: req.body.is_enabled,
+          images: [images],
+          schedule: [schedule],
+          meal: [meal]
         })
         res.status(200).send({ succuss: true, message: '', result })
       } catch (error) {
@@ -178,7 +188,7 @@ export const deleteeProduct = async (req, res) => {
   }
 }
 
-export const adminuserProduct = async (req, res) => {
+export const searchProduct = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
     return
@@ -189,14 +199,20 @@ export const adminuserProduct = async (req, res) => {
   }
 
   try {
-    const result = await products.findOne()({ account: req.body.account })
-    res.status(200).send({ success: true, message: '', result })
+    const result = await products.find(req.query)
+    if (result.length > 0) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '找不到' })
+    }
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
 
-export const fileProduct = async (req, res) => {
+export const file = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
     return
@@ -223,4 +239,9 @@ export const fileProduct = async (req, res) => {
       res.status(error.response.status).send({ success: false, message: '取得圖片失敗' })
     })
   }
+}
+
+
+module.exports = {
+  file
 }

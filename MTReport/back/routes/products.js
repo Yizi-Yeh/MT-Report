@@ -1,12 +1,12 @@
 import express from 'express'
-import { uploadProduct, editProduct, deleteeProduct, adminuserProduct, fileProduct } from '../controllers/products.js'
+import { uploadProduct, editProduct, deleteeProduct, searchProduct, file } from '../controllers/products.js'
 
 const router = express.Router()
 
-router.post('/', uploadProduct)
-router.patch('/:id', editProduct)
-router.delete(':/id', deleteeProduct)
-router.get('/', adminuserProduct)
-router.get('/file/:file', fileProduct)
+router.post('/products', uploadProduct)
+router.patch('/products', editProduct)
+router.delete('/products', deleteeProduct)
+router.get('/products', searchProduct)
+router.get('/file/:file', file)
 
 export default router
