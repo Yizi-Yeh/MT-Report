@@ -15,7 +15,7 @@ dotenv.config()
 mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 const app = express()
-// bodyParser.json returns middleware that only parses json.
+// express 需要bodyparser來讀取資料
 app.use(bodyParser.json())
 
 // 跨域設定
@@ -40,16 +40,21 @@ app.use(cors({
   credentials: true
 }))
 
-// Saving Session Data with Connect-Mongo
+// 將session存入mongoDB
 const MongoStore = connectMongo(session)
-
+// 設定session
 const sessionSettings = {
+  // 金鑰
   secret: 'mtreport',
+  // 存放位置
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  // 登入有效期
   cookie: {
     maxAge: 1000 * 60 * 30
   },
+  // 不存入多餘資料進mongo
   saveUninitialized: false,
+  // 若有發請求則延長有效時間
   rolling: true,
   resave: true
 }

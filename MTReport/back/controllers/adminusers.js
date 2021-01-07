@@ -13,6 +13,7 @@ export const create = async (req, res) => {
     } else if (req.body.password.length > 20) {
       res.status(400).send({ success: false, message: '密碼必須二十個字以下' })
     } else {
+      // post 資料
       await adminusers.create({
         account: req.body.account,
         password: md5(req.body.password)
@@ -36,6 +37,7 @@ export const login = async (req, res) => {
     return
   }
   try {
+    // findine 確認登入
     const result = await adminusers.findOne({
       account: req.body.account,
       password: md5(req.body.password)
@@ -62,17 +64,21 @@ export const login = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
+  // logout 將session刪除
   req.session.destroy(error => {
     if (error) {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     } else {
+      // logout 將cookie刪除
       res.clearCookie()
       res.status(200).send({ success: true, message: '' })
     }
   })
 }
+// 利用heartbeat 確認使用者是否登入
 export const heartbeat = async (req, res) => {
   let isLogin = false
+  // 若session 帶有user的資料則代表已登入
   if (req.session.user !== undefined) {
     isLogin = true
   }

@@ -1,3 +1,4 @@
+// multer為資料上傳套件
 import multer from 'multer'
 // 圖片傳到220
 import FTPStorage from 'multer-ftp'
@@ -6,20 +7,24 @@ import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
 import products from '../models/products.js'
-let storage
+
 
 // 本機開發，檔案存電腦
-// 雲端環境，檔案存FTP
+let storage
 if (process.env.DEV === 'true') {
   storage = multer.diskStorage({
     destination (req, file, callback) {
+      // 將上傳的檔案放入images資料夾
       callback(null, 'images/')
     },
+      // 檔案命名 
     filename (req, file, callback) {
+      // callback(無錯誤, 時間縮記 + 檔案副檔名(檔案原始檔名))
       callback(null, Date.now() + path.extname(file.originalname))
     }
   })
 } else {
+  // 雲端環境，檔案存FTP
   storage = new FTPStorage({
     // 上傳到 FTP 的路徑
     basepath: '/',
@@ -38,8 +43,10 @@ if (process.env.DEV === 'true') {
   })
 }
 
+  // 儲存設定
 const upload = multer({
   storage,
+  // 過濾上傳檔案，只接受為image的格式
   fileFilter (req, file, callback) {
     if (!file.mimetype.includes('image')) {
       callback(new multer.MulterError('LIMIT_FORMAT'), false)
@@ -54,17 +61,18 @@ const upload = multer({
 })
 
 export const uploadProduct = async (req, res) => {
-  // 若未登入
+  // session中若有user資料才代表有登入
   if (req.session.user === undefined) {
     res.status(401).send({ succuss: false, message: '未登入' })
     return
   }
-  // 若沒有content-type
+  // 若req中帶有multipart/form-data形式
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('multipart/form-data')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
     return
   }
   // 判斷式是否上傳錯誤
+  // upload.single('上傳的檔名') / key為image
   upload.single('image')(req, res, async error => {
     if (error instanceof multer.MulterError) {
       console.log(error)
@@ -82,6 +90,8 @@ export const uploadProduct = async (req, res) => {
       res.status(500).send({ succuss: false, message: '伺服器錯誤' })
     } else {
       try {
+        // 分本機及雲端
+        // file = 存在資料庫的名稱
         let file = ''
         if (process.env.DEV === 'true') {
           file = req.file.filename
@@ -125,6 +135,7 @@ export const uploadProduct = async (req, res) => {
     }
   })
 }
+
 export const editProduct = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
