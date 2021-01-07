@@ -6,12 +6,15 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="80">編輯</th>
+          <th width="120">活動分類</th>
+          <th width="120">活動名稱</th>
+          <th width="120">地點</th>
+          <th width="120">費用</th>
+          <th width="120">活動說明</th>
+          <th width="80">費用包含</th>
+          <th width="80">注意事項</th>
+          <th width="80">是否上架</th>
+          <th width="80">活動圖片</th>
         </tr>
       </thead>
       <tbody>

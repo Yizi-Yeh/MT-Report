@@ -1,5 +1,5 @@
 import md5 from 'md5'
-import adminusers from '../models/adminusers.js'
+import users from '../models/users.js'
 
 export const create = async (req, res) => {
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
@@ -14,7 +14,7 @@ export const create = async (req, res) => {
       res.status(400).send({ success: false, message: '密碼必須二十個字以下' })
     } else {
       // post 資料
-      await adminusers.create({
+      await users.create({
         account: req.body.account,
         password: md5(req.body.password)
       })
@@ -39,7 +39,7 @@ export const login = async (req, res) => {
   }
   try {
     // findine 確認登入
-    const result = await adminusers.findOne({
+    const result = await users.findOne({
       account: req.body.account,
       password: md5(req.body.password)
     })

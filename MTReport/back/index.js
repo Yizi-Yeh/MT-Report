@@ -6,8 +6,10 @@ import connectMongo from 'connect-mongo'
 import cors from 'cors'
 import session from 'express-session'
 
-import routerAdminusers from './routes/adminusers.js'
 import routerProducts from './routes/products.js'
+import routerAdminusers from './routes/adminusers.js'
+import routerUsers from './routes/users.js'
+import routerImgs from './routes/imgs.js'
 
 // 設置dotenv
 dotenv.config()
@@ -70,8 +72,10 @@ app.use(session(sessionSettings))
 // 部屬上 heroku 一定要設定
 app.set('trust proxy', 1)
 
-app.use('/adminusers', routerAdminusers)
 app.use('/products', routerProducts)
+app.use('/users', routerUsers)
+app.use('/adminusers', routerAdminusers)
+app.use('/imgs', routerImgs)
 
 app.listen(process.env.PORT, () => {
   console.log('server started')
