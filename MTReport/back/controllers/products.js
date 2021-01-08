@@ -17,6 +17,7 @@ export const uploadProduct = async (req, res) => {
       site: req.body.site,
       cost: req.body.cost,
       introduction: req.body.introduction,
+      
       costinclude: req.body.costinclude,
       attention: req.body.attention,
       is_enabled: req.body.is_enabled

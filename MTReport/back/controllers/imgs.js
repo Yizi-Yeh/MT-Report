@@ -83,7 +83,7 @@ export const create = async (req, res) => {
           file = path.basename(req.file.path)
         }
         const result = await imgs.create({
-          user: req.session.user._id,
+          p_id: req.body.pdoducts._id,
           description: req.body.description,
           file,
           imgUrl: req.body.imgUrl

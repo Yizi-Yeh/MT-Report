@@ -2,6 +2,25 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+// 會員schema
+const orderSchema = new Schema(
+  {
+    p_id: {
+      type: mongoose.ObjectId,
+      ref: 'newplans'
+    },
+    price: {
+      type: String
+    },
+    paidprice: {
+      type: String
+    },
+    paiday: {
+      type: String
+    }
+  }
+)
+
 const userSchema = new Schema(
   {
     account: {
@@ -14,6 +33,10 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, '請輸入密碼']
+    },
+    order: {
+      type: [orderSchema]
+      // required: [true, '請輸入訂單']
     }
   },
   {
