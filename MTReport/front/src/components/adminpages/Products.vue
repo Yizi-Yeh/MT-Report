@@ -1,6 +1,6 @@
 <template>
 <div>
-     <div class="text-right mt-4">
+<div class="text-right mt-4">
       <button class="btn btn-primary">建立新的產品</button>
     </div>
     <table class="table mt-4">
@@ -21,8 +21,9 @@
         <tr v-for="(item) in plans" :key="item.id">
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
-          <td>{{ item.file }}</td>
-          <td>{{ item.user }}</td>
+           <td>{{ item.site }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.images }}</td>
           <td class="text-right">
             {{ item.origin_price}}
           </td>
@@ -55,7 +56,7 @@ export default {
         const vm = this;
         this.$http.get(api).then((response) => {
         console.log(response.data)
-        vm.plans = response.data.plans
+        vm.plans = response.data.result
     })
         }
     },

@@ -9,7 +9,6 @@ import session from 'express-session'
 import routerProducts from './routes/products.js'
 import routerAdminusers from './routes/adminusers.js'
 import routerUsers from './routes/users.js'
-import routerImgs from './routes/imgs.js'
 
 // 設置dotenv
 dotenv.config()
@@ -75,7 +74,6 @@ app.set('trust proxy', 1)
 app.use('/products', routerProducts)
 app.use('/users', routerUsers)
 app.use('/adminusers', routerAdminusers)
-app.use('/imgs', routerImgs)
 
 app.listen(process.env.PORT, () => {
   console.log('server started')

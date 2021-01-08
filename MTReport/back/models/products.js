@@ -2,86 +2,80 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-// 活動圖片schema
-// 改為upload形式
 const imgSchema = new Schema(
   {
+    // 活動圖片說明
     description: {
       type: String
     },
+    // 活動圖片檔案
     file: {
       type: String
     },
+    // 活動圖片位置
     imgUrl: {
       type: String
     }
   }
 )
 
-// 行程安排schema
 const scheduleSchema = new Schema(
   {
-    date: {
+    // 行程安排日程
+    dateTime: {
       type: String
-    // required: [true, '請輸入行程安排日程']
     },
+    // 行程安排內容
     content: {
       type: String
-      // required: [true, '請輸入行程安排內容']
     }
   })
 
-// 餐食schema
 const mealSchema = new Schema({
-  Date: {
+  mealdateTime: {
+    // 餐食安排日程
     type: String
-    // required: [true, '請輸入餐食安排日程']
   },
-  meal: {
+  mealcontent: {
+    // 餐食內容
     type: String
-    // required: [true, '請輸入餐點']
-  },
-  content: {
-    type: String
-    // required: [true, '請輸入餐食內容']
   }
 })
 
-// productSchema-----------------------------------------------------------------------------------------------------------------------------------------------------------
 const productSchema = new Schema(
   {
+    // 活動分類
     category: {
-      type: String,
-      required: [true, '請輸入活動分類']
+      type: String
     },
+    // 請輸入活動名稱
     title: {
-      type: String,
-      required: [true, '請輸入活動名稱']
+      type: String
     },
+    // 活動地點
     site: {
-      type: String,
-      required: [true, '請輸入活動地點']
+      type: String
     },
+    // 活動成本
     cost: {
-      type: Number,
-      required: [true, '請輸入活動成本']
+      type: Number
+
     },
+    // 活動說明
     introduction: {
-      type: String,
-      required: [true, '請輸入活動說明']
+      type: String
     },
+    // 費用包含事項
     costinclude: {
-      type: String,
-      required: [true, '請輸入活動費用包含事項']
+      type: String
     },
+    // 注意事項
     attention: {
-      type: String,
-      required: [true, '請輸入注意事項']
+      type: String
     },
-    // 1 or 0
+    // 是否上傳
     is_enabled: {
-      type: Number,
-      required: [true, '請確認是否上架']
+      type: Boolean
     },
     images: {
       type: [imgSchema]
@@ -94,7 +88,9 @@ const productSchema = new Schema(
     meal: {
       type: [mealSchema]
       // required: [true, '請輸入餐食安排']
-    },
+    }
+  },
+  {
     versionKey: false
   }
 )

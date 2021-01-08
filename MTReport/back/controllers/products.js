@@ -1,4 +1,6 @@
 import products from '../models/products.js'
+import path from 'path'
+import { imgUpload } from '../imgupload.js'
 
 export const uploadProduct = async (req, res) => {
   // session中若有user資料才代表有登入
@@ -6,41 +8,64 @@ export const uploadProduct = async (req, res) => {
     res.status(401).send({ succuss: false, message: '未登入' })
     return
   }
-  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
-    res.status(400).send({ success: false, message: '資料格式不符' })
-    return
-  }
   try {
+    const reqq = await imgUpload(req, res)
+    let file = ''
+    if (process.env.DEV === 'true') {
+      file = req.file.filename
+    } else {
+      file = path.basename(req.file.path)
+    }
+    const images = {
+      description: req.body.description,
+      file,
+      imgUrl: req.body.imgUrl
+    }
+    const schedule = {
+      dateTime: reqq.body.dateTime,
+      content: reqq.body.content
+    }
+    const meal = {
+      mealdateTime: reqq.body.mealdateTime,
+      mealcontent: reqq.body.mealcontent
+    }
     const result = await products.create({
       category: req.body.category,
       title: req.body.title,
       site: req.body.site,
       cost: req.body.cost,
       introduction: req.body.introduction,
-      
       costinclude: req.body.costinclude,
       attention: req.body.attention,
-      is_enabled: req.body.is_enabled
+      is_enabled: req.body.is_enabled,
+      images: [images],
+      schedule: [schedule],
+      meal: [meal]
     })
     res.status(200).send({ succuss: true, message: '', result })
   } catch (error) {
-    if (error.name === 'ValidationError') {
+    console.log(error)
+    if (error.name === 'MulterError') {
+      const message = (error.code === 'LIMIT_FORMAT') ? [400, '圖片格式不符'] : (error.code === 'LIMIT_SIZE') ? [400, '圖片太大'] : [500, '伺服器錯誤']
+      res.status(message[0]).send({ result: 'false', message: '伺服器錯誤' })
+    } else if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
-      res.status(400).send({ success: false, message })
+      res.status(400)
+      res.send({ success: false, message })
     } else {
       res.status(500)
-      res.send({ success: false, message: '伺服器錯誤' })
+      res.send({ success: false, message: '伺服器發生錯誤' })
       console.log(error)
     }
   }
 }
 
 export const editProduct = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
     return
@@ -66,6 +91,7 @@ export const editProduct = async (req, res) => {
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
+    console.log(error)
   }
 }
 
@@ -95,14 +121,10 @@ export const deleteeProduct = async (req, res) => {
 }
 
 export const searchProduct = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
-  if (req.session.user._id !== req.params.user) {
-    res.status(403).send({ success: false, message: '沒有權限' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
 
   try {
     const result = await products.find()

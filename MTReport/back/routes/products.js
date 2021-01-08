@@ -3,9 +3,9 @@ import { uploadProduct, editProduct, deleteeProduct, searchProduct } from '../co
 
 const router = express.Router()
 
-router.post('/products', uploadProduct)
-router.patch('/products', editProduct)
-router.delete('/products', deleteeProduct)
-router.get('/products', searchProduct)
+router.post('/', uploadProduct)
+router.patch('/', editProduct)
+router.delete('/', deleteeProduct)
+router.get('/', searchProduct)
 
 export default router

@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-// 會員schema
 const orderSchema = new Schema(
   {
     p_id: {
