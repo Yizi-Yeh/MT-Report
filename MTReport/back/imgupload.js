@@ -2,7 +2,11 @@ import multer from 'multer'
 import FTPStorage from 'multer-ftp'
 import axios from 'axios'
 import path from 'path'
+// fs node.js對檔案處理的套件
 import fs from 'fs'
+import dotenv from 'dotenv'
+dotenv.config()
+
 let storage
 
 // 本機開發，檔案存電腦
@@ -59,9 +63,13 @@ export const imgUpload = async (req, res) => {
 export const file = (req, res) => {
   // 開發環境回傳本機圖片
   if (process.env.DEV === 'true') {
+  // 檢察檔案是否存在
+  // process.cwd() node.js目前的路徑
     const path = process.cwd() + '/images/' + req.params.file
+    // 若存在，傳送檔案
     const exists = fs.existsSync(path)
     if (exists) {
+    // 將檔案送出（傳給前台，前提為絕對路徑）
       res.status(200).sendFile(path)
     } else {
       res.status(404).send({ success: false, message: '找不到圖片' })

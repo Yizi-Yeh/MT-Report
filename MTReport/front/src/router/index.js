@@ -10,6 +10,7 @@ import Join from '../components/pages/join.vue'
 import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
 import Products from '../components/adminpages/Products.vue'
+import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    // 設定是否需要登入
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/about',
@@ -25,37 +30,58 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/brand',
     name: 'Brand',
-    component: Brand
+    component: Brand,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/plan',
     name: 'Plan',
-    component: Plan
+    component: Plan,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/newplan',
     name: 'NewPlan',
-    component: NewPlan
+    component: NewPlan,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/member',
     name: 'Member',
-    component: Member
+    component: Member,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/join',
     name: 'Join',
-    component: Join
+    component: Join,
+    mata: {
+      needLogin: true
+    }
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/login',
@@ -79,6 +105,17 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+
+// 進入每頁前檢查登入狀態
+router.beforeEach((to, from, next) => {
+  if(to.meta.needLogin && store.state.login.length === 0) {
+    alert('請先註冊會員才能報名喔！')
+    next('/member')
+  } else {
+    next()
+  }
 })
 
 export default router

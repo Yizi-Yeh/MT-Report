@@ -12,14 +12,14 @@ export const uploadProduct = async (req, res) => {
     const reqq = await imgUpload(req, res)
     let file = ''
     if (process.env.DEV === 'true') {
-      file = req.file.filename
+      file = reqq.file.filename
     } else {
       file = path.basename(req.file.path)
     }
     const images = {
-      description: req.body.description,
+      description: reqq.body.description,
       file,
-      imgUrl: req.body.imgUrl
+      imgUrl: reqq.body.imgUrl
     }
     const schedule = {
       dateTime: reqq.body.dateTime,
@@ -30,14 +30,15 @@ export const uploadProduct = async (req, res) => {
       mealcontent: reqq.body.mealcontent
     }
     const result = await products.create({
-      category: req.body.category,
-      title: req.body.title,
-      site: req.body.site,
-      cost: req.body.cost,
-      introduction: req.body.introduction,
-      costinclude: req.body.costinclude,
-      attention: req.body.attention,
-      is_enabled: req.body.is_enabled,
+      category: reqq.body.category,
+      title: reqq.body.title,
+      site: reqq.body.site,
+      cost: reqq.body.cost,
+      time: reqq.body.time,
+      introduction: reqq.body.introduction,
+      costinclude: reqq.body.costinclude,
+      attention: reqq.body.attention,
+      is_enabled: reqq.body.is_enabled,
       images: [images],
       schedule: [schedule],
       meal: [meal]
@@ -62,10 +63,10 @@ export const uploadProduct = async (req, res) => {
 }
 
 export const editProduct = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
     return
@@ -94,7 +95,24 @@ export const editProduct = async (req, res) => {
     console.log(error)
   }
 }
+export const deleteProduct = async (req, res) => {
+  try {
+    const result = await products.findByIdAndDelete(req.params.id)
 
+    if (result != null) {
+      res.status(200).send({ success: true, message: '' })
+    } else {
+      res.status(404).send({ success: false, message: '找不到商品' })
+    }
+  } catch (error) {
+    console.log(error)
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到商品' })
+    } else {
+      res.status(500).send({ success: false, message: '發生錯誤' })
+    }
+  }
+}
 export const deleteeProduct = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
@@ -102,30 +120,26 @@ export const deleteeProduct = async (req, res) => {
   }
 
   try {
-    let result = await products.findById(req.params.id)
-    if (result === null) {
-      res.status(404).send({ success: false, message: '找不到資料' })
-    } else if (result.user !== req.session.user._id) {
-      res.status(403).send({ success: false, message: '沒有權限' })
+    const result = await products.findByIdAndDelete(req.params.id)
+    if (result != null) {
+      res.status(200).send({ success: true, message: '' })
     } else {
-      result = await products.findByIdAndDelete(req.params.id)
-      res.status(200).send({ success: true, message: '', result })
+      res.status(404).send({ success: false, message: '找不到商品' })
     }
   } catch (error) {
+    console.log(error)
     if (error.name === 'CastError') {
-      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+      res.status(404).send({ success: false, message: '找不到商品' })
     } else {
-      res.status(500).send({ success: false, message: '伺服器錯誤' })
+      res.status(500).send({ success: false, message: '發生錯誤' })
     }
   }
 }
-
 export const searchProduct = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
-
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
   try {
     const result = await products.find()
     if (result.length > 0) {
@@ -137,5 +151,26 @@ export const searchProduct = async (req, res) => {
     }
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const searchProductById = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  try {
+    const result = await products.findById(req.params.id)
+    if (result === null) {
+      res.status(404).send({ success: false, message: '找不到資料' })
+    } else if (result.user !== req.session.user._id) {
+      res.status(403).send({ success: false, message: '沒有權限' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    }
   }
 }
