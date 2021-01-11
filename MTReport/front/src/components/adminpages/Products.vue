@@ -38,7 +38,7 @@
           <td>
             <button class="btn btn-outline-dark btn-sm">編輯</button>
             <!-- 因為刪除用id刪，所以把id傳入 -->
-             <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+       <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -61,38 +61,37 @@
                 <div class="form-group">
                   <label for="image">輸入圖片網址</label>
                   <input type="text" class="form-control" id="imgUrl"
-                    v-model="tempProduct.imgUrl"
+                    v-model="form.imgUrl"
                     placeholder="請輸入圖片連結">
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
                     <i class="fas fa-spinner fa-spin"></i>
                   </label>
-                  <input type="file" id="customFile" class="form-control"
+                  <input type="file" id="file" class="form-control"
                     ref="files">
                 </div>
                 <img img="https://mt10x10.wordpress.com/2020/12/29/aqua_forest/"
-                  class="img-fluid" :src="tempProduct.imgUrl" alt="">
+                  class="img-fluid" :src="form.imgUrl" alt="">
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
                   <label for="category">活動分類</label>
                   <input type="text" class="form-control" id="category"
-                    v-model="tempProduct.category"
+                    v-model="form.category"
                     placeholder="請輸入活動分類">
                 </div>
-
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="title">活動標題</label>
                     <input type="text" class="form-control" id="title"
-                      v-model="tempProduct.title"
+                      v-model="form.title"
                       placeholder="請輸入活動標題">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="site">活動地點</label>
                     <input type="text" class="form-control" id="site"
-                      v-model="tempProduct.site"
+                      v-model="form.site"
                       placeholder="請輸入地點">
                   </div>
                 </div>
@@ -100,14 +99,14 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <label for="cost">活動成本</label>
-                    <input type="number" class="form-control" id="cost"
-                      v-model="tempProduct.cost"
+                    <input type="text" class="form-control" id="cost"
+                      v-model="form.cost"
                       placeholder="請輸入活動成本">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="time">活動時間</label>
                     <input type="text" class="form-control" id="time"
-                      v-model="tempProduct.time"
+                      v-model="form.time"
                       placeholder="請輸入活動時間">
                   </div>
                 </div>
@@ -116,46 +115,46 @@
                 <div class="form-group">
                   <label for="introduction">活動說明</label>
                   <textarea type="text" class="form-control" id="introduction"
-                    v-model="tempProduct.introduction"
+                    v-model="form.introduction"
                     placeholder="請輸入活動說明"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="costinclude">費用包含</label>
                   <textarea type="text" class="form-control" id="costinclude"
-                    v-model="tempProduct.costinclude"
+                    v-model="form.costinclude"
                     placeholder="請輸入費用包含事項"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="attention">注意事項</label>
                   <textarea type="text" class="form-control" id="attention"
-                    v-model="tempProduct.attention"
+                    v-model="form.attention"
                     placeholder="請輸入注意事項"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="attention">行程安排</label>
-                  <textarea type="text" class="form-control mb-3" id="attention"
-                    v-model="tempProduct.attention"
+                  <label for="schedule">行程安排</label>
+                  <textarea type="text" class="form-control mb-3" id="dateTime"
+                    v-model="form.dateTime"
                     placeholder="請輸入行程安排日程"></textarea>
 
-                    <textarea type="text" class="form-control" id="attention"
-                    v-model="tempProduct.attention"
+                    <textarea type="text" class="form-control" id="content"
+                    v-model="form.content"
                     placeholder="請輸入行程安排內容"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="attention">餐食安排</label>
-                  <textarea type="text" class="form-control mb-3" id="attention"
-                    v-model="tempProduct.attention"
+                  <label for="meal">餐食安排</label>
+                  <textarea type="text" class="form-control mb-3" id="mealdateTime"
+                    v-model="form.mealdateTime"
                     placeholder="餐食安排請輸入日程"></textarea>
 
-                    <textarea type="text" class="form-control" id="attention"
-                    v-model="tempProduct.attention"
+                    <textarea type="text" class="form-control" id="mealcontent"
+                    v-model="form.mealcontent"
                     placeholder="餐食安排請輸入內容"></textarea>
                 </div>
                 
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                      v-model="tempProduct.is_enabled"
+                      v-model="form.is_enabled"
                       :true-value="true"
                       :false-value="false"
                       id="is_enabled">
@@ -169,60 +168,59 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-dark" @click="uploadProduct">確認</button>
+            <button type="button" class="btn btn-dark" @click="addProduct">確認</button>
           </div>
         </div>
       </div>
     </div>
-   </div>
 </div>
 </template>
 <script>
+import $ from 'jquery';
 export default {
     data() {
         return {
             plans:[],
-            tempProduct:{},
+            form:{},
         }
     },
     methods: {
         getProducts() {
-        const api = `${process.env.VUE_APP_API}`+ '/products/'
+        const api = `${process.env.VUE_APP_API}`+ '/products'
         const vm = this;
         this.$http.get(api).then((response) => {
-        console.log(response.data)
-       vm.plans = response.data.result
-       })
+        // console.log(response.data)
+        vm.plans = response.data.result
+        })
         },
         // 在products中找到id並刪除
         delProducts(id) {
-        const api = `${process.env.VUE_APP_API}`+ '/products/' +id
-        console.log(api)
+        const api = `${process.env.VUE_APP_API}`+ '/products/' + id
         const vm = this;
-        this.$http.delete(api).then((response) => {
-         const index = vm.plans.findIndex( item => {
-         return plans._id = id 
-          })
-          vm.plans.splice(index,1)
+        vm.$http.delete(api).then((response) => {
+          const index = vm.plans.findIndex( item => {
+          return item._id === id 
+          }) 
+          // splice(index,1) 在index位置處刪除一個元素
+          this.plans.splice(index,1)
           })
         .catch(error => {
-          console.log(error.response.data)
+          alert(error.response.data.message)
         }) 
         },    
-        uploadProduct() {
-        const api = `${process.env.VUE_APP_API}`+ '/products/'
+
+        addProduct() {
+        const api = `${process.env.VUE_APP_API}`+ '/products'
         const vm = this;
-        this.$http.post(api, { data: vm.tempProduct }).then((response) => {
-        console.log(response.data);
-        if(response.data.success) {
+        this.$http.post(api, vm.form).then((response) => {
+        vm.plans.push(response.data.result)
+        if(response.data.succuss) {
           vm.getProducts()
           $('#productModal').modal('hide')
         } else {
+          $('#productModal').modal('hide')
           vm.getProducts()
-             $('#productModal').modal('hide')
-          console.log('新增失敗')
         }
-         console.log(tempProduct)
         // vm.plans = response.data.result
     })
     },
@@ -234,8 +232,6 @@ export default {
     mounted() {
         this.getProducts()
     },
-   
 
 }
 </script>
-

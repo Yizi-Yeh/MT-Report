@@ -86,7 +86,10 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    mata: {
+      needLogin: false
+    }
   },
   {
     path: '/admin',
@@ -97,7 +100,6 @@ const routes = [
         path: 'products',
         name: 'Products',
         component: Products,
-        meta: { requiresAuth: true },
       },
     ],
   }

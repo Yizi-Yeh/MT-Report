@@ -40,7 +40,7 @@ if (process.env.DEV === 'true') {
 export const upload = multer({
   storage,
   fileFilter (req, file, callback) {
-    if (!file.mimetype.includes('image')) {
+    if (!file.mimetype.includes('file')) {
       callback(new multer.MulterError('LIMIT_FORMAT'), false)
     } else {
       callback(null, true)

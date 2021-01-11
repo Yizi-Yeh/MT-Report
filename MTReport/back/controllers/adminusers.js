@@ -49,6 +49,7 @@ export const login = async (req, res) => {
     } else {
       req.session.user = result
       res.status(200).send({ success: true, message: '' })
+      console.log(req.session.user)
     }
   } catch (error) {
     if (error.name === 'ValidationError') {

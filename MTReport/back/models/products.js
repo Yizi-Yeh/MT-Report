@@ -58,7 +58,7 @@ const productSchema = new Schema(
     },
     // 活動成本
     cost: {
-      type: Number
+      type: String
     },
     // 活動時間
     time: {
