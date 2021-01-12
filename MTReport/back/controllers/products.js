@@ -117,11 +117,11 @@ export const deleteeProduct = async (req, res) => {
   }
 }
 export const searchProduct = async (req, res) => {
-  console.log(req.session)
-  if (req.session.account === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // console.log(req.session)
+  // if (req.session.account === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   try {
     const result = await products.find()
     if (result.length > 0) {

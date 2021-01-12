@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="text-right mt-4">
-      <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal">建立新的行程</button>
+      <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的行程</button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -29,16 +29,17 @@
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
           <td>{{ item.attention}}</td>
-          <td><img :src= item.images[0].imgUrl width="100"></td>
-        
+          <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
+          <td v-else><img :src="form.file" width="100" ></td>
           <td>
             <span v-if="item.is_enabled" class="text-dark">啟用</span>
             <span v-else>未啟用</span>
           </td>
           <td>
-            <button class="btn btn-outline-dark btn-sm">編輯</button>
+              <button class="btn btn-outline-dark btn-sm"
+              @click="openModal(false, item)">編輯</button>
             <!-- 因為刪除用id刪，所以把id傳入 -->
-       <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+        <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -68,11 +69,11 @@
                   <label for="customFile">或 上傳圖片
                     <i class="fas fa-spinner fa-spin"></i>
                   </label>
-                  <input type="file" id="file" class="form-control"
-                    ref="files">
+                  <input type="file" id="file" class="form-control" name="file"
+                    ref="files" @change="updateImg"
+                    >
+                    
                 </div>
-                <img img="https://mt10x10.wordpress.com/2020/12/29/aqua_forest/"
-                  class="img-fluid" :src="form.imgUrl" alt="">
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
@@ -159,7 +160,7 @@
                       :false-value="false"
                       id="is_enabled">
                     <label class="form-check-label" for="is_enabled">
-                      是否啟用
+                      狀態
                     </label>
                   </div>
                 </div>
@@ -168,7 +169,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-dark" @click="addProduct">確認</button>
+            <button type="button" class="btn btn-dark" @click="addProduct()">確認</button>
           </div>
         </div>
       </div>
@@ -182,6 +183,7 @@ export default {
         return {
             plans:[],
             form:{},
+            isNew: false,
         }
     },
     methods: {
@@ -209,25 +211,58 @@ export default {
         }) 
         },    
 
-        addProduct() {
-        const api = `${process.env.VUE_APP_API}`+ '/products'
+        addProduct(id) {
+        let api = `${process.env.VUE_APP_API}`+ '/products'
+        let httpMethod = 'post';
         const vm = this;
-        this.$http.post(api, vm.form).then((response) => {
+        if (!vm.isNew) {
+          api = `${process.env.VUE_APP_API}`+ '/products/' + `${vm.form._id}`
+          httpMethod = 'put'
+        } 
+        this.$http[httpMethod](api, vm.form).then((response) => {
         vm.plans.push(response.data.result)
         if(response.data.succuss) {
+            $('#productModal').modal('hide')
           vm.getProducts()
-          $('#productModal').modal('hide')
         } else {
-          $('#productModal').modal('hide')
-          vm.getProducts()
-        }
+            vm.getProducts();
+          $('#productModal').modal('hide');
+        } console.log(vm.form._id)
+        // console.log(vm)
         // vm.plans = response.data.result
     })
     },
-    // 等待axios完成後
-        Modal() {
-        $('#productModal').modal('show')
+    updateImg() {
+      // Vue實體中圖片置放位置
+      const updated = this.$refs.files.files[0];
+      const vm = this;
+      // 使用new FormData 操作表單
+      const fd = new FormData();
+      // 然後透過 append 加入欄位 ，傳入圖片
+      fd.append('file', updated);
+      const api = `${process.env.VUE_APP_API}`+ '/products';
+      // post fd本身，並設置表單名稱
+      this.$http.post(api, fd, { headers: {
+          'Content-Type': 'multipart/form-data',
         },
+      }).then((response) => {
+        // console.log(response.data);
+        if (response.data.succuss) {
+          vm.form.file = process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
+        }
+      });
+    },
+    // 等待axios完成後
+      openModal(isNew, item) {
+      if (isNew) {
+        this.form = {};
+        this.isNew = true;
+      } else {
+        this.form = Object.assign({}, item);
+        this.isNew = false;
+      }
+        $('#productModal').modal('show');
+      },
     },
     mounted() {
         this.getProducts()
