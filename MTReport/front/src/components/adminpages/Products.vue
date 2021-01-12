@@ -31,6 +31,7 @@
           <td>{{ item.attention}}</td>
           <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
           <td v-else><img :src="form.file" width="100" ></td>
+          
           <td>
             <span v-if="item.is_enabled" class="text-dark">啟用</span>
             <span v-else>未啟用</span>
@@ -72,6 +73,7 @@
                   <input type="file" id="file" class="form-control" name="file"
                     ref="files" @change="updateImg"
                     >
+                    
                     
                 </div>
               </div>
@@ -211,7 +213,7 @@ export default {
         }) 
         },    
 
-        addProduct(id) {
+        addProduct() {
         let api = `${process.env.VUE_APP_API}`+ '/products'
         let httpMethod = 'post';
         const vm = this;
@@ -220,16 +222,14 @@ export default {
           httpMethod = 'put'
         } 
         this.$http[httpMethod](api, vm.form).then((response) => {
-        vm.plans.push(response.data.result)
         if(response.data.succuss) {
-            $('#productModal').modal('hide')
+          // vm.plans.push(response.data.result)
+          $('#productModal').modal('hide')
           vm.getProducts()
         } else {
             vm.getProducts();
           $('#productModal').modal('hide');
-        } console.log(vm.form._id)
-        // console.log(vm)
-        // vm.plans = response.data.result
+        } 
     })
     },
     updateImg() {
@@ -248,16 +248,19 @@ export default {
       }).then((response) => {
         // console.log(response.data);
         if (response.data.succuss) {
-          vm.form.file = process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
-        }
+        vm.$set(vm.form,'file',process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file)
+        } console.log(vm.form.file)
       });
     },
-    // 等待axios完成後
+    getImgUrl (id) {
+      return process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
+      },
       openModal(isNew, item) {
       if (isNew) {
         this.form = {};
         this.isNew = true;
       } else {
+        // 將item值寫入空物件
         this.form = Object.assign({}, item);
         this.isNew = false;
       }
