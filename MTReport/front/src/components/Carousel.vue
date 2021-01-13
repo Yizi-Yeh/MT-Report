@@ -1,4 +1,5 @@
 <template>
+<div class="row">
 <div id="carouselExampleIndicators" class="carousel slide carousel-fade vh-100"  data-ride="carousel" data-interval="5000">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -9,12 +10,12 @@
     <div class="carousel-item active">
       <img class="d-block w-100 brightness img-movedown" src="../assets/carousel1.jpg" alt="First slide" height="1024px">
      <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
-    <p class="mb-3">LIFE IS AN ADVENTURE.</p>
+    <!-- <p class="mb-3">LIFE IS AN ADVENTURE.</p>
     <h4 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h4>
     <h4>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h4>
     <h4>在山的溫暖懷抱中</h4>
     <h4>我們每個人都很渺小卻也很偉大</h4>
-    <h4>SHOW YOUR CRAVING FOR FREEDOM!</h4>
+    <h4>SHOW YOUR CRAVING FOR FREEDOM!</h4> -->
   </div>
     </div>
     <div class="carousel-item">
@@ -49,5 +50,6 @@
     <span class="sr-only">Next</span>
   </a>
 
+</div>
 </div>
 </template>

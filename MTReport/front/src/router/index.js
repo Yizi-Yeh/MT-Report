@@ -11,6 +11,7 @@ import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
 import Products from '../components/adminpages/Products.vue'
 import store from '../store/index.js'
+import itemPlan from '../components/plans/itemplan.vue'
 
 Vue.use(VueRouter)
 
@@ -47,9 +48,16 @@ const routes = [
     path: '/plan',
     name: 'Plan',
     component: Plan,
+    children: [
+      {
+        path: 'itemplan',
+        name: 'itemPlan',
+        component: itemPlan,
+      },
+    ],
     mata: {
       needLogin: false
-    }
+    },
   },
   {
     path: '/newplan',

@@ -14,6 +14,10 @@
           <th width="100">活動說明</th>
           <th width="100">費用包含</th>
           <th width="100">注意事項</th>
+          <th width="100">行程日程</th>
+          <th width="100">行程內容</th>
+          <th width="100">餐食日程</th>
+          <th width="100">餐食內容</th>
           <th width="100">活動圖片</th>
           <th width="100">是否啟用</th>
           <th width="80">編輯</th>
@@ -29,6 +33,10 @@
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
           <td>{{ item.attention}}</td>
+          <td>{{ item.schedule[0].dateTime}}</td>
+          <td>{{ item.schedule[0].content}}</td>
+          <td>{{ item.meal[0].mealdateTime}}</td>
+          <td>{{ item.meal[0].mealcontent}}</td>
           <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
           <td v-else><img :src="form.file" width="100" ></td>
           

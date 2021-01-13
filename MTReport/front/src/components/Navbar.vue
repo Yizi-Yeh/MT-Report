@@ -1,17 +1,21 @@
 <template>
 <div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
-  <!-- <a class="navbar-brand" href="#section01"><img src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="MT10x10登山社" width="60"></a> -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+<nav class="navbar navbar-dark bg-dark d-flex">
+  <button class="navbar-toggler align-items-center" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
     <span class="navbar-toggler-icon"></span>
+    <br>
+    <span>MENU</span>
   </button>
+  <a class="navbar-brand mx-auto" ><img src="../assets/logo.png" alt="MT10x10登山社" width="100">
+  <span class="text-white my-auto mx-1">MT10x10登山社</span>
+  </a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav d-flex  justify-content-center w-100">
-      <li class="nav-item active ml-3 ">
+      <li class="nav-item active">
         <router-link class="nav-link" to="/brand">品牌故事</router-link>
       </li>
       <li class="nav-item">
-       <router-link class="nav-link" to="/plan">行程資訊</router-link>
+        <router-link class="nav-link" to="/plan">行程資訊</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/newplan">近期開團</router-link>

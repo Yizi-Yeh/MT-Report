@@ -1,7 +1,6 @@
 <template>
 <div>
     <Navbar/>
-    <Category/>
     <div class="container d-flex flex-column">
   <div class="row mt-5 d-flex">
 <div class="col-lg-4 mb-5"  v-for="item in plans" :key="item._id" >
@@ -37,21 +36,18 @@
 
 <script>
 import Navbar from '../Navbar'
-import Category from '../Categoty'
 export default {
   components: {
     Navbar,
-    Category
     },
   data () {
     return {
 plans:[]
-
     } 
   },
     methods: {
-        getProducts() {
-        const api = `${process.env.VUE_APP_API}`+ '/products'
+        getProduct(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/products/' + `${id}`
         const vm = this;
         this.$http.get(api).then((response) => {
         // console.log(response.data)
@@ -60,7 +56,7 @@ plans:[]
         },
     },
     created() {
-      this.getProducts();
+      this.getProduct();
     },
 }
 </script>

@@ -1,15 +1,7 @@
 <template>
 <div>
-  <!-- <section id="section03">
-    粒子效果
-    <div id="particles-js" class="position-absolute h-100 w-100" style="z-index:1;pointer-events: none;"></div>
-
-    jarallax
-    <div class="jarallax" data-jarallax data-speed="0.1" data-type="scroll">
-      <img class="jarallax-img" src="./images/parallax_01.jpg">
-    </div> -->
-
-    <div id="section03" class="container vh-100">
+  <div class="container mt-5">
+    <div id="section03" class=" row vh-100 mt-5">
       <div class="row">
       <h1>活動歷誌</h1>
       <div class="row justify-content-lg-center">
@@ -115,6 +107,7 @@
       </div>
     </div>
     </div>
+</div> 
   <!-- </section> -->
 </div>
 

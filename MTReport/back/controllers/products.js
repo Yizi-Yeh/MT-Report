@@ -144,12 +144,18 @@ export const searchProductById = async (req, res) => {
   // }
   try {
     const result = await products.findById(req.params.id)
-    if (result === null) {
-      res.status(404).send({ success: false, message: '找不到資料' })
-    } else if (result.account !== req.session.user._id) {
-      res.status(403).send({ success: false, message: '沒有權限' })
+    console.log(result)
+    if (result !== undefined) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
     } else {
-      res.status(500).send({ success: false, message: '伺服器錯誤' })
+      if (result === null) {
+        res.status(404).send({ success: false, message: '找不到資料' })
+      } else if (result.account !== req.session.user._id) {
+        res.status(403).send({ success: false, message: '沒有權限' })
+      } else {
+        res.status(500).send({ success: false, message: '伺服器錯誤' })
+      }
     }
   } catch (error) {
     if (error.name === 'CastError') {
