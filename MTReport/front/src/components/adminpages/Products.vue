@@ -1,5 +1,11 @@
 <template>
 <div>
+   <div class="vld-parent">
+        <loading :active.sync="isLoading" ></loading>
+        
+        <label><input type="checkbox" v-model="fullPage">Full page?</label>
+        <button @click.prevent="doAjax">fetch Data</button>
+    </div>
 <div class="text-right mt-4">
       <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的行程</button>
     </div>
@@ -76,7 +82,7 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-                    <i class="fas fa-spinner fa-spin"></i>
+                  <i class="fas fa-cog fa-spin" v-if="status.fileUploading"></i>
                   </label>
                   <input type="file" id="file" class="form-control" name="file"
                     ref="files" @change="updateImg"
@@ -194,14 +200,20 @@ export default {
             plans:[],
             form:{},
             isNew: false,
+            isLoading:false,
+            status: {
+              fileUploading: false
+            }
         }
     },
     methods: {
         getProducts() {
         const api = `${process.env.VUE_APP_API}`+ '/products'
         const vm = this;
+        vm.isLoading = true;
         this.$http.get(api).then((response) => {
         // console.log(response.data)
+        vm.isLoading = false;
         vm.plans = response.data.result
         })
         },
@@ -249,6 +261,7 @@ export default {
       // 然後透過 append 加入欄位 ，傳入圖片
       fd.append('file', updated);
       const api = `${process.env.VUE_APP_API}`+ '/products';
+      vm.status.fileUploading = true;
       // post fd本身，並設置表單名稱
       this.$http.post(api, fd, { headers: {
           'Content-Type': 'multipart/form-data',
@@ -257,6 +270,7 @@ export default {
         // console.log(response.data);
         if (response.data.succuss) {
         vm.$set(vm.form,'file',process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file)
+        vm.status.fileUploading = false;
         } console.log(vm.form.file)
       });
     },
@@ -276,7 +290,8 @@ export default {
       },
     },
     mounted() {
-        this.getProducts()
+        this.getProducts(),
+        this.getProduct()
     },
 
 }

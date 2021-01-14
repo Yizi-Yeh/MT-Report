@@ -1,6 +1,8 @@
-body {
-  font-size: rem;
-  font-family: monospace;
+body,
+html {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
+    "ＭＳ 明朝", serif;
   letter-spacing: 0.1 rem;
 }
 
@@ -16,6 +18,9 @@ body {
 
 #app > div > div:nth-child(1) > nav > button > span:nth-child(3) {
   font-size: 12px;
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
+    "ＭＳ 明朝", serif;
 }
 .navbar .form-control {
   padding: 0.75rem 1rem;
@@ -35,7 +40,15 @@ body {
 }
 
 /*   carousel  */
+/* section01 輪播圖--------------------------------------------------------------------------------------------------------------- */
+.carousel-control-prev,
+.carousel-control-next {
+  transition: 0.5 s;
+}
 .carousel-caption {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
+    "ＭＳ 明朝", serif;
   position: absolute;
   right: 15%;
   bottom: 5%;
@@ -46,33 +59,61 @@ body {
   padding-bottom: 20px;
   color: #fff;
   text-align: center;
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: bold;
 }
-
-// .brightness {
-//   -webkit-filter: brightness(0.6);
-// }
-
-.carousel-control-prev,
-.carousel-control-next {
-  transition: 0.5s;
-}
-
-.carousel-control-prev:hover {
-  background: linear-gradient(90deg, rgba(247, 240, 240, 0.5), rgba(0, 0, 0, 0));
-  opacity: 1;
-}
-
-.carousel-control-next:hover {
-  background: linear-gradient(270deg, rgba(221, 211, 211, 0.5), rgba(0, 0, 0, 0));
-  opacity: 1;
-}
-
 .carousel-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* 輪播圖放大動畫------------------------------------------------------------------------------------------------------------------- */
+.img-scaleBig {
+  animation: img-scaleBig 20s 1s ease forwards;
+}
+
+@keyframes img-scaleBig {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+/* 自定義輪播圖指示器-------------------------------------------------------------------------------------------------------------- */
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  /* 字元顯示 */
+  text-indent: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease;
+}
+.carousel-indicators {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.carousel-indicators li.active {
+  opacity: 0.5;
+  width: 20px;
+  height: 20px;
+}
+.carousel-indicators li span {
+  transition: 0.5s;
+}
+
+.carousel-indicators li.active span {
+  font-size: 1.5rem;
+}
+.brightness {
+  -webkit-filter: brightness(0.8);
 }
 
 // Activity
@@ -133,4 +174,11 @@ body {
 
 #section03 .view:hover .text {
   background-color: var(--black75);
+}
+
+// icon
+
+.fab {
+  color: whitesmoke;
+  font-size: 1.75rem;
 }

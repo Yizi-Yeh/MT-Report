@@ -23,7 +23,7 @@
       </h5>
     </div>
     <div class="card-footer d-flex">
-      <button type="button" class="btn btn-outline-secondary btn-sm">
+      <button @click="getProduct(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-spinner fa-spin"></i>
         詳細資訊
       </button>
@@ -39,14 +39,15 @@
 import Navbar from '../Navbar'
 import Category from '../Categoty'
 export default {
+  name: 'Plan',
   components: {
     Navbar,
     Category
     },
   data () {
     return {
-plans:[]
-
+    plans:[],
+    plan:{}
     } 
   },
     methods: {
@@ -58,9 +59,20 @@ plans:[]
         vm.plans = response.data.result
         })
         },
+        getProduct(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/products/' + `${id}`
+        const vm = this;
+        vm.$http.get(api).then((response) => {
+        vm.plan = response.data.result
+        if(response.data.success){
+            vm.$router.push('itemPlan/'+`${id}`)
+          }            console.log(this.$router.params.id)
+        })
+        },
     },
     created() {
-      this.getProducts();
+      this.getProducts()
+      this.getProduct();
     },
 }
 </script>

@@ -1,9 +1,7 @@
 <template>
 <div>
     <Navbar/>
-    <div>
     <Carousel/>
-  </div>
     <Activity/>
 </div>
 </template>
@@ -12,6 +10,7 @@
 import Navbar from '../components/Navbar'
 import Carousel from '../components/Carousel'
 import Activity from '../components/Activity'
+import store from '@/store'
 
 export default {
   name: 'home',
@@ -19,6 +18,11 @@ export default {
     Navbar,
     Carousel,
     Activity
+  },
+  computed:{
+    plans(){
+      return store.state.plans
+    }
   }
 }
 </script>

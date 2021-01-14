@@ -48,13 +48,14 @@ const routes = [
     path: '/plan',
     name: 'Plan',
     component: Plan,
-    children: [
-      {
-        path: 'itemplan',
-        name: 'itemPlan',
-        component: itemPlan,
-      },
-    ],
+    mata: {
+      needLogin: false
+    },
+  },
+  {
+    path: '/itemPlan/:id',
+    name: 'itemPlan',
+    component: itemPlan,
     mata: {
       needLogin: false
     },

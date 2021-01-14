@@ -1,43 +1,8 @@
 <template>
 <div>
   <div class="container mt-5">
-    <div id="section03" class=" row vh-100 mt-5">
-      <div class="row">
-      <h1>活動歷誌</h1>
+    <div id="section03" class="row vh-100 mt-5">
       <div class="row justify-content-lg-center">
-        <div class="col-6 col-lg-4">
-          <a class="image-popup-no-margins" href="https://www.instagram.com/p/CHK9wO4nJ_P/">
-            <div class="view">
-              <img src="https://picsum.photos/1920/1080/?random=1" class="img-fluid">
-              <div class="text">
-                <h4 class="text-center">探訪獵人秘境</h4>
-                <p>戒茂斯上嘉明湖四天三夜</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-lg-4">
-          <a class="image-popup-no-margins" href="https://picsum.photos/1920/1080/?random=2">
-            <div class="view">
-              <img src="https://picsum.photos/1920/1080/?random=2" class="img-fluid">
-              <div class="text">
-                <h4 class="text-center">探訪獵人秘境</h4>
-                <p>戒茂斯上嘉明湖三天兩夜</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-lg-4">
-          <a class="image-popup-no-margins" href="https://picsum.photos/1920/1080/?random=3">
-            <div class="view">
-              <img src="https://picsum.photos/1920/1080/?random=3" class="img-fluid">
-              <div class="text">
-                <h4 class="text-center">天使的眼淚</h4>
-                <p>嘉明湖三天兩夜</p>
-              </div>
-            </div>
-          </a>
-        </div>
         <div class="col-6 col-lg-4">
           <a class="image-popup-no-margins" href="https://picsum.photos/1920/1080/?random=4">
             <div class="view">
