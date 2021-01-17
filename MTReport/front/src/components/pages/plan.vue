@@ -8,7 +8,7 @@
   <div class="card border-0 shadow-sm ml-2">
     <div style="height:300px; background-size:cover; background-position:center"
       :style="{backgroundImage:`url(${item.images[0].imgUrl})`}"
-      >
+      > 
     </div>
     <div class="card-body d-flex flex-column text-left">
       <span class="card-title">
@@ -19,7 +19,7 @@
       <span class="badge badge-secondary"> {{ item.category }}</span>
       </h5>
       <h5>
-      <span class="badge badge-secondary">NT${{ item.cost }}</span>
+      <span class="badge badge-secondary"> NT{{ item.cost | commaFormat | dollarSign }} </span>
       </h5>
     </div>
     <div class="card-footer d-flex">
@@ -36,8 +36,21 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Navbar from '../Navbar'
 import Category from '../Categoty'
+
+Vue.filter('dollarSign', function (n) {
+return `$ ${n}`
+})
+
+Vue.filter('commaFormat', (value) => {
+  if (!value) return ''
+  return value.toString().replace(/^(-?\d+?)((?:\d{3})+)(?=\.\d+$|$)/, function (all, pre, digital) {
+    return pre + digital.replace(/\d{3}/g, ',$&')
+  })
+})
+
 export default {
   name: 'Plan',
   components: {
@@ -69,6 +82,17 @@ export default {
           }            console.log(this.$router.params.id)
         })
         },
+    },
+    computed: {
+    lake () {
+      return this.plans.filter(d => d.category.indexOf('湖泊') > -1)
+    },
+    mountain () {
+      return this.plans.filter(d => d.category.indexOf('百岳') > -1)
+    },
+   hike () {
+      return this.plans.filter(d => d.category.indexOf('新手健行') > -1)
+    }
     },
     created() {
       this.getProducts()
