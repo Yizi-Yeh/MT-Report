@@ -16,7 +16,7 @@ const newPlanSchema = new Schema({
     required: [true, '請輸入上架金額']
   },
   is_enabled: {
-    type: String,
+    type: Boolean,
     required: [true, '請確認是否上架']
   },
   totalNumber: {
@@ -33,7 +33,7 @@ const newPlanSchema = new Schema({
   },
   is_closed: {
     // 募集狀況
-    type: String
+    type: Boolean
   }
 },
 {

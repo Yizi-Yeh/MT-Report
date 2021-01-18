@@ -106,7 +106,7 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: 'products',
+        path: '',
         name: 'Products',
         component: Products,
       },

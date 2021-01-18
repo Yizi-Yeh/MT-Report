@@ -1,7 +1,7 @@
 <template>
 <div>
     <Navbar/>
-    <Category/>
+    <!-- <Category/> -->
     <div class="container d-flex flex-column">
   <div class="row mt-5 d-flex">
 <div class="col-lg-4 mb-5"  v-for="item in plans" :key="item._id" >
@@ -24,7 +24,7 @@
     </div>
     <div class="card-footer d-flex">
       <button @click="getProduct(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
-        <i class="fas fa-spinner fa-spin"></i>
+       <i class="fas fa-search"></i>
         詳細資訊
       </button>
     </div>
