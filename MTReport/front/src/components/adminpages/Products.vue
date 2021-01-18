@@ -1,6 +1,5 @@
 <template>
 <div>
-
 <div class="text-right mt-4">
       <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的行程</button>
     </div>

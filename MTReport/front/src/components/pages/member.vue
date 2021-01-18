@@ -1,22 +1,85 @@
 <template>
  <form class="form-signin" @submit.prevent="signin">
-  <img class="mb-4" src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="" >
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.account" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="user.password" required>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+<div class="container">
+  <div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" @click="formlinkk" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" @click="formlink" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
+
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
   name: 'Member',
   data () {
@@ -31,42 +94,34 @@ export default {
       signin() {
         const api = `${process.env.VUE_APP_API}/users/login`;
         const vm = this
-        // console.log(process.env.VUE_APP_API,vm.user);
         this.$http.post(api, vm.user).then((response)=>{
-          // console.log(response.data);
           if(response.data.success){
             vm.$router.push('/')
           }
         })
+      },
+      formlink() {
+$(function() {
+    $('#login-form-link').click(function(e) {
+		$("#login-form").delay(100).fadeIn(100);
+		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+  $("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+});
+
       }
         
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.nav-tabs {
-    margin-bottom: 15px;
-}
-.sign-with {
-    margin-top: 25px;
-    padding: 20px;
-}
-div#OR {
-    height: 30px;
-    width: 30px;
-    border: 1px solid #C2C2C2;
-    border-radius: 50%;
-    font-weight: bold;
-    line-height: 28px;
-    text-align: center;
-    font-size: 12px;
-    float: right;
-    position: absolute;
-    right: -16px;
-    top: 40%;
-    z-index: 1;
-    background: #DFDFDF;
-}
-</style>

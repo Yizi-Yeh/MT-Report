@@ -79,20 +79,9 @@ export default {
         vm.plan = response.data.result
         if(response.data.success){
             vm.$router.push('itemPlan/'+`${id}`)
-          }            console.log(this.$router.params.id)
+          }        
         })
         },
-    },
-    computed: {
-    lake () {
-      return this.plans.filter(d => d.category.indexOf('湖泊') > -1)
-    },
-    mountain () {
-      return this.plans.filter(d => d.category.indexOf('百岳') > -1)
-    },
-   hike () {
-      return this.plans.filter(d => d.category.indexOf('新手健行') > -1)
-    }
     },
     created() {
       this.getProducts()
