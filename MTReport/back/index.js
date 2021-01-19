@@ -10,6 +10,7 @@ import session from 'express-session'
 import routerProducts from './routes/products.js'
 import routerAdminusers from './routes/adminusers.js'
 import routerUsers from './routes/users.js'
+import routerNewPlans from './routes/newplans.js'
 
 // 設置dotenv
 dotenv.config()
@@ -73,6 +74,7 @@ app.use(session(sessionSettings))
 app.set('trust proxy', 1)
 
 app.use('/products', routerProducts)
+app.use('/newplans', routerNewPlans)
 app.use('/users', routerUsers)
 app.use('/adminusers', routerAdminusers)
 

@@ -7,23 +7,23 @@ const newPlanSchema = new Schema({
     type: mongoose.ObjectId,
     ref: 'products'
   },
+  // 開團日程
   date: {
-    type: String,
-    required: [true, '請輸入開團日程']
+    type: String
   },
+  // 上架金額
   price: {
-    type: String,
-    required: [true, '請輸入上架金額']
+    type: Number
   },
+  // 是否上架
   is_enabled: {
-    type: Boolean,
-    required: [true, '請確認是否上架']
+    type: Boolean
   },
+  // 開團人數
   totalNumber: {
-    type: Number,
-    required: [true, '請輸入開團人數']
+    type: Number
   },
-  participants: {
+  currentNumber: {
     // 報名人數
     type: Number
   },

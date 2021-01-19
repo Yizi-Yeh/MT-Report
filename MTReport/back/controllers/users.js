@@ -1,5 +1,7 @@
 import md5 from 'md5'
 import users from '../models/users.js'
+import newplans from '../models/newplans.js'
+import util from 'util'
 
 export const create = async (req, res) => {
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
@@ -44,7 +46,7 @@ export const login = async (req, res) => {
       password: md5(req.body.password)
     })
 
-    if (result.length === null) {
+    if (result === null) {
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
       req.session.user = result

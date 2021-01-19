@@ -31,7 +31,7 @@
         <router-link class="nav-link" to="/newplan">近期開團</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/member">會員專區</router-link>
+        <router-link class="nav-link" to="/memberReg">會員專區</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/join">加入我們</router-link>

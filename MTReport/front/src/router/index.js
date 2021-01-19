@@ -12,6 +12,8 @@ import Login from '../components/pages/login.vue'
 import Products from '../components/adminpages/Products.vue'
 import store from '../store/index.js'
 import itemPlan from '../components/plans/itemplan.vue'
+import Reg from '../components/members/Reg.vue'
+import Log from '../components/members/Log.vue'
 
 Vue.use(VueRouter)
 
@@ -69,20 +71,36 @@ const routes = [
     }
   },
   {
-    path: '/member',
+    path: '/memberReg',
     name: 'Member',
     component: Member,
-    mata: {
+    children: [
+      {
+        path: '',
+        name: 'Reg',
+        component: Reg,
+      },
+      {
+        path: '/memberLogin',
+        name: 'Log',
+        component: Log,
+          mata: {
       needLogin: false
     }
+      },
+    ],
+    mata: {
+      needLogin: false
+    },
   },
+
   {
     path: '/join',
     name: 'Join',
     component: Join,
     mata: {
       needLogin: true
-    }
+    },
   },
   {
     path: '/contact',
