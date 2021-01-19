@@ -126,8 +126,8 @@ export default {
 	  regSubmit () {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
-	const api = `${process.env.VUE_APP_API}`+ '/users'
-		this.axios.post(api, this.$data)
+	// const api = `${process.env.VUE_APP_API}`+ '/users'
+		this.axios.post('http://localhost:3000/users', this.$data)
 		console.log(api)
           .then(res => {
             if (res.data.success) {

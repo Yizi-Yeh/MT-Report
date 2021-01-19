@@ -48,6 +48,9 @@ export default {
     Plans
   },
   computed:{
+     user () {
+      return this.$store.state.user
+    },
     plans(){
       return store.state.plans
     },

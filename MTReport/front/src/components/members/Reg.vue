@@ -6,9 +6,8 @@
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" @click="formlink" id="login-form-link">Login</a>
-							</div>
+							
+                            
 							<div class="col-xs-6">
 								<a href="#" @click="formlink" id="register-form-link">Register</a>
 							</div>
@@ -126,8 +125,8 @@ export default {
 	  regSubmit () {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
-	const api = `${process.env.VUE_APP_API}`+ '/users'
-		this.axios.post(api, this.$data)
+	// const api = `${process.env.VUE_APP_API}`+ '/users'
+		this.axios.post('http://localhost:3000/users', this.$data)
 		console.log(api)
           .then(res => {
             if (res.data.success) {

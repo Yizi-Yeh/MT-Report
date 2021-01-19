@@ -5,17 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    login: '',
+    user: {
+      name: '',
+      id: ''
+    },
     plans:[]
   },
   mutations: {
-    login(state,data) {
-      // state.login  = 傳進來的data
-      state.login = data
+    logout (state) {
+      state.user.name = ''
+      state.user.id = ''
     },
-    logout(state,data) {
-      // state.login  = 傳進來的data
-      state.login = ''
+    login (state, data) {
+      state.user.name = data.account
+      state.user.id = data._id
     },
     setPlansInfo (state, val) {
       state.plans = val;

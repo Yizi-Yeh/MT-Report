@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap';
 
 axios.defaults.withCredentials = true
@@ -11,6 +12,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios);
+Vue.use(VueSweetalert2)
 
 
 
