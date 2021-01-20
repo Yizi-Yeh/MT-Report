@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, orderCreate } from '../controllers/users.js'
+import { create, login, logout, heartbeat } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -13,5 +13,5 @@ router.delete('/logout', logout)
 router.get('/heartbeat', heartbeat)
 
 // 建立訂單
-router.post('/order/:id', orderCreate)
+// router.post('/order/:id', orderCreate)
 export default router

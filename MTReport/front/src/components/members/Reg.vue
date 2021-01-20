@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Member',
+  name: 'Reg',
   data () {
     return {
       account: '',
@@ -63,7 +63,7 @@ export default {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
         const api = `${process.env.VUE_APP_API}/users`
-        this.$http.post(api, this.$data)
+        this.axios.post(api, this.$data)
 
           .then(res => {
             if (res.data.success) {

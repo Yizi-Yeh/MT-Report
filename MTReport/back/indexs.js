@@ -1,23 +1,22 @@
-import users from '../back/models/users.js'
+import newplans from '../back/models/newplans.js'
 import util from 'util'
 
-// 新增使用者訂單
-// users.findByIdAndUpdate('60067b7f7c1a192ef003d502',
+// newplans.findOneAndUpdate({'60067cff98dd333ff8255b7d'},{ newplans : { $push: { users: doc }}},
+//   function (error, success) {
+//     if (error) {
+//       console.log(error);
+//     }
+//     console.log(success);
+//   });
+// newplans.findByIdAndUpdate('60067cff98dd333ff8255b7d',
 //   {
-//     新增到使用者的訂單陣列
 //     $push: {
-//       order: {
-//         price: 5800,
-//         paidprice: 5800,
-//         paidate: 20200119,
-//         // 報名人數++
-//         newplans: [
-//           {
-//             p_id: '60067cff98dd333ff8255b7d',
-//             currentNumber: 1
-//           }
-//         ]
-//       }
+//       products: [
+//         {
+//           products: '5ffe437174900c2670ba50ae'
+//         }
+//       ]
+
 //     }
 //   }, { new: true }
 // ).then(result => {
@@ -36,32 +35,38 @@ import util from 'util'
 //   })
 
 // 新增使用者訂單
-
-users.findByIdAndUpdate('6006948c33f9c92c14f9b5d7',
-  {
-    // 新增到使用者的訂單陣列
-    $push: {
-      order: {
-        price: 6000,
-        paidprice: 6000,
-        paidate: 20200119,
-        newplans: [
-          {
-            p_id: '60067cff98dd333ff8255b7d'
-          }
-        ]
-      }
-    }
-  }, { new: true }
-).then(result => {
-  console.log(util.inspect(result, { showHidden: true, depth: null }))
-}).catch(error => {
-  console.log(error)
-})
-
-// users.findById('6006958bfb354a3d50472378', 'order').populate('60067cff98dd333ff8255b7d')
+// newplans.findById('60067cff98dd333ff8255b7d', 'newplans').populate('5ffe437174900c2670ba50ae')
 //   .then(result => {
 //     console.log(util.inspect(result, { showHidden: true, depth: null }))
 //   }).catch(error => {
 //     console.log(error)
 //   })
+
+//     if (error) {
+//       console.log(error);
+//     }
+//     console.log(success);
+//   });
+// newplans.findByIdAndUpdate('60067cff98dd333ff8255b7d',
+//   {
+//     $push: {
+//       products: [
+//         {
+//           products: '5ffe437174900c2670ba50ae'
+//         }
+//       ]
+
+//     }
+//   }, { new: true }
+// ).then(result => {
+//   console.log(util.inspect(result, { showHidden: true, depth: null }))
+// }).catch(error => {
+//   console.log(error)
+// })
+
+newplans.findByIdAndUpdate('60067cff98dd333ff8255b7d', 'newplans').populate('5ffe437174900c2670ba50ae')
+  .then(result => {
+    console.log(util.inspect(result, { showHidden: true, depth: null }))
+  }).catch(error => {
+    console.log(error)
+  })

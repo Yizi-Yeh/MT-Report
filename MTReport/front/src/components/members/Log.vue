@@ -31,7 +31,7 @@
 <script>
 
 export default {
-  name: 'Member',
+  name: 'Log',
   data () {
     return {
       account: '',
@@ -63,10 +63,9 @@ export default {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
         const api = `${process.env.VUE_APP_API}/users/login`;
-        this.$http.post(api, this.$data)
+        this.axios.post(api, this.$data)
           .then(res => {
             if (res.data.success) {
-              console.log(api)
               this.$store.commit('login', res.data.result)
               this.$swal({
                 icon: 'success',
@@ -79,6 +78,7 @@ export default {
               this.$swal({
                 icon: 'error',
                 title: '發生錯誤',
+              text: response.data.message
               })
             }
           })
@@ -86,6 +86,7 @@ export default {
             this.$swal({
               icon: 'error',
               title: '發生錯誤',
+              text: err.response.data.message
             })
           })
       }

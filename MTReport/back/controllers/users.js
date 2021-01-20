@@ -46,22 +46,20 @@ export const login = async (req, res) => {
     })
 
     if (result === null) {
+      console.log(result.length)
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
       req.session.user = result
-      res.status(200).send({ success: true, message: '' })
+      res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
       res.status(400).send({ success: false, message })
-    } else if (error.name === 'MongoError' && error.code === 11000) {
-      res.status(400).send({ success: false, message: '帳號已使用' })
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
-    console.log(error)
   }
 }
 
@@ -85,29 +83,4 @@ export const heartbeat = async (req, res) => {
     isLogin = true
   }
   res.status(200).send(isLogin)
-}
-
-// 建立訂單
-export const orderCreate = async (req, res, next) => {
-//  不是model無法寫const result = await products.create..
-  const order = new order();
-  order.newplans = req.body.newplansId,
-  order.price = req.body.price,
-  order.paidprice = req.body.paidprice, 
-  order.paidate = req.body.paidate, 
-  order.save((err, doc) =>{
-      if (!err) {
-        res.send(doc);
-        users.findOneAndUpdate(
-          { _id: req.body.id },
-          { users: { $push: { order: order }}},
-          function (error, success) {
-             if (error) {
-              console.log(error);
-            }
-               console.log(success);
-          }
-        );
-      }
-    })
 }
