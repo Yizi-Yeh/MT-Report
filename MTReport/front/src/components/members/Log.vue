@@ -1,9 +1,16 @@
 <template>
 <div>
+     <Navbar/>
   <div class="sidenav">
             <div class="login-main-text">
             <h2> Nice to meet you!<br>Feel free to join MT10x10.</h2>
             <p>Are you ready to have a fantastic hiking with us?</p>
+ <router-link to="/memberReg">
+             <button  class="btn btn-secondary ml-2">註冊</button>
+          </router-link>
+          <router-link to="/memberLogin">
+             <button  class="btn btn-secondary ml-2">登入</button>
+          </router-link>
           </div>
       </div>
       <div class="main">
@@ -19,7 +26,7 @@
                       <label>Password</label>
                       <input type="password" class="form-control" placeholder="Password" v-model="password" :state="passwordState">
                   </div>
-                  <button type="submit" class="btn btn-black" @click="logSubmit">Submit</button>
+                  <button type="submit" class="btn btn-dark" @click="logSubmit">Submit</button>
                   <button type="reset" class="btn btn-secondary ml-2" @reset="onReset">Reset</button>
                 </form>
             </div>
@@ -29,8 +36,11 @@
 </template>
 
 <script>
-
+import Navbar from '../Navbar'
 export default {
+   components: {
+    Navbar
+  },
   name: 'Log',
   data () {
     return {

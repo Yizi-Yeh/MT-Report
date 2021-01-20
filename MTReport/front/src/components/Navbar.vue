@@ -15,8 +15,9 @@
   <div class="nav-item d-flex mr-4 mt-2">
           <a class="nav-link" href="https://www.facebook.com/MT10x10/"><i class="fab fa-facebook-f"></i></a>
           <a class="nav-link" href="https://www.instagram.com/mt10x10/"><i class="fab fa-instagram"></i></a>
-        <a class="nav-link" href="https://www.instagram.com/mt10x10/"><i class="fab fa-line"></i></a>
-        </div>
+          <a class="nav-link" href="https://line.me/ti/g2/X3878mSeMzAZFaPqgOu7oA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><i class="fab fa-line"></i></a>
+         <a class="nav-link"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>
+    </div>
         
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -47,3 +48,46 @@
 </nav>
 </div>
 </template>
+
+<script>
+export default {
+    methods: {
+   logout() {
+      this.axios
+        .delete(process.env.VUE_APP_API + '/users/logout')
+        .then((res) => {
+          // 如果登出成功
+          if (res.data.success) {
+            this.$swal({
+              icon: 'success',
+              title: '成功',
+              text: '登出成功',
+            })
+
+            // 清除 vuex
+            this.$store.commit('logout')
+
+            // 導回首頁
+            if (this.$route.path !== '/') {
+              this.$router.push('/')
+            }
+          } else {
+            this.$swal({
+              icon: 'error',
+              title: '錯誤',
+              text: res.data.message,
+            })
+          }
+        })
+        .catch((error) => {
+          // 如果回來的狀態碼不是 200，直接 alert 錯誤訊息
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: error.response.data.message,
+          })
+        })
+    },
+}
+}
+</script>

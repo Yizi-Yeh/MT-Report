@@ -199,6 +199,15 @@ export default {
             }
         }
     },
+    computed: {
+     categories() {
+       return this.$store.state.categories;
+     },
+       products() {
+       return this.$store.state.products; 
+    },
+
+    },
     methods: {
         getProducts() {
         const api = `${process.env.VUE_APP_API}`+ '/products'
@@ -280,6 +289,9 @@ export default {
         this.isNew = false;
       }
         $('#productModal').modal('show');
+      },
+      getProducts() {
+        this.$store.dispatch('getProducts');
       },
     },
     mounted() {

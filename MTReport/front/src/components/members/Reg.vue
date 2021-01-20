@@ -1,10 +1,16 @@
 <template>
 <div>
+     <Navbar/>
   <div class="sidenav">
           <div class="login-main-text">
             <h2> Nice to meet you!<br>Feel free to join MT10x10.</h2>
             <p>Are you ready to have a fantastic hiking with us?</p>
-            <h3>請先註冊為會員</h3>
+           <router-link to="/memberReg">
+             <button  class="btn btn-secondary ml-2">註冊</button>
+          </router-link>
+          <router-link to="/memberLogin">
+             <button  class="btn btn-secondary ml-2">登入</button>
+          </router-link>
           </div>
       </div>
       <div class="main">
@@ -30,7 +36,11 @@
 </template>
 
 <script>
+import Navbar from '../Navbar'
 export default {
+   components: {
+    Navbar
+  },
   name: 'Reg',
   data () {
     return {

@@ -9,7 +9,8 @@ export default new Vuex.Store({
       name: '',
       id: ''
     },
-    plans:[]
+    plans:[],
+    categories: [],
   },
   mutations: {
     logout (state) {
@@ -23,6 +24,13 @@ export default new Vuex.Store({
     setPlansInfo (state, val) {
       state.plans = val;
     },
+    CATEGORIES(state, payload) {
+      const categories = new Set();
+      payload.forEach((item) => {
+        categories.add(item.category);
+      });
+      state.categories = Array.from(categories);
+    },
   },
   actions: {
     getPlansInfo({ commit, state}) {
@@ -31,6 +39,7 @@ export default new Vuex.Store({
       Axios.get(api).then(res => {
         if(res.data.success) {
           commit('setPlansInfo',res.data.result)
+          commit('CATEGORIES', res.data.result);
         }
       })
     },

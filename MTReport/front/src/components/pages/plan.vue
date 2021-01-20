@@ -1,6 +1,28 @@
 <template>
 <div>
     <Navbar/>
+      <!-- 左側選單 (List group) -->
+      <div class="container main-content mb-3">
+         <div class="row">
+           <div class="col-md-3">
+          <div class="list-group sticky-top">
+            <a class="list-group-item list-group-item-action"
+              href="#" @click.prevent="searchText = item"
+              :class="{ 'active': item === searchText}"
+              v-for="item in categories" :key="item">
+              <i class="fa fa-street-view" aria-hidden="true"></i>
+              {{ item }}
+            </a>
+            <a href="#" class="list-group-item list-group-item-action"
+              @click.prevent="searchText = ''"
+              :class="{ 'active': searchText === ''}">
+              全部顯示
+            </a>
+          </div>
+            </div>
+              </div>
+                </div>
+
     <!-- <Category/> -->
     <div class="container d-flex flex-column">
   <div class="row mt-5 d-flex">
@@ -59,9 +81,23 @@ export default {
     },
   data () {
     return {
+    categories: [],
+    searchText: '',
     plans:[],
     plan:{}
     } 
+  },
+  computed: {
+filterData() {
+      const vm = this;
+      if (vm.searchText) {
+        return vm.products.filter((item) => {
+          const data = item.title.toLowerCase().includes(vm.searchText.toLowerCase());
+          return data;
+        });
+      }
+      return this.products;
+    },
   },
     methods: {
         getProducts() {

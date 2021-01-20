@@ -1,6 +1,5 @@
 import md5 from 'md5'
 import users from '../models/users.js'
-import newplans from '../models/newplans.js'
 
 export const create = async (req, res) => {
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {

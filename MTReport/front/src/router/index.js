@@ -80,20 +80,20 @@ const routes = [
         name: 'Reg',
         component: Reg,
       },
-      {
-        path: '/memberLogin',
-        name: 'Log',
-        component: Log,
-          mata: {
-      needLogin: false
-    }
-      },
+      
     ],
     mata: {
       needLogin: false
     },
   },
-
+  {
+    path: '/memberLogin',
+    name: 'Log',
+    component: Log,
+      mata: {
+  needLogin: false
+}
+  },
   {
     path: '/join',
     name: 'Join',

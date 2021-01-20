@@ -27,8 +27,7 @@
   </div>
         </div>
         <div class="carousel-item">
-          
-          <img src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.0-9/131787070_730315054254332_3437695688712894988_o.jpg?_nc_cat=106&ccb=2&_nc_sid=e3f864&_nc_ohc=Vd4HMmY7VJkAX9CVALg&_nc_ht=scontent.ftpe8-3.fna&oh=93e719a54f72a6017de4dfaa5d2b1155&oe=6028865D" class="d-block w-100  img-scaleBig brightness ">
+          <img src="../assets/carousel2.jpg" class="d-block w-100  img-scaleBig brightness ">
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
     <h1 class="mb-5">LIFE IS AN ADVENTURE.</h1>
     <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
