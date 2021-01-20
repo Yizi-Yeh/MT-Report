@@ -4,6 +4,7 @@
           <div class="login-main-text">
             <h2> Nice to meet you!<br>Feel free to join MT10x10.</h2>
             <p>Are you ready to have a fantastic hiking with us?</p>
+            <h3>請先註冊為會員</h3>
           </div>
       </div>
       <div class="main">

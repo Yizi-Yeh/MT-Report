@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import util from 'util'
 
 const Schema = mongoose.Schema
 
@@ -47,10 +46,3 @@ const userSchema = new Schema(
 const users = mongoose.model('users', userSchema)
 
 export default users
-
-users.findById('6006948c33f9c92c14f9b5d7', 'order').populate('60067cff98dd333ff8255b7d')
-  .then(result => {
-    console.log(util.inspect(result, { showHidden: true, depth: null }))
-  }).catch(error => {
-    console.log(error)
-  })

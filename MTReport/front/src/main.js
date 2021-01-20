@@ -6,6 +6,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap';
 
 axios.defaults.withCredentials = true
+
 import App from './App';
 import router from './router';
 import store from './store'

@@ -194,7 +194,6 @@ export default {
             plans:[],
             form:{},
             isNew: false,
-            isLoading:false,
             status: {
               fileUploading: false
             }

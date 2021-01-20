@@ -12,6 +12,7 @@ body {
   background-color: #000;
   overflow-x: hidden;
   padding-top: 20px;
+  z-index: -10000;
 }
 
 .main {
@@ -63,5 +64,5 @@ body {
 }
 
 .login-main-text h2 {
-  font-weight: 300;
+  font-weight: 700;
 }

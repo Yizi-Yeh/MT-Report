@@ -1,7 +1,6 @@
 import md5 from 'md5'
 import users from '../models/users.js'
 import newplans from '../models/newplans.js'
-import util from 'util'
 
 export const create = async (req, res) => {
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
@@ -86,4 +85,29 @@ export const heartbeat = async (req, res) => {
     isLogin = true
   }
   res.status(200).send(isLogin)
+}
+
+// 建立訂單
+export const orderCreate = async (req, res, next) => {
+//  不是model無法寫const result = await products.create..
+  const order = new order();
+  order.newplans = req.body.newplansId,
+  order.price = req.body.price,
+  order.paidprice = req.body.paidprice, 
+  order.paidate = req.body.paidate, 
+  order.save((err, doc) =>{
+      if (!err) {
+        res.send(doc);
+        users.findOneAndUpdate(
+          { _id: req.body.id },
+          { users: { $push: { order: order }}},
+          function (error, success) {
+             if (error) {
+              console.log(error);
+            }
+               console.log(success);
+          }
+        );
+      }
+    })
 }

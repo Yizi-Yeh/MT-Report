@@ -1,9 +1,7 @@
 <template>
   <div>
-  <Navbar/>
+     <Navbar/>
     <router-view>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-primary">Primary</button>
     </router-view>
 
   </div>
@@ -97,10 +95,10 @@ export default {
     },
   },
   mounted() {
-    // this.heartbeat()
-    // setInterval(() => {
-    //   this.heartbeat()
-    // }, 5000)
+    this.heartbeat()
+    setInterval(() => {
+      this.heartbeat()
+    }, 5000)
   },
 }
 </script>
