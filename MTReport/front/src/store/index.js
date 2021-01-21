@@ -9,8 +9,7 @@ export default new Vuex.Store({
       name: '',
       id: ''
     },
-    plans:[],
-    categories: [],
+    products:[],
   },
   mutations: {
     logout (state) {
@@ -21,25 +20,19 @@ export default new Vuex.Store({
       state.user.name = data.account
       state.user.id = data._id
     },
-    setPlansInfo (state, val) {
-      state.plans = val;
+    setProductsInfo (state, val) {
+      state.products = val;
     },
-    CATEGORIES(state, payload) {
-      const categories = new Set();
-      payload.forEach((item) => {
-        categories.add(item.category);
-      });
-      state.categories = Array.from(categories);
-    },
+    
   },
+
   actions: {
-    getPlansInfo({ commit, state}) {
+    getProductsInfo({ commit, state}) {
       // 取得所有行程資訊
       const api = `${process.env.VUE_APP_API}`+ '/products'
       Axios.get(api).then(res => {
         if(res.data.success) {
-          commit('setPlansInfo',res.data.result)
-          commit('CATEGORIES', res.data.result);
+          commit('setProductsInfo',res.data.result)
         }
       })
     },

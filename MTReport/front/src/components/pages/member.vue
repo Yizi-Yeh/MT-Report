@@ -17,6 +17,7 @@ export default {
     user() {
       return this.$store.state.user
     },
+
   },
   methods: {
     logout() {
@@ -92,11 +93,6 @@ export default {
         })
     },
   },
-  mounted() {
-    this.heartbeat()
-    setInterval(() => {
-      this.heartbeat()
-    }, 5000)
-  },
+
 }
 </script>

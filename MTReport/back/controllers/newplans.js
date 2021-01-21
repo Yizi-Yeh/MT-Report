@@ -1,13 +1,14 @@
 import newplans from '../models/newplans.js'
-
 export const uploadNewPlans = async (req, res) => {
   // session中若有user資料才代表有登入
   // if (req.session.user === undefined) {
   //   res.status(401).send({ succuss: false, message: '未登入' })
   //   return
   // }
+
   try {
     const result = await newplans.create({
+      p_id: req.body.p_id,
       date: req.body.date,
       price: req.body.price,
       is_enabled: req.body.is_enabled,

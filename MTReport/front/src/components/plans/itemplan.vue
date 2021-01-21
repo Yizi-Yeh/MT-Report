@@ -168,18 +168,20 @@ export default {
     },
   data () {
     return {
-    plan:{}
+    plan:{},
+    plansId:[]
     } 
   },
     methods: {  
         getProduct() {
         const id = this.$route.params.id;
-        console.log(id)
+
         const api = `${process.env.VUE_APP_API}` + '/products/' + id
         const vm = this;
         vm.$http.get(api).then((response) => {
         if(response.data.success){
         vm.plan = response.data.result
+
           } 
         })
         },

@@ -1,6 +1,5 @@
 <template>
 <div>
-     <Navbar/>
   <div class="sidenav">
           <div class="login-main-text">
             <h2> Nice to meet you!<br>Feel free to join MT10x10.</h2>
@@ -36,10 +35,8 @@
 </template>
 
 <script>
-import Navbar from '../Navbar'
 export default {
    components: {
-    Navbar
   },
   name: 'Reg',
   data () {

@@ -31,7 +31,7 @@
             </h6>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="file">開團狀況</span>
+                <router-link to="admin/newplans">  <span data-feather="file">開團狀況</span></router-link>
                 </a>
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart">增修資訊</span>
@@ -45,7 +45,7 @@
             </h6>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="file">行程資訊</span>
+               <router-link to="admin/products">    <span data-feather="file">行程資訊</span></router-link>
                 </a>
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart">增修資訊</span>

@@ -51,12 +51,12 @@ export default {
      user () {
       return this.$store.state.user
     },
-    plans(){
-      return store.state.plans
+    products(){
+      return $store.state.products
     },
      recommends () {
-      const plans = [...this.plans]
-      return plans.sort(() => Math.random() - 0.5).splice(0, 6)
+      const products = [...this.products]
+      return products.sort(() => Math.random() - 0.5).splice(0, 6)
     },
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
   },
 created () {
     // this.getAllPlans()
-    store.dispatch('getPlansInfo')
+    store.dispatch('getProductsInfo')
     this.getProduct();
   }
 }

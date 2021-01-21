@@ -9,18 +9,14 @@
            <th width="100">行程ID</th>
           <th width="100">活動分類</th>
           <th width="100">活動名稱</th>
-          <th width="100">活動地點</th>
-          <th width="100">活動成本</th>
-          <th width="100">活動時間</th>
-          <th width="100">活動說明</th>
-          <th width="100">費用包含</th>
-          <th width="100">注意事項</th>
-          <th width="100">行程日程</th>
-          <th width="100">行程內容</th>
-          <th width="100">餐食日程</th>
-          <th width="100">餐食內容</th>
-          <th width="100">活動圖片</th>
-          <th width="100">上架</th>
+          <th width="100">開團日程</th>
+          <th width="100">上架金額</th>
+          <th width="100">是否上架</th>
+          <th width="100">開團人數</th>
+          <th width="100">報名人數</th>
+          <th width="100">開團人數</th>
+          <th width="100">尚餘人數</th>
+          <th width="100">募集狀況</th>
           <th width="80">編輯</th>
         </tr>
       </thead>
@@ -29,29 +25,12 @@
            <td>{{ item._id }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
-          <td>{{ item.site }}</td>
-          <td>{{ item.cost }}</td>
-          <td>{{ item.time }}</td>
-          <td>{{ item.introduction}}</td>
-          <td>{{ item.costinclude}}</td>
-          <td>{{ item.attention}}</td>
-          <td>{{ item.schedule[0].dateTime}}</td>
-          <td>{{ item.schedule[0].content}}</td>
-          <td>{{ item.meal[0].mealdateTime}}</td>
-          <td>{{ item.meal[0].mealcontent}}</td>
-          <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
-          <td v-else><img :src="form.file" width="100" ></td>
-          
-          <td>
-            <span v-if="item.is_enabled" class="text-dark">啟用</span>
-            <span v-else>未啟用</span>
-          </td>
+<!--         
           <td>
               <button class="btn btn-outline-dark btn-sm"
               @click="openModal(false, item)">編輯</button>
-            <!-- 因為刪除用id刪，所以把id傳入 -->
         <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
@@ -302,7 +281,6 @@ export default {
     },
     mounted() {
         this.getProducts()
-        this.getProduct()
     }
 }
 </script>

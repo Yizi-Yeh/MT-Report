@@ -9,6 +9,7 @@ import Member from '../components/pages/member.vue'
 import Join from '../components/pages/join.vue'
 import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
+import newplans from '../components/adminpages/newplans.vue'
 import Products from '../components/adminpages/Products.vue'
 import store from '../store/index.js'
 import itemPlan from '../components/plans/itemplan.vue'
@@ -124,9 +125,14 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: '',
+        path: '/admin/products',
         name: 'Products',
         component: Products,
+      },
+      {
+        path: '/admin/newplans',
+        name: 'newplans',
+        component: newplans,
       },
     ],
   }
@@ -141,7 +147,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if(to.meta.needLogin && store.state.login.length === 0) {
     alert('請先註冊會員才能報名喔！')
-    next('/member')
+    next('/memberLogin')
   } else {
     next()
   }
