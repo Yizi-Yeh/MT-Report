@@ -74,6 +74,14 @@ const userDetailSchema = new Schema({
   climbExperience: {
     type: Number,
     required: [true, '請輸入登山經驗']
+  },
+  paidprice: {
+    type: String,
+    required: [true, '請輸入匯款金額']
+  },
+  paidate: {
+    type: Number,
+    required: [true, '請輸入匯款日期']
   }
 },
 {

@@ -10,6 +10,8 @@ export default new Vuex.Store({
       id: ''
     },
     products:[],
+    plansId:[],
+    
   },
   mutations: {
     logout (state) {

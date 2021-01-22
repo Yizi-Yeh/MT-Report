@@ -8,14 +8,11 @@ const orderSchema = new Schema(
       type: mongoose.ObjectId,
       ref: 'newplans'
     },
+    orderDate: {
+      type: Date
+    },
     price: {
       type: String
-    },
-    paidprice: {
-      type: String
-    },
-    paidate: {
-      type: Number
     }
   }
 )

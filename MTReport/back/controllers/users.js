@@ -48,6 +48,7 @@ export const login = async (req, res) => {
       console.log(result.length)
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
+      console.log(req)
       req.session.user = result
       res.status(200).send({ success: true, message: '', result })
     }

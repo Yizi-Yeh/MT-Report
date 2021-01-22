@@ -49,10 +49,10 @@ export default {
   },
   computed:{
      user () {
-      return this.$store.state.user
+      return this.store.state.user
     },
     products(){
-      return $store.state.products
+      return store.state.products
     },
      recommends () {
       const products = [...this.products]

@@ -6,7 +6,7 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
-           <th width="100">行程ID</th>
+          <th width="100">加入開團</th>
           <th width="100">活動分類</th>
           <th width="100">活動名稱</th>
           <th width="100">活動地點</th>
@@ -14,7 +14,7 @@
           <th width="100">活動時間</th>
           <th width="100">活動說明</th>
           <th width="100">費用包含</th>
-          <th width="100">注意事項</th>
+          <!-- <th width="100">注意事項</th> -->
           <th width="100">行程日程</th>
           <th width="100">行程內容</th>
           <th width="100">餐食日程</th>
@@ -26,7 +26,7 @@
       </thead>
       <tbody  class="text-center">
         <tr v-for="(item) in plans" :key="item._id">
-           <td>{{ item._id }}</td>
+          <td><button @click="getProductsId(item._id)" class="btn btn-outline-dark btn-sm">開團</button></td>
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td>{{ item.site }}</td>
@@ -34,7 +34,7 @@
           <td>{{ item.time }}</td>
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
-          <td>{{ item.attention}}</td>
+          <!-- <td>{{ item.attention}}</td> -->
           <td>{{ item.schedule[0].dateTime}}</td>
           <td>{{ item.schedule[0].content}}</td>
           <td>{{ item.meal[0].mealdateTime}}</td>
@@ -43,11 +43,11 @@
           <td v-else><img :src="form.file" width="100" ></td>
           
           <td>
-            <span v-if="item.is_enabled" class="text-dark">啟用</span>
+            <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
           <td>
-              <button class="btn btn-outline-dark btn-sm"
+              <button class="btn btn-outline-success btn-sm"
               @click="openModal(false, item)">編輯</button>
             <!-- 因為刪除用id刪，所以把id傳入 -->
         <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
@@ -195,6 +195,7 @@ export default {
     data() {
         return {
             plans:[],
+            plansId:[],
             form:{},
             isNew: false,
             status: {
@@ -203,6 +204,7 @@ export default {
         }
     },
     methods: {
+      // 取得所有產品
         getProducts() {
         const api = `${process.env.VUE_APP_API}`+ '/products'
         const vm = this;
@@ -214,18 +216,32 @@ export default {
         console.log(response.data.result)
         })
         },
-                getProduct() {
+
+        getProductsId(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/products'
+        const vm = this;
+        Axios.get(api).then((response) => {
+        // console.log(response.data)
+        const index = vm.plans.findIndex( item => {
+          return item._id === id 
+          }) 
+        vm.plansId = response.data.result[index]._id
+        console.log(vm.plansId)
+        })
+        },
+        // 取得單一產品
+        getProduct() {
         const id = this.$route.params.id;
         const api = `${process.env.VUE_APP_API}` + '/products/' + id
         const vm = this;
         vm.$http.get(api).then((response) => {
         if(response.data.success){
         vm.plan = response.data.result
-
           } 
         })
         },
-        // 在products中找到id並刪除
+ 
+        // 在products中找到id並刪除產品
         delProducts(id) {
         const api = `${process.env.VUE_APP_API}`+ '/products/' + id
         const vm = this;
@@ -240,7 +256,7 @@ export default {
           alert(error.response.data.message)
         }) 
         },    
-
+        //修改產品 
         addProduct() {
         let api = `${process.env.VUE_APP_API}`+ '/products'
         let httpMethod = 'post';
@@ -260,7 +276,8 @@ export default {
         } 
     })
     },
-    updateImg() {
+      // 上傳圖片
+      updateImg() {
       // Vue實體中圖片置放位置
       const updated = this.$refs.files.files[0];
       const vm = this;
@@ -282,7 +299,7 @@ export default {
         } console.log(vm.form.file)
       });
     },
-    getImgUrl (id) {
+     getImgUrl (id) {
       return process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
       },
       openModal(isNew, item) {

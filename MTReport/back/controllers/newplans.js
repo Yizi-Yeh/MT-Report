@@ -1,20 +1,24 @@
 import newplans from '../models/newplans.js'
-export const uploadNewPlans = async (req, res) => {
-  // session中若有user資料才代表有登入
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ succuss: false, message: '未登入' })
-  //   return
-  // }
+import products from '../models/products.js'
+import { searchProductById } from '../controllers/products.js'
+
+export const addToNewPlans = async (req, res) => {
+  const reqq = await searchProductById(req, res)
+  const results = await products.findById(req.params.id)
+  if (results !== undefined) {
+    return
+  }
+  const plansId = reqq.body._id
 
   try {
     const result = await newplans.create({
-      p_id: req.body.p_id,
+      p_id: [plansId],
       date: req.body.date,
       price: req.body.price,
       is_enabled: req.body.is_enabled,
       totalNumber: req.body.totalNumber
     })
-    res.status(200).send({ succuss: true, message: '', result })
+    res.status(200).send({ succuss: true, message: '', result, req })
   } catch (error) {
     console.log(error)
     if (error.name === 'ValidationError') {
@@ -31,10 +35,6 @@ export const uploadNewPlans = async (req, res) => {
 }
 
 export const editNewPlans = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     let result = await newplans.findById(req.params.id)
     if (result === null) {
@@ -58,11 +58,6 @@ export const editNewPlans = async (req, res) => {
 }
 
 export const deleteNewPlans = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // } console.log(req.session.user)
-
   try {
     const result = await newplans.findByIdAndDelete(req.params.id)
     if (result != null) {
@@ -80,11 +75,6 @@ export const deleteNewPlans = async (req, res) => {
   }
 }
 export const searchNewPlans = async (req, res) => {
-  // console.log(req.session)
-  // if (req.session.account === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     const result = await newplans.find()
     if (result.length > 0) {
@@ -101,10 +91,6 @@ export const searchNewPlans = async (req, res) => {
 }
 
 export const searchNewPlansById = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     const result = await newplans.findById(req.params.id)
     console.log(result)

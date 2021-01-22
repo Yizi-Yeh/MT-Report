@@ -18,34 +18,34 @@
         <div class="carousel-item active">
           <img src="../assets/carousel1.jpg" class="d-block w-100 img-scaleBig brightness" height="1024px">
  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mb-5">LIFE IS AN ADVENTURE.</h1>
-    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
-    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
-    <h2>在山的溫暖懷抱中</h2>
-    <h2>我們每個人都很渺小卻也很偉大</h2>
-    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
+    <h1 class="mb-3">LIFE IS AN ADVENTURE.</h1>
+    <h1 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h1>
+    <h3>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h3>
+    <h5>在山的溫暖懷抱中</h5>
+    <h5>我們每個人都很渺小卻也很偉大</h5>
+    <h5>SHOW YOUR CRAVING FOR FREEDOM!</h5>
   </div>
         </div>
         <div class="carousel-item">
           <img src="../assets/carousel2.jpg" class="d-block w-100  img-scaleBig brightness ">
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mb-5">LIFE IS AN ADVENTURE.</h1>
-    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
-    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
-    <h2>在山的溫暖懷抱中</h2>
-    <h2>我們每個人都很渺小卻也很偉大</h2>
-    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
+    <h1 class="mb-3">LIFE IS AN ADVENTURE.</h1>
+    <h1 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h1>
+    <h3>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h3>
+    <h5>在山的溫暖懷抱中</h5>
+    <h5>我們每個人都很渺小卻也很偉大</h5>
+    <h5>SHOW YOUR CRAVING FOR FREEDOM!</h5>
   </div>
         </div>
         <div class="carousel-item">
           <img src="../assets/carousel3.jpg" class="d-block w-100  img-scaleBig brightness ">
        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mb-5">LIFE IS AN ADVENTURE.</h1>
-    <h2 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h2>
-    <h2>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h2>
-    <h2>在山的溫暖懷抱中</h2>
-    <h2>我們每個人都很渺小卻也很偉大</h2>
-    <h2>SHOW YOUR CRAVING FOR FREEDOM!</h2>
+    <h1 class="mb-3">LIFE IS AN ADVENTURE.</h1>
+    <h1 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h1>
+    <h3>|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</h3>
+    <h5>在山的溫暖懷抱中</h5>
+    <h5>我們每個人都很渺小卻也很偉大</h5>
+    <h5>SHOW YOUR CRAVING FOR FREEDOM!</h5>
   </div>
         </div>
        
