@@ -6,7 +6,6 @@ import dotenv from 'dotenv'
 import connectMongo from 'connect-mongo'
 import cors from 'cors'
 import session from 'express-session'
-
 import routerProducts from './routes/products.js'
 import routerAdminusers from './routes/adminusers.js'
 import routerUsers from './routes/users.js'

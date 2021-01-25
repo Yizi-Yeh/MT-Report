@@ -1,24 +1,20 @@
 import newplans from '../models/newplans.js'
 import products from '../models/products.js'
-import { searchProductById } from '../controllers/products.js'
 
 export const addToNewPlans = async (req, res) => {
-  const reqq = await searchProductById(req, res)
-  const results = await products.findById(req.params.id)
-  if (results !== undefined) {
-    return
-  }
-  const plansId = reqq.body._id
-
   try {
+    // req.body.p_id = products._id
     const result = await newplans.create({
-      p_id: [plansId],
+      p_id: req.body.p_id,
       date: req.body.date,
       price: req.body.price,
       is_enabled: req.body.is_enabled,
-      totalNumber: req.body.totalNumber
+      totalNumber: req.body.totalNumber,
+      currentNumber: req.body.currentNumber,
+      remainNumber: req.body.remainNumber,
+      is_closed: req.body.is_closed
     })
-    res.status(200).send({ succuss: true, message: '', result, req })
+    res.status(200).send({ succuss: true, message: '', result })
   } catch (error) {
     console.log(error)
     if (error.name === 'ValidationError') {
@@ -31,6 +27,25 @@ export const addToNewPlans = async (req, res) => {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
     console.log(error)
+  }
+}
+
+export const getIdToNewPlans = async (req, res) => {
+  try {
+    const result = await newplans.findByIdAndUpdate(req.params.id,
+      { $push: { p_id: products._id } },
+      { new: true }
+    )
+    if (!result) return res.status(404).send({ success: false, message: '找不到行程' })
+
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    console.log(error)
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到行程' })
+    } else {
+      res.status(500).send({ success: false, message: '發生錯誤' })
+    }
   }
 }
 
@@ -76,7 +91,7 @@ export const deleteNewPlans = async (req, res) => {
 }
 export const searchNewPlans = async (req, res) => {
   try {
-    const result = await newplans.find()
+    const result = await newplans.find().populate('p_id')
     if (result.length > 0) {
       res.status(200)
       res.send({ success: true, message: '', result })
@@ -92,7 +107,7 @@ export const searchNewPlans = async (req, res) => {
 
 export const searchNewPlansById = async (req, res) => {
   try {
-    const result = await newplans.findById(req.params.id)
+    const result = await newplans.findById(req.params.id).populate('p_id')
     console.log(result)
     if (result !== undefined) {
       res.status(200)

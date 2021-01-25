@@ -21,13 +21,31 @@
     </div>
  </div>
     </section>
-
    <div class="full-container sub-banner">
       <div class="container">
         <h2 class="banner-title">Welcome to join MT10x10 and follow us!</h2>
         <div class="banner-sub-title">That is the spectacular scenery in Taiwan we want to share with you.</div>
       </div>
     </div>
+    <section id="section03">
+        <div class="container">
+        <h1 class="mb-5">近期活動</h1>
+        <div class="row h-100 d-flex flex-row flex-nowrap">
+        <div class="col-lg-6 d-flex" v-for="r in recommends" :key="r.id" >
+          <a href="#"  @click.prevent="getProduct(r._id)">
+        <div class="view mb-3 rounded">
+            <img style="height:300px; width:550px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
+              <div class="text">     
+            <h4 class="text-center">{{ r.title }}</h4>
+             <h5 class="text-center">分類：{{ r.category }}</h5>
+            <div  class="text-center">NT{{ r.cost | commaFormat | dollarSign }} </div>
+               </div>
+             </div>
+          </a>
+        </div>
+    </div>
+ </div>
+    </section>
 
 
 </div>
@@ -58,6 +76,7 @@ export default {
       const products = [...this.products]
       return products.sort(() => Math.random() - 0.5).splice(0, 6)
     },
+    
   },
   methods: {
     getProduct(id) {

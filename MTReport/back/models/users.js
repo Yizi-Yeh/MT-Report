@@ -9,10 +9,10 @@ const orderSchema = new Schema(
       ref: 'newplans'
     },
     orderDate: {
-      type: Date
+      type: Date, default: Date.now()
     },
     price: {
-      type: String
+      type: Number
     }
   }
 )

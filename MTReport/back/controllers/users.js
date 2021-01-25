@@ -1,4 +1,5 @@
 import md5 from 'md5'
+// import newplans from '../models/newplans.js'
 import users from '../models/users.js'
 
 export const create = async (req, res) => {
@@ -83,4 +84,42 @@ export const heartbeat = async (req, res) => {
     isLogin = true
   }
   res.status(200).send(isLogin)
+}
+
+export const searchUsers = async (req, res) => {
+  try {
+    const result = await users.find()
+    if (result.length > 0) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '找不到' })
+    }
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
+export const orderCreate = async (req, res) => {
+  try {
+    // if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
+    // req.body.p_id = newplans._id
+    const result = await users.findByIdAndUpdate(req.params.id,
+      {
+        $push: {
+          order: {
+            p_id: req.body.p_id,
+            price: req.body.price
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已新增訂單', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
 }

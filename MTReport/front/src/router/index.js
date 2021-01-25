@@ -11,8 +11,10 @@ import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
 import newplans from '../components/adminpages/newplans.vue'
 import Products from '../components/adminpages/Products.vue'
+import Users from '../components/adminpages/Members.vue'
 import store from '../store/index.js'
 import itemPlan from '../components/plans/itemplan.vue'
+import newplan from '../components/plans/newplan.vue'
 import Reg from '../components/members/Reg.vue'
 import Log from '../components/members/Log.vue'
 
@@ -70,6 +72,14 @@ const routes = [
     mata: {
       needLogin: false
     }
+  },
+  {
+    path: '/newplan/:id',
+    name: 'newplan',
+    component: newplan,
+    mata: {
+      needLogin: false
+    },
   },
   {
     path: '/memberReg',
@@ -133,6 +143,11 @@ const routes = [
         path: '/admin/newplans',
         name: 'newplans',
         component: newplans,
+      },
+      {
+        path: '/admin//users',
+        name: 'Users',
+        component: Users,
       },
     ],
   }

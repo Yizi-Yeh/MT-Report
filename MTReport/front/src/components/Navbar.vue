@@ -29,7 +29,7 @@
         <router-link class="nav-link" to="/plan"><i class="far fa-mountain"></i>行程資訊</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/newplan">近期開團</router-link>
+        <router-link class="nav-link" to="/newplan">近期活動</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/memberReg">會員專區</router-link>

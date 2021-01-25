@@ -1,36 +1,48 @@
 <template>
 <div>
 <div class="text-right mt-4">
-      <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的行程</button>
+      <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的開團</button>
     </div>
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
-           <th width="100">行程ID</th>
-          <th width="100">活動分類</th>
-          <th width="100">活動名稱</th>
+          <th width="100">行程編號</th>
+          <th width="100">行程分類</th>
+          <th width="100">行程名稱</th>
           <th width="100">開團日程</th>
           <th width="100">上架金額</th>
-          <th width="100">是否上架</th>
           <th width="100">開團人數</th>
           <th width="100">報名人數</th>
-          <th width="100">開團人數</th>
           <th width="100">尚餘人數</th>
           <th width="100">募集狀況</th>
+          <th width="100">是否上架</th>
           <th width="80">編輯</th>
         </tr>
       </thead>
       <tbody  class="text-center">
-        <tr v-for="(item) in plans" :key="item._id">
-           <td>{{ item._id }}</td>
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
-<!--         
+        <tr v-for="(item) in newplans" :key="item._id">
+          <td>{{ item.p_id._id }}</td>
+          <td>{{ item.p_id.category }}</td>
+          <td>{{ item.p_id.title }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.totalNumber }}</td>
+          <td>{{ item.currentNumber}}</td>
+          <td>{{ item.remainNumber }}</td>
+          <td>
+            <span v-if="item.is_closed" class="text-dark">額滿</span>
+            <span v-else>募集中</span>
+           <td>
+            <span v-if="item.is_enabled" class="text-success">啟用</span>
+            <span v-else>未啟用</span>
+          </td>
+          
+        
           <td>
               <button class="btn btn-outline-dark btn-sm"
               @click="openModal(false, item)">編輯</button>
-        <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
-          </td> -->
+        <button @click="delNewPlans(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +52,7 @@
     <div class="modal-content border-0">
       <div class="modal-header bg-dark text-white">
           <h5 class="modal-title" id="exampleModalLabel">
-              <span>新增行程</span>
+              <span>新增開團</span>
             </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -48,105 +60,72 @@
       </div>
       <div class="modal-body">
             <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="image">輸入圖片網址</label>
-                  <input type="text" class="form-control" id="imgUrl"
-                    v-model="form.imgUrl"
-                    placeholder="請輸入圖片連結">
+                  <label for="category">行程編號</label>
+                  <input type="text" class="form-control" id="p_id._id"
+                    v-model="newplan.p_id._id"
+                    placeholder="請輸入行程編號">
                 </div>
                 <div class="form-group">
-                  <label for="customFile">或 上傳圖片
-                  <i class="fas fa-cog fa-spin" v-if="status.fileUploading"></i>
-                  </label>
-                  <input type="file" id="file" class="form-control" name="file"
-                    ref="files" @change="updateImg"
-                    >
-                    
-                    
-                </div>
-              </div>
-              <div class="col-sm-8">
-                <div class="form-group">
-                  <label for="category">活動分類</label>
+                  <label for="category">行程分類</label>
                   <input type="text" class="form-control" id="category"
-                    v-model="form.category"
+                    v-model="newplan.p_id.category"
                     placeholder="請輸入活動分類">
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="title">活動標題</label>
+                    <label for="title">行程名稱</label>
                     <input type="text" class="form-control" id="title"
-                      v-model="form.title"
-                      placeholder="請輸入活動標題">
+                      v-model="newplan.p_id.title"
+                      placeholder="請輸入行程名稱">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="site">活動地點</label>
-                    <input type="text" class="form-control" id="site"
-                      v-model="form.site"
-                      placeholder="請輸入地點">
+                    <label for="site">開團日程</label>
+                    <input type="text" class="form-control" id="date"
+                      v-model="newplan.date"
+                      placeholder="請輸入開團日程">
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                  <label for="cost">活動成本</label>
-                    <input type="text" class="form-control" id="cost"
-                      v-model="form.cost"
-                      placeholder="請輸入活動成本">
+                  <label for="cost">上架金額</label>
+                    <input type="text" class="form-control" id="price"
+                      v-model="newplan.price"
+                      placeholder="請輸入上架金額">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="time">活動時間</label>
-                    <input type="text" class="form-control" id="time"
-                      v-model="form.time"
-                      placeholder="請輸入活動時間">
+                    <label for="time">開團人數</label>
+                    <input type="text" class="form-control" id="totalNumber"
+                      v-model="newplan.totalNumber"
+                      placeholder="請輸入開團人數">
                   </div>
                 </div>
                 <hr>
 
                 <div class="form-group">
-                  <label for="introduction">活動說明</label>
-                  <textarea type="text" class="form-control" id="introduction"
-                    v-model="form.introduction"
-                    placeholder="請輸入活動說明"></textarea>
+                  <label for="introduction">報名人數</label>
+                  <textarea type="text" class="form-control" id="currentNumber"
+                    v-model="newplan.currentNumber"
+                    placeholder="請輸入報名人數"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="costinclude">費用包含</label>
-                  <textarea type="text" class="form-control" id="costinclude"
-                    v-model="form.costinclude"
-                    placeholder="請輸入費用包含事項"></textarea>
+                  <label for="costinclude">尚餘人數</label>
+                  <textarea type="text" class="form-control" id="remainNumber"
+                    v-model="newplan.remainNumber"
+                    placeholder="請輸入尚餘人數"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="attention">注意事項</label>
-                  <textarea type="text" class="form-control" id="attention"
-                    v-model="form.attention"
-                    placeholder="請輸入注意事項"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="schedule">行程安排</label>
-                  <textarea type="text" class="form-control mb-3" id="dateTime"
-                    v-model="form.dateTime"
-                    placeholder="請輸入行程安排日程"></textarea>
-
-                    <textarea type="text" class="form-control" id="content"
-                    v-model="form.content"
-                    placeholder="請輸入行程安排內容"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="meal">餐食安排</label>
-                  <textarea type="text" class="form-control mb-3" id="mealdateTime"
-                    v-model="form.mealdateTime"
-                    placeholder="餐食安排請輸入日程"></textarea>
-
-                    <textarea type="text" class="form-control" id="mealcontent"
-                    v-model="form.mealcontent"
-                    placeholder="餐食安排請輸入內容"></textarea>
-                </div>
-                
+                  <label for="attention">募集狀況</label>
+                  <textarea type="text" class="form-control" id="is_closed"
+                    v-model="newplan.is_closed"
+                    placeholder="請輸入募集狀況"></textarea>
+                </div>           
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                      v-model="form.is_enabled"
+                      v-model="newplan.is_enabled"
                       :true-value="true"
                       :false-value="false"
                       id="is_enabled">
@@ -160,7 +139,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-dark" @click="addProduct()">確認</button>
+            <button type="button" class="btn btn-dark" @click="addNewPlans()">確認</button>
           </div>
         </div>
       </div>
@@ -173,8 +152,20 @@ import Axios from 'axios'
 export default {
     data() {
         return {
-            plans:[],
-            form:{},
+            newplans:[
+              {
+                p_id:{
+                  _id:''
+                },
+                _id:''
+              }
+            ],
+            newplan:{
+              _id:'',
+              p_id:{
+                 _id:''
+              }
+            },
             isNew: false,
             status: {
               fileUploading: false
@@ -182,105 +173,101 @@ export default {
         }
     },
     methods: {
-        getProducts() {
-        const api = `${process.env.VUE_APP_API}`+ '/products'
+        getNewPlans() {
+        const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
+        }
+        const api = `${process.env.VUE_APP_API}`+ '/newplans'
         const vm = this;
-        vm.isLoading = true;
-        Axios.get(api).then((response) => {
+        Axios.get(api,{headers}).then((response) => {
         // console.log(response.data)
-        vm.isLoading = false;
-        vm.plans = response.data.result
-        console.log(response.data.result)
+        vm.newplans = response.data.result
+        console.log(vm.newplans)
         })
         },
-                getProduct() {
+        getNewPlan() {
+        const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
+        }
         const id = this.$route.params.id;
-        const api = `${process.env.VUE_APP_API}` + '/products/' + id
+        const api = `${process.env.VUE_APP_API}` + '/newplans/' + id
         const vm = this;
-        vm.$http.get(api).then((response) => {
+        vm.$http.get(api,{headers}).then((response) => {
         if(response.data.success){
-        vm.plan = response.data.result
-
+        vm.newplan = response.data.result
+        console.log(vm.newplan)
           } 
         })
         },
         // 在products中找到id並刪除
-        delProducts(id) {
-        const api = `${process.env.VUE_APP_API}`+ '/products/' + id
+        delNewPlans(id) {
+        const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
+        }
+        const api = `${process.env.VUE_APP_API}`+ '/newplans/' + id
         const vm = this;
-        vm.$http.delete(api).then((response) => {
-          const index = vm.plans.findIndex( item => {
+        vm.$http.delete(api,{headers}).then((response) => {
+          const index = vm.newplans.findIndex( item => {
+          console.log(id)
           return item._id === id 
+          
           }) 
           // splice(index,1) 在index位置處刪除一個元素
-          this.plans.splice(index,1)
+          this.newplans.splice(index,1)
           })
         .catch(error => {
+          console.log(error)
           alert(error.response.data.message)
         }) 
         },    
-
-        addProduct() {
-        let api = `${process.env.VUE_APP_API}`+ '/products'
+        // 修改
+        
+        addNewPlans() {
+        const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
+        }  
+        let api = `${process.env.VUE_APP_API}`+ '/newplans'
         let httpMethod = 'post';
         const vm = this;
         if (!vm.isNew) {
-          api = `${process.env.VUE_APP_API}`+ '/products/' + `${vm.form._id}`
+          api = `${process.env.VUE_APP_API}`+ '/newplans/' + `${vm.newplan._id}`
           httpMethod = 'put'
         } 
-        this.$http[httpMethod](api, vm.form).then((response) => {
+        this.$http[httpMethod](api, vm.newplan,{headers}).then((response) => {
         if(response.data.succuss) {
+          console.log(vm.newplan)
           // vm.plans.push(response.data.result)
           $('#productModal').modal('hide')
-          vm.getProducts()
+          vm.getNewPlans()
         } else {
-            vm.getProducts();
+            vm.getNewPlans();
           $('#productModal').modal('hide');
         } 
     })
     },
-    updateImg() {
-      // Vue實體中圖片置放位置
-      const updated = this.$refs.files.files[0];
-      const vm = this;
-      // 使用new FormData 操作表單
-      const fd = new FormData();
-      // 然後透過 append 加入欄位 ，傳入圖片
-      fd.append('file', updated);
-      const api = `${process.env.VUE_APP_API}`+ '/products';
-      vm.status.fileUploading = true;
-      // post fd本身，並設置表單名稱
-      this.$http.post(api, fd, { headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((response) => {
-        // console.log(response.data);
-        if (response.data.succuss) {
-        vm.$set(vm.form,'file',process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file)
-        vm.status.fileUploading = false;
-        } console.log(vm.form.file)
-      });
-    },
-    getImgUrl (id) {
-      return process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
-      },
       openModal(isNew, item) {
       if (isNew) {
-        this.form = {};
+        this.newplan = {};
         this.isNew = true;
       } else {
         // 將item值寫入空物件
-        this.form = Object.assign({}, item);
+        this.newplan = Object.assign({}, item);
         this.isNew = false;
       }
         $('#productModal').modal('show');
       },
-     getProductsInfo() {
-        this.$store.dispatch('getProductsInfo');
-      },
     },
-    mounted() {
-        this.getProducts()
+    created() {
+        this.getNewPlans()
+        this.getNewPlan()
     }
 }
 </script>

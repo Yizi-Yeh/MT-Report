@@ -25,6 +25,9 @@ export default new Vuex.Store({
     setProductsInfo (state, val) {
       state.products = val;
     },
+    getProductsId (state, data) {
+      state.plansId = data._id;
+    },
     
   },
 
@@ -35,6 +38,7 @@ export default new Vuex.Store({
       Axios.get(api).then(res => {
         if(res.data.success) {
           commit('setProductsInfo',res.data.result)
+          commit('getProductsId',res.data.result)
         }
       })
     },

@@ -6,46 +6,45 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
-          <th width="20">開團</th>
-          <th width="100">行程分類</th>
-          <th width="100">行程名稱</th>
-          <th width="100">行程地點</th>
-          <th width="100">行程成本</th>
-          <th width="100">行程時間</th>
-          <th width="100">行程說明</th>
+          <th width="100">會員編號</th>
+          <th width="100">會員帳號</th>
+          <!-- <th width="100">活動名稱</th>
+          <th width="100">活動地點</th>
+          <th width="100">活動成本</th>
+          <th width="100">活動時間</th>
+          <th width="100">活動說明</th>
           <th width="100">費用包含</th>
-          <!-- <th width="100">注意事項</th> -->
           <th width="100">日程</th>
           <th width="100">行程內容</th>
           <th width="100">日程</th>
           <th width="100">餐食</th>
           <th width="100">活動圖片</th>
-          <th width="100">上架</th>
-          <th width="80">編輯</th>
+          <th width="100">上架</th> -->
+          <!-- <th width="80">編輯</th>  -->
         </tr>
       </thead>
       <tbody  class="text-center">
-        <tr v-for="(item) in plans" :key="item._id">
-          <td><button @click="getProductsId(item._id)" class="btn btn-outline-dark btn-sm">開團</button></td>
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
+        <tr v-for="item in users" :key="item._id">
+          <!-- <td><button @click="getUsers(item._id)" class="btn btn-outline-dark btn-sm">開團</button></td> -->
+          <td>{{ item._id }}</td>
+          <td>{{ item.account }}</td>
           <td>{{ item.site }}</td>
           <td>{{ item.cost }}</td>
           <td>{{ item.time }}</td>
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
           <!-- <td>{{ item.attention}}</td> -->
-          <td>{{ item.schedule[0].dateTime}}</td>
+          <!-- <td>{{ item.schedule[0].dateTime}}</td>
           <td>{{ item.schedule[0].content}}</td>
           <td>{{ item.meal[0].mealdateTime}}</td>
           <td>{{ item.meal[0].mealcontent}}</td>
           <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
           <td v-else><img :src="form.file" width="100" ></td>
-          
-          <td>
+           -->
+          <!-- <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
-          </td>
+          </td> -->
           <td>
               <button class="btn btn-outline-success btn-sm"
               @click="openModal(false, item)">編輯</button>
@@ -146,21 +145,21 @@
                 <div class="form-group">
                   <label for="schedule">行程安排</label>
                   <textarea type="text" class="form-control mb-3" id="dateTime"
-                    v-model="form.schedule[0].dateTime"
+                    v-model="form.dateTime"
                     placeholder="請輸入行程安排日程"></textarea>
 
                     <textarea type="text" class="form-control" id="content"
-                    v-model="form.schedule[0].content"
+                    v-model="form.content"
                     placeholder="請輸入行程安排內容"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="meal">餐食安排</label>
                   <textarea type="text" class="form-control mb-3" id="mealdateTime"
-                    v-model="form.meal[0].mealdateTime"
+                    v-model="form.mealdateTime"
                     placeholder="餐食安排請輸入日程"></textarea>
 
                     <textarea type="text" class="form-control" id="mealcontent"
-                    v-model="form.meal[0].mealcontent"
+                    v-model="form.mealcontent"
                     placeholder="餐食安排請輸入內容"></textarea>
                 </div>
                 
@@ -194,26 +193,22 @@ import Axios from 'axios'
 export default {
     data() {
         return {
-            plans:[],
+            users:[],
             plansId:[],
-            form:{
-              images:[{}],
-              schedule:[{}],
-              meal:[{}],
-            },
+            form:{},
             isNew: false,
         }
     },
     methods: {
       // 取得所有產品
-        getProducts() {
-        const api = `${process.env.VUE_APP_API}`+ '/products'
+        getUsers() {
+        const api = `${process.env.VUE_APP_API}`+ '/users'
         const vm = this;
         vm.isLoading = true;
         Axios.get(api).then((response) => {
         // console.log(response.data)
         vm.isLoading = false;
-        vm.plans = response.data.result
+        vm.users = response.data.result
         console.log(response.data.result)
         })
         },
@@ -323,8 +318,7 @@ export default {
       // },
     },
     created() {
-        this.getProducts()
-        this.getProduct()
+        this.getUsers()
     }
 }
 </script>
