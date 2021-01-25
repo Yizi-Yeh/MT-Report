@@ -10,7 +10,10 @@ export default new Vuex.Store({
       id: ''
     },
     products:[],
-    plansId:[],
+    newplans:[],
+    productsId:{
+      _id:''
+    },
     
   },
   mutations: {
@@ -25,8 +28,12 @@ export default new Vuex.Store({
     setProductsInfo (state, val) {
       state.products = val;
     },
+    setNewplansInfo (state, val) {
+      state.newplans = val;
+    },
     getProductsId (state, data) {
-      state.plansId = data._id;
+      if (data) state.productsId = data
+
     },
     
   },
@@ -42,7 +49,15 @@ export default new Vuex.Store({
         }
       })
     },
-    
+    getNewPlansInfo({ commit, state}) {
+      // 取得所有行程資訊
+      const api = `${process.env.VUE_APP_API}`+ '/newplans'
+      Axios.get(api).then(res => {
+        if(res.data.success) {
+          commit('setNewplansInfo',res.data.result)
+        }
+      })
+    },
   },
   modules: {
   }

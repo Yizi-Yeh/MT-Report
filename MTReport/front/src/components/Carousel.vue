@@ -16,7 +16,7 @@
       <!-- 圖片區 -->
       <div class="carousel-inner h-100">
         <div class="carousel-item active">
-          <img src="../assets/carousel1.jpg" class="d-block w-100 img-scaleBig brightness" height="1024px">
+          <img src="../assets/carousel1.jpg" class="d-block w-100 img-scaleBig brightness">
  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
     <h1 class="mb-3">LIFE IS AN ADVENTURE.</h1>
     <h1 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h1>

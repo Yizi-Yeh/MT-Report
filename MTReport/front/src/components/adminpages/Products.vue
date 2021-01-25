@@ -6,7 +6,7 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
-          <th width="20">開團</th>
+          <th width="100">行程編號</th>
           <th width="100">行程分類</th>
           <th width="100">行程名稱</th>
           <th width="100">行程地點</th>
@@ -26,7 +26,7 @@
       </thead>
       <tbody  class="text-center">
         <tr v-for="(item) in plans" :key="item._id">
-          <td><button @click="getProductsId(item._id)" class="btn btn-outline-dark btn-sm">開團</button></td>
+          <td>{{ item._id }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td>{{ item.site }}</td>

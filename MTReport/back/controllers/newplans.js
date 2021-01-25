@@ -64,11 +64,11 @@ export const editNewPlans = async (req, res) => {
       const message = error.errors[key].message
       res.status(400).send({ success: false, message })
     } else if (error.name === 'CastError') {
-      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+      console.log(error)
+      res.status(400).send({ success: false, message: '格式錯誤' })
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
-    console.log(error)
   }
 }
 
@@ -78,12 +78,12 @@ export const deleteNewPlans = async (req, res) => {
     if (result != null) {
       res.status(200).send({ success: true, message: '' })
     } else {
-      res.status(404).send({ success: false, message: '找不到商品' })
+      res.status(404).send({ success: false, message: '找不到行程' })
     }
   } catch (error) {
     console.log(error)
     if (error.name === 'CastError') {
-      res.status(404).send({ success: false, message: '找不到商品' })
+      res.status(404).send({ success: false, message: '找不到行程' })
     } else {
       res.status(500).send({ success: false, message: '發生錯誤' })
     }

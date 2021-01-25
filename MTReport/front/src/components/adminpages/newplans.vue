@@ -6,6 +6,7 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
+          <!-- <th width="100">開團編號</th> -->
           <th width="100">行程編號</th>
           <th width="100">行程分類</th>
           <th width="100">行程名稱</th>
@@ -21,18 +22,19 @@
       </thead>
       <tbody  class="text-center">
         <tr v-for="(item) in newplans" :key="item._id">
+          <!-- <td>{{ item._id }}</td> -->
           <td>{{ item.p_id._id }}</td>
           <td>{{ item.p_id.category }}</td>
           <td>{{ item.p_id.title }}</td>
           <td>{{ item.date }}</td>
-          <td>{{ item.price }}</td>
+          <td>NT${{ item.price }}</td>
           <td>{{ item.totalNumber }}</td>
           <td>{{ item.currentNumber}}</td>
           <td>{{ item.remainNumber }}</td>
           <td>
             <span v-if="item.is_closed" class="text-dark">額滿</span>
             <span v-else>募集中</span>
-           <td>
+            <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
@@ -61,12 +63,16 @@
       <div class="modal-body">
             <div class="row">
               <div class="col-sm-12">
-                <div class="form-group">
-                  <label for="category">行程編號</label>
-                  <input type="text" class="form-control" id="p_id._id"
-                    v-model="newplan.p_id._id"
-                    placeholder="請輸入行程編號">
-                </div>
+                
+        <div class="form-group">
+            <label for="PlansId">行程編號</label>
+              <select name="" class="form-control" v-model="newplan.p_id._id">
+                <option  v-for="id in getproductId" v-bind:value="getproductId.id" :key="id">
+                  {{id}} 
+            </option>
+            </select>
+          </div>
+
                 <div class="form-group">
                   <label for="category">行程分類</label>
                   <input type="text" class="form-control" id="category"
@@ -149,28 +155,35 @@
 <script>
 import $ from 'jquery';
 import Axios from 'axios'
+import store from '@/store'
+
 export default {
     data() {
         return {
             newplans:[
               {
-                p_id:{
-                  _id:''
+                p_id:
+                {
+                _id:'',
                 },
-                _id:''
               }
-            ],
+                    ],
             newplan:{
-              _id:'',
-              p_id:{
-                 _id:''
+                  p_id:{
               }
-            },
+              },
             isNew: false,
-            status: {
-              fileUploading: false
-            }
         }
+    },
+    computed:{
+      productsId() {
+      return store.state.productsId
+        },
+      getproductId() {
+      const productId = [...this.productsId]
+       const idList = productId.map(item => Object.values(item)[0])
+       return idList
+      }      
     },
     methods: {
         getNewPlans() {
@@ -227,23 +240,19 @@ export default {
         }) 
         },    
         // 修改
-        
         addNewPlans() {
-        const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
-        }  
         let api = `${process.env.VUE_APP_API}`+ '/newplans'
         let httpMethod = 'post';
+        console.log(api)
         const vm = this;
         if (!vm.isNew) {
           api = `${process.env.VUE_APP_API}`+ '/newplans/' + `${vm.newplan._id}`
+          console.log(vm.newplan._id)
+          console.log(api)
           httpMethod = 'put'
         } 
-        this.$http[httpMethod](api, vm.newplan,{headers}).then((response) => {
+        vm.$http[httpMethod](api,vm.newplan).then((response) => {
         if(response.data.succuss) {
-          console.log(vm.newplan)
           // vm.plans.push(response.data.result)
           $('#productModal').modal('hide')
           vm.getNewPlans()
@@ -255,7 +264,7 @@ export default {
     },
       openModal(isNew, item) {
       if (isNew) {
-        this.newplan = {};
+        this.newplan = {p_id:{}};
         this.isNew = true;
       } else {
         // 將item值寫入空物件
@@ -268,6 +277,7 @@ export default {
     created() {
         this.getNewPlans()
         this.getNewPlan()
+        store.dispatch('getProductsInfo')
     }
 }
 </script>
