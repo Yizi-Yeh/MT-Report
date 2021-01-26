@@ -1,67 +1,62 @@
 <template>
 <div>
-       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+       <nav class="col-12 bg-light sidebar fixed">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  管理首頁 <span class="sr-only">(current)</span>
+                <router-link to="/admin/products"><span data-feather="file">管理首頁</span></router-link>
                 </a>
               </li>
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Ｍember</span>
+
+              <h6 class="sidebar-heading">
+              <span>Memeber</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>
-            </h6>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                   <router-link to="admin/users">  <span data-feather="file">會員資料</span></router-link>
+                <router-link to="/admin/users">  <span data-feather="file">會員管理</span></router-link>
                 </a> 
                 </li>
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            </h6>
+              
+              <h6 class="sidebar-heading">
               <span>Orders</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>
-            </h6>
+
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="file">報名資料</span>
+  <router-link to="/admin/orders">  <span data-feather="file">訂單管理</span></router-link>
                 </a>
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart">報名訂單</span>
-                </a>  
                 </li>
-                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            </h6>
+            
+                  <h6 class="sidebar-heading ">
               <span>Newplan</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>
-            </h6>
-              <li class="nav-item">
+                 <li class="nav-item">
                 <a class="nav-link" href="#">
-                <router-link to="admin/newplans">  <span data-feather="file">開團狀況</span></router-link>
-                </a>
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart">增修資訊</span>
-                </a>  
+                <router-link to="/admin/newplans">  <span data-feather="file">開團管理</span></router-link>
+                </a> 
                 </li>
-                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            </h6>
+
+              <h6 class="sidebar-heading">
               <span>Plans</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>
-            </h6>
-              <li class="nav-item">
+                <li class="nav-item">
                 <a class="nav-link" href="#">
-               <router-link to="admin/products">    <span data-feather="file">行程資訊</span></router-link>
+                <router-link to="/admin/products"><span data-feather="file">行程管理</span></router-link>
                 </a>
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart">增修資訊</span>
-                </a>  
                 </li>
+            </h6>
             </ul>
           </div>
         </nav>

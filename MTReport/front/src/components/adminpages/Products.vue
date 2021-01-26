@@ -6,10 +6,6 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
-          <th width="100">
-            <a href="~/controller/view?id=1">開團</a>
-            </th>
-          <th width="100">行程編號</th>
           <th width="100">行程分類</th>
           <th width="100">行程名稱</th>
           <th width="100">行程地點</th>
@@ -17,19 +13,20 @@
           <th width="100">行程時間</th>
           <th width="100">行程說明</th>
           <th width="100">費用包含</th>
-          <!-- <th width="100">注意事項</th> -->
-          <th width="100">日程</th>
+          <th width="100">注意事項</th>
+          <th width="100">行程日程</th>
           <th width="100">行程內容</th>
-          <th width="100">日程</th>
+          <th width="100">餐食日程</th>
           <th width="100">餐食</th>
           <th width="100">活動圖片</th>
           <th width="100">上架</th>
           <th width="80">編輯</th>
+          <th width="80">開團</th>
         </tr>
       </thead>
       <tbody  class="text-center">
         <tr v-for="(item) in plans" :key="item._id">
-          <td>{{ item._id }}</td>
+
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td>{{ item.site }}</td>
@@ -37,23 +34,23 @@
           <td>{{ item.time }}</td>
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
-          <!-- <td>{{ item.attention}}</td> -->
+          <td>{{ item.attention}}</td>
           <td>{{ item.schedule[0].dateTime}}</td>
           <td>{{ item.schedule[0].content}}</td>
           <td>{{ item.meal[0].mealdateTime}}</td>
           <td>{{ item.meal[0].mealcontent}}</td>
           <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
           <td v-else><img :src="form.file" width="100" ></td>
-          
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
           <td>
-              <button class="btn btn-outline-success btn-sm"
-              @click="openModal(false, item)">編輯</button>
-            <!-- 因為刪除用id刪，所以把id傳入 -->
-        <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+        <button class="btn btn-outline-success btn-sm" @click="openModal(false, item)">編輯</button>
+        <button class="btn btn-outline-danger btn-sm" @click="delProducts(item._id)">刪除</button>
+          </td>
+          <td>
+        <button class="btn btn-outline-dark btn-sm" @click="createPlan(item._id)">開團</button>
           </td>
         </tr>
       </tbody>
@@ -198,7 +195,6 @@ export default {
     data() {
         return {
             plans:[],
-            plansId:[],
             form:{
               images:[{}],
               schedule:[{}],
@@ -271,7 +267,6 @@ export default {
         } 
         this.$http[httpMethod](api, vm.form).then((response) => {
         if(response.data.succuss) {
-
           // vm.plans.push(response.data.result)
           $('#productModal').modal('hide')
           vm.getProducts()
@@ -304,7 +299,7 @@ export default {
         } console.log(vm.form.file)
       });
     },
-     getImgUrl (id) {
+      getImgUrl (id) {
       return process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
       },
       openModal(isNew, item) {
@@ -318,12 +313,18 @@ export default {
       }
         $('#productModal').modal('show');
       },
-       getProductsInfo() {
+        getProductsInfo() {
         this.$store.dispatch('getProductsInfo');
       },
-      //  getProductsId() {
-      //   this.$store.dispatch('getProductsId');
-      // },
+      createPlan (id) {  
+        const api = `${process.env.VUE_APP_API}`+ '/newplans'
+        Axios.post(api,{p_id:id}).then((response) => {
+          if(response.data.succuss){
+                  this.$router.push('/admin/newplans')
+            // this.$router.push('/admin/newplans?product=' + id)
+          } 
+        })
+      }
     },
     created() {
         this.getProducts()

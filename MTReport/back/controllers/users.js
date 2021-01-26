@@ -102,16 +102,36 @@ export const searchUsers = async (req, res) => {
   }
 }
 
-export const orderCreate = async (req, res) => {
+export const searchUsersOrders = async (req, res) => {
+  try {
+    const result = await users.findById((req.params.id), 'order').populate('order.p_id')
+    if (result !== undefined) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '找不到' })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+      console.log(error)
+    }
+  }
+}
+
+export const createOrder = async (req, res) => {
   try {
     // if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
-    // req.body.p_id = newplans._id
+
     const result = await users.findByIdAndUpdate(req.params.id,
       {
         $push: {
           order: {
             p_id: req.body.p_id,
-            price: req.body.price
+            date: req.body.date
           }
         }
       },

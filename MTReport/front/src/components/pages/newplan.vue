@@ -55,7 +55,7 @@
         <i class="fas fa-search"></i>
         詳細資訊
       </button>
-      <button type="button" class="btn btn-outline-primary btn-sm ml-auto">
+      <button @click="createOrders()" type="button" class="btn btn-outline-primary btn-sm ml-auto">
               <i class="fas fa-search"></i>
                加入我們
              </button>
@@ -139,12 +139,11 @@ filterData() {
         const api = `${process.env.VUE_APP_API}`+ '/newplans'
         const vm = this;
         Axios.get(api).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         vm.newplans = response.data.result
         vm.getUnique()    
         })
         },
-
         getUnique() {
       const vm = this;
       const categories = new Set();
@@ -160,15 +159,26 @@ filterData() {
         Axios.get(api).then((response) => {
         vm.newplans = response.data.result
         if(response.data.success){
-            console.log(response.data)
+            // console.log(response.data)
             vm.$router.push('newplan/'+`${id}`)
           }        
         })
         },
+        // 丟入
+      createOrders (id) {  
+        const api = `${process.env.VUE_APP_API}`+ '/order/'+ id
+        Axios.post(api,{p_id:id}).then((response) => {
+          if(response.data.succuss){
+                  this.$router.push('/join/'+`${id}`)
+          } 
+        })
+      }
+
     },
     created() {
       this.getNewPlans()
-      this.getNewPlan();
+      this.getNewPlan()
+      this.createOrders();
     },
 }
 </script>

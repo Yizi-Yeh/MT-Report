@@ -6,16 +6,9 @@
   >
     <swiper-slide
       v-for="(item) in newplans" :key="item._id"
-      style="text-align: -webkit-center;"
     >  
 
-   <div v-if=" 
-          index != $refs.swiperMaxCard.swiper.activeIndex + 1 &&
-            !$vuetify.breakpoint.smOnly
-        "></div>
-<div  v-if="index == $refs.swiperMaxCard.swiper.activeIndex + 1 ||
-            $vuetify.breakpoint.smOnly
-        "></div>
+
 </swiper-slide>
   </swiper>
   
@@ -147,5 +140,4 @@ import store from '@/store'
 }
 </style>
 
-          
 

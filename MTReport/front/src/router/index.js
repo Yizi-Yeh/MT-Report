@@ -12,12 +12,12 @@ import Login from '../components/pages/login.vue'
 import newplans from '../components/adminpages/newplans.vue'
 import Products from '../components/adminpages/Products.vue'
 import Users from '../components/adminpages/Members.vue'
+import Orders from '../components/adminpages/Orders.vue'
 import store from '../store/index.js'
 import itemPlan from '../components/plans/itemplan.vue'
 import newplan from '../components/plans/newplan.vue'
 import Reg from '../components/members/Reg.vue'
 import Log from '../components/members/Log.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -66,6 +66,7 @@ const routes = [
     },
   },
   {
+    // 近期活動
     path: '/newplan',
     name: 'NewPlan',
     component: NewPlan,
@@ -74,6 +75,7 @@ const routes = [
     }
   },
   {
+    // 近期活動內頁
     path: '/newplan/:id',
     name: 'newplan',
     component: newplan,
@@ -91,7 +93,7 @@ const routes = [
         name: 'Reg',
         component: Reg,
       },
-      
+
     ],
     mata: {
       needLogin: false
@@ -101,12 +103,12 @@ const routes = [
     path: '/memberLogin',
     name: 'Log',
     component: Log,
-      mata: {
-  needLogin: false
-}
+    mata: {
+      needLogin: false
+    }
   },
   {
-    path: '/join',
+    path: '/join/:id',
     name: 'Join',
     component: Join,
     mata: {
@@ -135,19 +137,24 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: '/admin/products',
+        path: 'products',
         name: 'Products',
         component: Products,
       },
       {
-        path: '/admin/newplans',
+        path: 'newplans',
         name: 'newplans',
         component: newplans,
       },
       {
-        path: '/admin//users',
+        path: 'users',
         name: 'Users',
         component: Users,
+      },
+      {
+        path: 'orders',
+        name: 'orders',
+        component: Orders,
       },
     ],
   }
@@ -160,7 +167,7 @@ const router = new VueRouter({
 
 // 進入每頁前檢查登入狀態
 router.beforeEach((to, from, next) => {
-  if(to.meta.needLogin && store.state.login.length === 0) {
+  if (to.meta.needLogin && store.state.login.length === 0) {
     alert('請先註冊會員才能報名喔！')
     next('/memberLogin')
   } else {

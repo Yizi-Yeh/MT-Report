@@ -41,7 +41,7 @@
           
         
           <td>
-              <button class="btn btn-outline-dark btn-sm"
+              <button class="btn btn-outline-success btn-sm"
               @click="openModal(false, item)">編輯</button>
         <button @click="delNewPlans(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
           </td>
@@ -64,14 +64,21 @@
             <div class="row">
               <div class="col-sm-12">
                 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="PlansId">行程編號</label>
               <select name="" class="form-control" v-model="newplan.p_id._id">
                 <option  v-for="id in getproductId" v-bind:value="getproductId.id" :key="id">
                   {{id}} 
             </option>
             </select>
-          </div>
+          </div> -->
+
+          <div class="form-group">
+                  <label for="category">行程編號</label>
+                  <input type="text" class="form-control" id="p_id"
+                    v-model="newplan.p_id._id"
+                    placeholder="請輸入活動編號">
+                </div>
 
                 <div class="form-group">
                   <label for="category">行程分類</label>
@@ -184,49 +191,22 @@ export default {
       const productId = [...this.productsId]
        const idList = productId.map(item => Object.values(item)[0])
        return idList
-      }      
+      }
     },
     methods: {
         getNewPlans() {
-        const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
-        }
         const api = `${process.env.VUE_APP_API}`+ '/newplans'
         const vm = this;
-        Axios.get(api,{headers}).then((response) => {
+        Axios.get(api).then((response) => {
         // console.log(response.data)
         vm.newplans = response.data.result
         console.log(vm.newplans)
         })
         },
-        getNewPlan() {
-        const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
-        }
-        const id = this.$route.params.id;
-        const api = `${process.env.VUE_APP_API}` + '/newplans/' + id
-        const vm = this;
-        vm.$http.get(api,{headers}).then((response) => {
-        if(response.data.success){
-        vm.newplan = response.data.result
-        console.log(vm.newplan)
-          } 
-        })
-        },
-        // 在products中找到id並刪除
         delNewPlans(id) {
-        const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer So8gvO9dez0CjdjBVN11XIDrDlyLioNXs2S6AMUlXIHVrsB2FC0nujBeQLI5'
-        }
         const api = `${process.env.VUE_APP_API}`+ '/newplans/' + id
         const vm = this;
-        vm.$http.delete(api,{headers}).then((response) => {
+        vm.$http.delete(api).then((response) => {
           const index = vm.newplans.findIndex( item => {
           console.log(id)
           return item._id === id 
@@ -277,7 +257,6 @@ export default {
     },
     created() {
         this.getNewPlans()
-        this.getNewPlan()
         store.dispatch('getProductsInfo')
     }
 }
