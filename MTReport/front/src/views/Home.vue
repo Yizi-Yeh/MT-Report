@@ -6,8 +6,8 @@
         <section id="section03">
         <div class="container mb-5">
         <h1 class="mb-5">近期活動</h1>
-        <div class="row h-100 d-flex flex-row flex-nowrap">
-        <div id="newplani" class="col-lg-6 d-flex" v-for="(item) in newplans" :key="item._id" >
+        <div class="row h-100 d-flex flex-row flex-nowrap swiper-wrapper">
+        <div id="newplani" class="swiper-slide col-lg-6 d-flex" v-for="(item) in newplans" :key="item._id" >
           <a href="#"  @click.prevent="getNewPlan(item._id)">
         <div class="view mb-3 rounded">
             <img style="height:300px; width:550px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
@@ -51,23 +51,29 @@
     </div>
   </div>
     </section>
-</div>
+<introswiper/>
 
+</div>
 </template>
 
 <script>
+import introswiper from '../components/Intro-swiper'
 import Navbar from '../components/Navbar'
 import Carousel from '../components/Carousel'
 import Plans from '../components/pages/plan'
 import store from '@/store'
 import Axios from 'axios'
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
 export default {
   name: 'home',
-  components: {
+    components: {
     Navbar,
     Carousel,
-    Plans
+    introswiper,
+    Swiper,
+    SwiperSlide,
+    Plans,
   },
   computed:{
     user () {
@@ -86,6 +92,7 @@ export default {
     
   },
   methods: {
+
     getProduct(id) {
       const api = `${process.env.VUE_APP_API}`+ '/products/' + `${id}`
         const vm = this;

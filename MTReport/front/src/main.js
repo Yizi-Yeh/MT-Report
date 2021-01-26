@@ -5,6 +5,14 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap';
 import"../node_modules/bootswatch/dist/lux/bootstrap.min.css"
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
+import introswiper from './components/Intro-swiper.vue'
+// import style (>= Swiper 6.x)
+import 'swiper/swiper-bundle.css'
+
+
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 axios.defaults.withCredentials = true
 
@@ -15,6 +23,10 @@ import store from './store'
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios);
 Vue.use(VueSweetalert2)
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+swiper.use([Navigation, Pagination, Autoplay])
+Vue.component('intro-swiper', introswiper);
+
 
 
 

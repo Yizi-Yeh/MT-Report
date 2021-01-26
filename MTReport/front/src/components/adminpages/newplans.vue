@@ -157,6 +157,7 @@ import $ from 'jquery';
 import Axios from 'axios'
 import store from '@/store'
 
+
 export default {
     data() {
         return {

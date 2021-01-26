@@ -6,6 +6,9 @@
     <table class="table mt-4">
       <thead>
         <tr class="text-center">
+          <th width="100">
+            <a href="~/controller/view?id=1">開團</a>
+            </th>
           <th width="100">行程編號</th>
           <th width="100">行程分類</th>
           <th width="100">行程名稱</th>
@@ -219,9 +222,9 @@ export default {
         },
 
         getProductsId(id) {
-        const api = `${process.env.VUE_APP_API}`+ '/products'
+        const api = `${process.env.VUE_APP_API}`+ '/'
         const vm = this;
-        Axios.get(api).then((response) => {
+        Axios.post(api,{p_id}).then((response) => {
         // console.log(response.data)
         const index = vm.plans.findIndex( item => {
           return item._id === id 
