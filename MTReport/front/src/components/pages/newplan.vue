@@ -57,7 +57,7 @@
       </button>
       <button @click="createOrders()" type="button" class="btn btn-outline-primary btn-sm ml-auto">
               <i class="fas fa-search"></i>
-               加入我們
+               我要報名
              </button>
     </div>
   </div>
@@ -85,6 +85,8 @@
       </div>
 </div>
 </div>
+
+
 
 </div>
 </template>

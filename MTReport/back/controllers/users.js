@@ -131,7 +131,8 @@ export const createOrder = async (req, res) => {
         $push: {
           order: {
             p_id: req.body.p_id,
-            date: req.body.date
+            date: req.body.date,
+            price: req.body.price
           }
         }
       },
