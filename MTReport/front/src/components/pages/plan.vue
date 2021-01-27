@@ -108,7 +108,7 @@ export default {
     } 
   },
   computed: {
-filterData() {
+      filterData() {
       const vm = this;
       if (vm.searchText) {
         return vm.plans.filter((item) => {
@@ -118,7 +118,7 @@ filterData() {
       }
       return this.plans;
     },
-  products() {
+      products() {
       return this.$store.state.products; 
     },
 
@@ -135,9 +135,9 @@ filterData() {
         },
 
         getUnique() {
-      const vm = this;
-      const categories = new Set();
-      vm.plans.forEach((item) => {
+         const vm = this;
+          const categories = new Set();
+          vm.plans.forEach((item) => {
         categories.add(item.category);
       });
       vm.categories = Array.from(categories);

@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard.vue'
 import Plan from '../components/pages/plan.vue'
 import NewPlan from '../components/pages/newplan.vue'
 import Member from '../components/pages/member.vue'
-import Join from '../components/pages/join.vue'
+import USersOrder from '../components/pages/order.vue'
 import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
 import newplans from '../components/adminpages/newplans.vue'
@@ -26,17 +26,6 @@ const routes = [
     name: 'home',
     component: Home,
     // 設定是否需要登入
-    mata: {
-      needLogin: false
-    }
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     mata: {
       needLogin: false
     }
@@ -84,6 +73,14 @@ const routes = [
     },
   },
   {
+    path: '/order/:id',
+    name: 'USersOrder',
+    component: USersOrder,
+    mata: {
+      needLogin: true
+    },
+  },
+  {
     path: '/memberReg',
     name: 'Member',
     component: Member,
@@ -107,14 +104,7 @@ const routes = [
       needLogin: false
     }
   },
-  {
-    path: '/join/:id',
-    name: 'Join',
-    component: Join,
-    mata: {
-      needLogin: true
-    },
-  },
+ 
   {
     path: '/contact',
     name: 'Contact',

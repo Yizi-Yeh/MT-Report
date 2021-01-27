@@ -51,11 +51,11 @@
       </h5>
     </div>
     <div class="card-footer d-flex">
-      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
+      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm ml-auto">
         <i class="fas fa-search"></i>
         詳細資訊
       </button>
-      <button @click="createOrders()" type="button" class="btn btn-outline-primary btn-sm ml-auto">
+      <button @click="createOrders(item._id)" type="button" class="btn btn-outline-primary btn-sm ml-auto">
               <i class="fas fa-search"></i>
                加入我們
              </button>
@@ -93,6 +93,7 @@
 import Vue from 'vue'
 import Axios from 'axios'
 import Navbar from '../Navbar'
+import store from '@/store'
 
 Vue.filter('dollarSign', function (n) {
 return `$ ${n}`
@@ -115,11 +116,15 @@ export default {
     searchText: '',
     categories: [],
     newplans:[],
-    plan:{}
+    plan:{},
+    orders:[],
     } 
   },
   computed: {
-filterData() {
+    user () {
+      return this.$store.state.user
+    },
+    filterData() {
       const vm = this;
       if (vm.searchText) {
         return vm.newplans.filter((item) => {
@@ -128,13 +133,16 @@ filterData() {
         });
       }
       return this.newplans;
-    },
-  products() {
+    }, 
+
+    products() {
       return this.$store.state.products; 
     },
 
   },
     methods: {
+      
+      // 取得所有開團資料
         getNewPlans() {
         const api = `${process.env.VUE_APP_API}`+ '/newplans'
         const vm = this;
@@ -144,6 +152,21 @@ filterData() {
         vm.getUnique()    
         })
         },
+
+        // 取得個別開團資料
+        getNewPlan(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/newplans/' + `${id}`
+        const vm = this;
+        Axios.get(api).then((response) => {
+        vm.newplans = response.data.result
+        if(response.data.success){
+            console.log(response.data)
+            vm.$router.push('newplan/'+`${id}`)
+          }        
+        })
+        },
+
+        // 篩選資料
         getUnique() {
       const vm = this;
       const categories = new Set();
@@ -152,24 +175,16 @@ filterData() {
       });
       vm.categories = Array.from(categories);
     },
-        
-        getNewPlan(id) {
-        const api = `${process.env.VUE_APP_API}`+ '/newplans/' + `${id}`
-        const vm = this;
-        Axios.get(api).then((response) => {
-        vm.newplans = response.data.result
-        if(response.data.success){
-            // console.log(response.data)
-            vm.$router.push('newplan/'+`${id}`)
-          }        
-        })
-        },
-        // 丟入
+
+        // 建立訂單
       createOrders (id) {  
-        const api = `${process.env.VUE_APP_API}`+ '/order/'+ id
+        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+        console.log(api)
         Axios.post(api,{p_id:id}).then((response) => {
           if(response.data.succuss){
-                  this.$router.push('/join/'+`${id}`)
+            this.order = response.data.result
+        console.log(this.order)
+          // this.$router.push('/order/'+`${id}`)
           } 
         })
       }

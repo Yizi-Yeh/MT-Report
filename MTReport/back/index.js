@@ -77,6 +77,10 @@ app.use('/newplans', routerNewPlans)
 app.use('/users', routerUsers)
 app.use('/adminusers', routerAdminusers)
 
+app.use((_, req, res, next) => {
+  res.status(500).send({ success: false, message: '伺服器錯誤' })
+})
+
 app.listen(process.env.PORT, () => {
   console.log('server started')
 })

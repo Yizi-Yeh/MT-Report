@@ -79,7 +79,6 @@ export const logout = async (req, res) => {
 // 利用heartbeat 確認使用者是否登入
 export const heartbeat = async (req, res) => {
   let isLogin = false
-  // 若session 帶有user的資料則代表已登入
   if (req.session.user !== undefined) {
     isLogin = true
   }
@@ -124,14 +123,15 @@ export const searchUsersOrders = async (req, res) => {
 
 export const createOrder = async (req, res) => {
   try {
-    // if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
+    if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
 
     const result = await users.findByIdAndUpdate(req.params.id,
       {
         $push: {
           order: {
             p_id: req.body.p_id,
-            date: req.body.date
+            date: req.body.date,
+            price: req.body.price
           }
         }
       },

@@ -25,7 +25,7 @@
                       <label>Password</label>
                       <input type="password" class="form-control" placeholder="Password" v-model="password" :state="passwordState">
                   </div>
-                  <button type="submit" class="btn btn-dark" @click="logSubmit">Submit</button>
+                  <button type="submit" class="btn btn-dark" @click="onSubmit">Submit</button>
                   <button type="reset" class="btn btn-secondary ml-2" @reset="onReset">Reset</button>
                 </form>
             </div>
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import Navbar from '../Navbar'
 export default {
 
   name: 'Log',
@@ -65,12 +64,11 @@ export default {
       }
     }
   },
-  methods: {
-    logSubmit () {
+   methods: {
+    onSubmit () {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
-        const api = `${process.env.VUE_APP_API}/users/login`;
-        this.axios.post(api, this.$data)
+        this.axios.post(process.env.VUE_APP_API + '/users/login', this.$data)
           .then(res => {
             if (res.data.success) {
               this.$store.commit('login', res.data.result)
@@ -85,23 +83,16 @@ export default {
               this.$swal({
                 icon: 'error',
                 title: '發生錯誤',
-              text: response.data.message
+                text: res.data.message
               })
             }
-          })
-          .catch(err => {
-            this.$swal({
-              icon: 'error',
-              title: '發生錯誤',
-              text: err.response.data.message
-            })
           })
       }
     },
     onReset () {
       this.account = ''
       this.password = ''
-    } 
+    }
   }
 }
 </script>
