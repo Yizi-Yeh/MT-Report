@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
+import Persistedstate from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,19 +12,16 @@ export default new Vuex.Store({
     },
     products:[],
     newplans:[],
-    productsId:{
-      _id:''
-    },
-    
   },
   mutations: {
-    logout (state) {
-      state.user.name = ''
-      state.user.id = ''
-    },
+
     login (state, data) {
       state.user.name = data.account
       state.user.id = data._id
+    },
+    logout (state) {
+      state.user.name = ''
+      state.user.id = ''
     },
     setProductsInfo (state, val) {
       state.products = val;
@@ -31,26 +29,20 @@ export default new Vuex.Store({
     setNewplansInfo (state, val) {
       state.newplans = val;
     },
-    getProductsId (state, data) {
-      if (data) state.productsId = data
-
-    },
-    
   },
 
   actions: {
+    // 取得所有行程資訊
     getProductsInfo({ commit, state}) {
-      // 取得所有行程資訊
       const api = `${process.env.VUE_APP_API}`+ '/products'
       Axios.get(api).then(res => {
         if(res.data.success) {
           commit('setProductsInfo',res.data.result)
-          commit('getProductsId',res.data.result)
         }
       })
     },
+    // 取得所有開團資訊
     getNewPlansInfo({ commit, state}) {
-      // 取得所有行程資訊
       const api = `${process.env.VUE_APP_API}`+ '/newplans'
       Axios.get(api).then(res => {
         if(res.data.success) {
@@ -60,5 +52,6 @@ export default new Vuex.Store({
     },
   },
   modules: {
-  }
+  },
+  plugins: [Persistedstate()]
 })

@@ -11,7 +11,7 @@ router.post('/login', login)
 router.delete('/logout', logout)
 // 確認登入
 router.get('/heartbeat', heartbeat)
-
+// 查詢全部使用者
 router.get('/', searchUsers)
 
 // 建立訂單

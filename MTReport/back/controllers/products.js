@@ -160,6 +160,7 @@ export const searchProductById = async (req, res) => {
   } catch (error) {
     if (error.name === 'CastError') {
       res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+      console.log(error)
     }
   }
 }
