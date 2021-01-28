@@ -44,12 +44,11 @@ export const login = async (req, res) => {
       account: req.body.account,
       password: md5(req.body.password)
     })
-
+    console.log(result)
     if (result === null) {
       console.log(result.length)
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
-      console.log(req)
       req.session.user = result
       res.status(200).send({ success: true, message: '', result })
     }
@@ -130,8 +129,7 @@ export const createOrder = async (req, res) => {
         $push: {
           order: {
             p_id: req.body.p_id,
-            date: req.body.date,
-            price: req.body.price
+            date: req.body.date
           }
         }
       },

@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard.vue'
 import Plan from '../components/pages/plan.vue'
 import NewPlan from '../components/pages/newplan.vue'
 import Member from '../components/pages/member.vue'
-import USersOrder from '../components/pages/order.vue'
+import UsersOrder from '../components/pages/order.vue'
 import Contact from '../components/pages/contact.vue'
 import Login from '../components/pages/login.vue'
 import newplans from '../components/adminpages/newplans.vue'
@@ -74,8 +74,8 @@ const routes = [
   },
   {
     path: '/order/:id',
-    name: 'USersOrder',
-    component: USersOrder,
+    name: 'UsersOrder',
+    component: UsersOrder,
     mata: {
       needLogin: true
     },

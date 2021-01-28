@@ -10,9 +10,6 @@ const orderSchema = new Schema(
     },
     orderDate: {
       type: Date, default: Date.now()
-    },
-    price: {
-      type: Number
     }
   }
 )

@@ -12,6 +12,7 @@ export default new Vuex.Store({
     },
     products:[],
     newplans:[],
+    orders:[],
   },
   mutations: {
 
@@ -29,6 +30,10 @@ export default new Vuex.Store({
     setNewplansInfo (state, val) {
       state.newplans = val;
     },
+    getOrdersInfo (state, data) {
+      state.orders = data
+    }
+    
   },
 
   actions: {
@@ -50,6 +55,19 @@ export default new Vuex.Store({
         }
       })
     },
+     // 建立訂單
+     createOrders (id) {  
+      const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+      Axios.post(api,{p_id:id}).then((response) => {
+        if(response.data.succuss){
+          this.orders = response.data.result
+          console.log(response.data.result)
+        } 
+      })
+    },
+    // 取得訂單
+  
+    
   },
   modules: {
   },

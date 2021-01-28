@@ -11,7 +11,7 @@
             <th>單價</th>
           </thead>
           <tbody>
-            <tr v-for="item in cart.carts" :key="item.id" v-if="cart.carts">
+            <tr v-for="item in order" :key="item.id">
               <td class="align-middle">
                 <button type="button" class="btn btn-outline-danger btn-sm">
                   <i class="far fa-trash-alt"></i>
@@ -46,9 +46,11 @@
 <script>
 
 import Navbar from '../Navbar'
-
+import Vue from 'vue'
+import Axios from 'axios'
+import store from '@/store'
 export default {
-  name: 'USersOrder,',
+  name: 'UsersOrder',
   components: {
     Navbar,
     },
@@ -58,14 +60,34 @@ export default {
     } 
   },
   computed: {
-
+    user () {
+      return this.$store.state.user
+    },
 
   },
     methods: {
+      // 訂單資料
+        getOredr() {
+        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+        Axios.get(api,{p_id:id}).then((response) => {
+          if(response.data.succuss){
+            this.order = response.data.result
+          } 
+        })
+        },
+
+        getOredrDetail() {
+        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+        Axios.get(api,{p_id:id}).then((response) => {
+          if(response.data.succuss){
+            this.order = response.data.result
+          } 
+        })
+        },
     
     },
     created() {
-  
+    this.getOredr()
     },
 }
 </script>
