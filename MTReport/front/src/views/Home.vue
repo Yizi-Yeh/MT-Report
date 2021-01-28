@@ -77,7 +77,7 @@ export default {
   },
   computed:{
     user () {
-      return this.store.state.user
+      return store.state.user
     },
     products(){
       return store.state.products

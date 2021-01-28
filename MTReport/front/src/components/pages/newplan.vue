@@ -1,15 +1,11 @@
 <template>
 <div>
     <Navbar/>
-      <button @click="getOrders" type="button" class="btn btn-outline-primary btn-sm ml-auto">
-              <i class="fas fa-search"></i>
-               取得訂單
-             </button>
 <div class="container d-flex flex-column">
   <div class="dropdown ml-auto">
         <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
           <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
-          <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
+          <span class="badge badge-pill badge-danger">{{ Order.length }}</span>
           <span class="sr-only">unread messages</span>
         </button>
         <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
@@ -17,20 +13,19 @@
           <h6>已加入行程</h6>
           <table class="table table-sm">
             <tbody>
-              <tr v-for=" oder in totalOrder" :key="oder._id">
+              <tr v-for=" orders in Order" :key="orders._id">
                 <td class="align-middle text-center">
-                  <!-- <a href="#" class="text-muted" @click.prevent="removeCart(item.id)"> -->
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <!-- </a> -->
+                  <a href="#" class="text-muted" @click.prevent="removeOrders(orders._id)">
+                    <i class="far fa-trash-alt" aria-hidden="true"></i>
+                  </a>
                 </td>
-                <td class="align-middle">{{ hello }}}</td>
-                <!-- <td class="align-middle">{{ item.qty }}{{item.product.unit}}</td>
-                <td class="align-middle text-right">{{item.total}}</td> -->
+                <td class="align-middle">{{  }}</td>
+                <td class="align-middle text-right">NT${{ orders.p_id }}</td>
               </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary btn-block">
-            <i class="fa fa-cart-plus" aria-hidden="true"></i> 報名去
+          <button class="btn-sm btn-primary btn-block">
+               <router-link class="nav-link" to="/order">報名去</router-link>
           </button>
         </div>
         </div>
@@ -89,7 +84,7 @@
       </button>
       <button @click="createOrders(item._id)" type="button" class="btn btn-outline-primary btn-sm ml-auto">
               <i class="fas fa-search"></i>
-               加入購物車
+             加入購物車
              </button>
     </div>
   </div>
@@ -116,13 +111,8 @@
         </div>
       </div>
 </div>
-
-
-
-
 </div>
- 
-      </div>
+  </div>
 
 
 
@@ -146,7 +136,7 @@ Vue.filter('commaFormat', (value) => {
 })
 
 export default {
-  name: 'Plan',
+  name: 'NewPlan',
   components: {
     Navbar,
     },
@@ -160,10 +150,21 @@ export default {
   },
   computed: {
     user () {
-      return this.$store.state.user
+      return store.state.user
     },
-    totalOrder() {
-      return this.$store.state.orders
+    products() {
+      return store.state.products; 
+    },
+    productTitle() {
+      const productId = [...this.productsId]
+        const idList = productId.map(item => Object.values(item)[0])
+        return idList
+      },
+    newplanswiper(){
+      return store.state.newplans
+    },
+    Order() {
+      return store.state.orders
     },
     filterData() {
       const vm = this;
@@ -176,13 +177,8 @@ export default {
       return this.newplans;
     }, 
 
-    products() {
-      return this.$store.state.products; 
-    },
-
   },
     methods: {
-      
       // 取得所有開團資料
         getNewPlans() {
         const api = `${process.env.VUE_APP_API}`+ '/newplans'
@@ -208,7 +204,7 @@ export default {
         },
 
         // 篩選資料
-        getUnique() {
+      getUnique() {
       const vm = this;
       const categories = new Set();
       vm.newplans.forEach((item) => {
@@ -216,13 +212,26 @@ export default {
       });
       vm.categories = Array.from(categories);
     },
-        // 建立訂單
+        // 丟入訂單id
+        removeOrders (id) {  
+        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${id}`
+        Axios.delete(api).then((response) => {
+        const index = this.Order.findIndex( orders => {
+        return orders._id === id 
+          }) 
+          store.commit('delCart',index)
+          console.log('已刪除項目', response.data.result.order[0])
+        }
+        )
+      },
+        // 丟入item_id (開團id)
       createOrders (id) {  
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
         Axios.post(api,{p_id:id}).then((response) => {
-          if(response.data.succuss){
-            console.log('已加入購物車', response.data.result)
-            getOrders ()
+            if(response.data.success){
+            store.commit('addCart',id)
+            console.log('已加入項目', response.data.result.order[0]);
+            // this.getOrders() 
           } 
         })
       },
@@ -230,19 +239,20 @@ export default {
       getOrders() {  
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
         Axios.get(api).then((response) => {
-          if(response.data.succuss){
-            this.$store.commit('getOrdersInfo',res.data.result)
-             console.log('取得訂單', response.data.result);
+          if(response.data.success){
+          store.commit('getOrdersInfo', response.data.result)
+          console.log('已取得訂單資料', response.data);
           } 
         })
       },
+
+
     },
     mounted() {
       this.getNewPlans()
-      this.getNewPlan()
-      this.createOrders();
-      this.getOrders();
-
+      this.getOreders() 
+      store.dispatch('getProductsInfo')
+      store.dispatch('getNewPlansInfo')
     },
 }
 </script>

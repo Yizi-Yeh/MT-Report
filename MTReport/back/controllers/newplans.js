@@ -123,7 +123,7 @@ export const searchNewPlansById = async (req, res) => {
     }
   } catch (error) {
     if (error.name === 'CastError') {
-      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
-    }
+      res.status(400).send({ success: false, message: '格式錯誤' })
+    }console.log(error)
   }
 }

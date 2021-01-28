@@ -24,14 +24,20 @@ export default new Vuex.Store({
       state.user.name = ''
       state.user.id = ''
     },
-    setProductsInfo (state, val) {
-      state.products = val;
+    setProductsInfo (state, data) {
+      state.products = data;
     },
-    setNewplansInfo (state, val) {
-      state.newplans = val;
+    setNewplansInfo (state, data) {
+      state.newplans = data;
     },
     getOrdersInfo (state, data) {
-      state.orders = data
+      state.orders = data.order
+    },
+    addCart (state, data) {
+      state.orders.push(data)
+    },
+    delCart (state, data) {
+      state.orders.splice(data, 1)
     }
     
   },
@@ -54,19 +60,9 @@ export default new Vuex.Store({
           commit('setNewplansInfo',res.data.result)
         }
       })
-    },
-     // 建立訂單
-     createOrders (id) {  
-      const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
-      Axios.post(api,{p_id:id}).then((response) => {
-        if(response.data.succuss){
-          this.orders = response.data.result
-          console.log(response.data.result)
-        } 
-      })
-    },
-    // 取得訂單
-  
+    }, 
+
+
     
   },
   modules: {

@@ -1,6 +1,7 @@
 import md5 from 'md5'
 // import newplans from '../models/newplans.js'
 import users from '../models/users.js'
+import util from 'util'
 
 export const create = async (req, res) => {
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
@@ -136,6 +137,26 @@ export const createOrder = async (req, res) => {
       { new: true }
     )
     res.status(200).send({ success: true, message: '已新增訂單', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
+export const deleteOrder = async (req, res) => {
+  try {
+    if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
+
+    const result = await users.findByIdAndUpdate(req.session.user._id,
+      {
+        $pull: {
+          order: req.params.id
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已刪除訂單', result })
+    console.log(util.inspect(result, { showHidden: true, depth: null }))
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
     console.log(error)

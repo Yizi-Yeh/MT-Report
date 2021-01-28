@@ -12,6 +12,7 @@ export default {
     user() {
       return this.$store.state.user
     },
+    
   },
    methods: {
    heartbeat () {

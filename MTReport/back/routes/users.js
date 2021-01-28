@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders } from '../controllers/users.js'
+import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders, deleteOrder } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -18,5 +18,7 @@ router.get('/', searchUsers)
 router.post('/order/:id', createOrder)
 // 查詢使用者訂單
 router.get('/order/:id', searchUsersOrders)
+// 刪除使用者訂單
+router.delete('/order/:id', deleteOrder)
 
 export default router

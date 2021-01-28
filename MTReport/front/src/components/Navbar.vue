@@ -16,7 +16,8 @@
           <a class="nav-link" href="https://www.facebook.com/MT10x10/"><i class="fab fa-facebook-f"></i></a>
           <a class="nav-link" href="https://www.instagram.com/mt10x10/"><i class="fab fa-instagram"></i></a>
           <a class="nav-link" href="https://line.me/ti/g2/X3878mSeMzAZFaPqgOu7oA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><i class="fab fa-line"></i></a>
-         <a class="nav-link"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>
+          <a class="nav-link"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>
+          
          
     </div>
         
