@@ -10,6 +10,7 @@ import routerProducts from './routes/products.js'
 import routerAdminusers from './routes/adminusers.js'
 import routerUsers from './routes/users.js'
 import routerNewPlans from './routes/newplans.js'
+import routerUserDetail from './routes/userdetails.js'
 
 // 設置dotenv
 dotenv.config()
@@ -76,6 +77,7 @@ app.use('/products', routerProducts)
 app.use('/newplans', routerNewPlans)
 app.use('/users', routerUsers)
 app.use('/adminusers', routerAdminusers)
+app.use('/userdetails', routerUserDetail)
 
 app.use((_, req, res, next) => {
   res.status(500).send({ success: false, message: '伺服器錯誤' })

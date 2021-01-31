@@ -70,18 +70,28 @@ body,
 html {
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
     "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
-    "ＭＳ 明朝", serif;
+    "ＭＳ 明朝", serif !important;
   letter-spacing: 0.1 rem;
 }
 
 /*  Navbar*/
 
+#navbarToggleExternalContent {
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  display: block;
+  height: 100%;
+  min-height: 100%;
+}
+
+#navbarToggleExternalContent.menu-show {
+  transform: translateX(0%);
+}
 .navbar-brand {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
 }
 
 #app > div > div:nth-child(1) > nav > button > span:nth-child(3) {
@@ -91,7 +101,6 @@ html {
     "ＭＳ 明朝", serif;
 }
 .navbar .form-control {
-  padding: 0.75rem 1rem;
   border-width: 0;
   border-radius: 0;
   z-index: 9999;
@@ -110,6 +119,7 @@ html {
 
 /*   carousel  */
 /* section01 輪播圖--------------------------------------------------------------------------------------------------------------- */
+
 .carousel-control-prev,
 .carousel-control-next {
   transition: 0.5 s;
@@ -133,7 +143,7 @@ html {
 }
 .carousel-item img {
   width: 100%;
-  height: 10%;
+  height: 100%;
   object-fit: contain;
 }
 /* 輪播圖放大動畫------------------------------------------------------------------------------------------------------------------- */
@@ -153,8 +163,9 @@ html {
 /* 自定義輪播圖指示器-------------------------------------------------------------------------------------------------------------- */
 
 .carousel-indicators li {
-  width: 3px;
-  height: 3px;
+  opacity: 0.5;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   /* 字元顯示 */
   text-indent: 0;
@@ -186,53 +197,14 @@ html {
 // icon
 
 .fab {
-  color: whitesmoke;
-  font-size: 1.75rem;
+  color: rgb(68, 66, 66);
+  font-size: 2rem;
 }
 .fas {
-  color: whitesmoke;
-  font-size: 1.75rem;
+  color: rgb(68, 66, 66);
+  font-size: 2rem;
 }
 
-// animation
-#section03::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  border: 4px solid rgb(197, 197, 197);
-  animation: animation 15s linear infinite;
-  position: absolute;
-  left: 43.5%;
-  top: 98%;
-}
-@keyframes animation {
-  0% {
-    transform: rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-// 精選行程
-
-#newplani {
-  animation: slide;
-}
-
-@keyframes slide {
-  from {
-    transition-duration: 0ms;
-    transform: translate3d(-3652.17px, 0px, 0px);
-  }
-
-  to {
-    transition-duration: 1500ms;
-    transform: translate3d(-3248.15px, 0px, 0px);
-  }
-}
 /* section03 ------------------------------------------------------------------------------------------------------------- */
 
 #section03 {
@@ -245,13 +217,8 @@ html {
   align-items: center;
 }
 
-#section03 {
-  padding-bottom: var(--s4);
-}
-
 #section03 h1 {
   text-align: center;
-  padding-top: var(--s5);
   margin: var(--s0) 0;
   color: var(--MT4);
 }
@@ -347,6 +314,6 @@ html {
 .full-container {
   display: block;
   width: 100%;
-  height: 350px;
+  height: 500px;
   margin: 48px auto;
 }

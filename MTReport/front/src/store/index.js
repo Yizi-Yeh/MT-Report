@@ -12,7 +12,6 @@ export default new Vuex.Store({
     },
     products:[],
     newplans:[],
-    orders:[],
   },
   mutations: {
 
@@ -30,9 +29,9 @@ export default new Vuex.Store({
     setNewplansInfo (state, data) {
       state.newplans = data;
     },
-    getOrdersInfo (state, data) {
-      state.orders = data.order
-    },
+    // getOrdersInfo (state, data) {
+    //   state.orders = data.order
+    // },
     addCart (state, data) {
       state.orders.push(data)
     },
@@ -61,11 +60,13 @@ export default new Vuex.Store({
         }
       })
     }, 
-
-
-    
   },
   modules: {
+  },
+  getters: {
+    orders (state) {
+      return state.orders
+    }
   },
   plugins: [Persistedstate()]
 })

@@ -156,7 +156,7 @@ export default {
     },
     created() {
       this.getProducts()
-      this.getProduct();
+     
     },
 }
 </script>

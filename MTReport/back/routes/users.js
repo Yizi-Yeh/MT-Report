@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders, deleteOrder } from '../controllers/users.js'
+import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders, deleteOrder, editOrder } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -20,5 +20,6 @@ router.post('/order/:id', createOrder)
 router.get('/order/:id', searchUsersOrders)
 // 刪除使用者訂單
 router.delete('/order/:id', deleteOrder)
-
+// 修改使用者訂單
+router.patch('/order/:id', editOrder)
 export default router

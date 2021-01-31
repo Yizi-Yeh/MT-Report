@@ -51,9 +51,11 @@ export const login = async (req, res) => {
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
       req.session.user = result
+      console.log(req.session)
       res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
+    console.log(error)
     if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
@@ -113,7 +115,7 @@ export const searchUsersOrders = async (req, res) => {
     }
   } catch (error) {
     if (error.name === 'CastError') {
-      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+      res.status(400).send({ success: false, message: '格式錯誤' })
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
       console.log(error)
@@ -130,7 +132,7 @@ export const createOrder = async (req, res) => {
         $push: {
           order: {
             p_id: req.body.p_id,
-            date: req.body.date
+            orderDate: req.body.date
           }
         }
       },
@@ -150,13 +152,37 @@ export const deleteOrder = async (req, res) => {
     const result = await users.findByIdAndUpdate(req.session.user._id,
       {
         $pull: {
-          order: req.params.id
+          order: req.params._id
         }
       },
       { new: true }
     )
     res.status(200).send({ success: true, message: '已刪除訂單', result })
     console.log(util.inspect(result, { showHidden: true, depth: null }))
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
+export const editOrder = async (req, res) => {
+  try {
+    if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
+    const result = await users.findByIdAndUpdate(req.params.id,
+      {
+        $push: {
+          order: {
+            $each: [{
+              p_id: req.body.p_id,
+              orderDate: Date.now()
+            }]
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已新增訂單', result })
+    console.log(result)
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
     console.log(error)

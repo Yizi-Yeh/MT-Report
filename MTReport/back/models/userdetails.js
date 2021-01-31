@@ -1,11 +1,7 @@
 import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
-const ObjectId = mongoose.Types.ObjectId
 
-ObjectId.prototype.valueOf = function () {
-  return this.toString()
-}
 const userDetailSchema = new Schema({
   p_id: {
     type: mongoose.ObjectId,
@@ -20,19 +16,19 @@ const userDetailSchema = new Schema({
     required: [true, '請輸入登山保險用本名']
   },
   lineId: {
-    type: Number,
+    type: String,
     required: [true, '請輸入LINE ID']
   },
   lineName: {
-    type: Number,
+    type: String,
     required: [true, '請輸入LINE 名稱']
   },
   gender: {
-    type: Number,
+    type: String,
     required: [true, '請輸入性別']
   },
   birth: {
-    type: Number,
+    type: String,
     required: [true, '請輸入出生年月日']
   },
   country: {
@@ -40,52 +36,55 @@ const userDetailSchema = new Schema({
     required: [true, '請輸入國籍']
   },
   blood: {
-    type: Number,
+    type: String,
     required: [true, '請輸入血型']
   },
   identityNumber: {
-    type: Number,
+    type: String,
     required: [true, '請輸入身分證字號']
   },
   cellNumber: {
-    type: Number,
+    type: String,
     required: [true, '請輸入手機']
   },
   emil: {
-    type: Number,
-    required: [true, '請輸入電子信箱']
+    type: String
+    // required: [true, '請輸入電子信箱']
   },
   address: {
-    type: Number,
+    type: String,
     required: [true, '請輸入戶籍地址']
   },
   emergency: {
-    type: Number,
+    type: String,
     required: [true, '請輸入緊急聯絡人']
   },
   emergeRelationship: {
-    type: Number,
+    type: String,
     required: [true, '請輸入緊急聯絡人關係']
   },
   eatingHabits: {
-    type: Number,
+    type: String,
     required: [true, '請輸入飲食習慣']
   },
-  remainNumber: {
-    type: Number,
+  disease: {
+    type: String,
     required: [true, '請輸入重大疾病']
   },
   climbExperience: {
-    type: Number,
+    type: String,
     required: [true, '請輸入登山經驗']
   },
   paidprice: {
-    type: String,
+    type: Number,
     required: [true, '請輸入匯款金額']
   },
   paidate: {
-    type: Number,
+    type: String,
     required: [true, '請輸入匯款日期']
+  },
+  message: {
+    type: String
   }
 },
 {

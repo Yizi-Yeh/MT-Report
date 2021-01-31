@@ -1,13 +1,19 @@
 <template>
   <div id="app">
+    <transition name="slide-left">
     <router-view/>
-
+</transition>
+<Footer/>
   </div>
 </template>
 <script>
-
+import Footer from './components/Footer'
 export default {
   name: 'App',
+  data () { return { index:0 } },
+   components: {
+    Footer
+  },
   computed: {
     user() {
       return this.$store.state.user
@@ -61,4 +67,8 @@ export default {
 </script>
 <style lang="scss">
   @import './assets/all';
-</style>
+ .slide-left-enter-active { animation: slideLeft 0.3s; } 
+ @keyframes slideLeft { from { transform: translate3d(100%, 0, 0);/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
+ to { transform: translate3d(0, 0, 0); } }
+  </style>
+

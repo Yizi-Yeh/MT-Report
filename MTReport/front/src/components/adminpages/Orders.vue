@@ -21,7 +21,7 @@
         <tr v-for="user in users" :key="user._id">
           <td>{{ user.order[0].orderDate }}</td>
           <td>{{ user._id }}</td>
-                    <td>{{ user.order[0].p_id }}</td>
+          <td>{{ user.order[0].p_id }}</td>
           <td>{{ user.account }}</td>
           <td>{{ user.order[0].p_id }}</td>
         </tr>

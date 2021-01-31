@@ -73,7 +73,7 @@ const routes = [
     },
   },
   {
-    path: '/order',
+    path: '/order/:id',
     name: 'UsersOrder',
     component: UsersOrder,
     mata: {

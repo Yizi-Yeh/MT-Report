@@ -1,7 +1,7 @@
 <template>
 <div>
  <!-- 輪播圖 section01 --------------------------------------------------------------------------------------------------- ---->
-  <section>
+  <div>
     <!-- carousel-fade淡入淡出效果  -->
     <!-- data-ineterval使用控制幻燈片切換間隔 -->
     <div id="coffee-carousel" class="carousel slide carousel-fade h-100 " data-ride="carousel" data-ineterval="1000">
@@ -16,7 +16,7 @@
       <!-- 圖片區 -->
       <div class="carousel-inner h-100">
         <div class="carousel-item active">
-          <img src="../assets/carousel1.jpg" class="d-block w-100 img-scaleBig brightness">
+          <img src="../assets/carousel1.jpg" class="d-block w-100 img-scaleBig brightness" height="680px">
  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
     <h1 class="mb-3">LIFE IS AN ADVENTURE.</h1>
     <h1 class="mt-5">一起走入台灣山林尋找更勇敢的自己</h1>
@@ -60,6 +60,6 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-  </section>
+  </div>
 </div>
 </template>

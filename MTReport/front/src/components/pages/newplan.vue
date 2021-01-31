@@ -2,34 +2,8 @@
 <div>
     <Navbar/>
 <div class="container d-flex flex-column">
-  <div class="dropdown ml-auto">
-        <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
-          <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
-          <span class="badge badge-pill badge-danger">{{ Order.length }}</span>
-          <span class="sr-only">unread messages</span>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
-          data-offset="400">
-          <h6>已加入行程</h6>
-          <table class="table table-sm">
-            <tbody>
-              <tr v-for=" orders in Order" :key="orders._id">
-                <td class="align-middle text-center">
-                  <a href="#" class="text-muted" @click.prevent="removeOrders(orders._id)">
-                    <i class="far fa-trash-alt" aria-hidden="true"></i>
-                  </a>
-                </td>
-                <td class="align-middle">{{  }}</td>
-                <td class="align-middle text-right">NT${{ orders.p_id }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="btn-sm btn-primary btn-block">
-               <router-link class="nav-link" to="/order">報名去</router-link>
-          </button>
-        </div>
-        </div>
   <div class="row mt-5 d-flex">
+    
   <div>
     <div class="container main-content mb-3">
       <div class="row">
@@ -64,7 +38,7 @@
         <span href="#" class="text-dark ">{{ item.p_id.title }}</span>
       </span>
       <h5>
-      <span class="badge badge-secondary"> {{ item.p_id.category }}</span>
+      <span class="badge badge-secondary"> 分類：{{ item.p_id.category }}</span>
       </h5>
       <h5>
       <span class="badge badge-secondary" v-if="item.is_closed">報名狀態：額滿</span>
@@ -78,13 +52,13 @@
       </h5>
     </div>
     <div class="card-footer d-flex">
-      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm ml-auto">
+      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-search"></i>
         詳細資訊
       </button>
-      <button @click="createOrders(item._id)" type="button" class="btn btn-outline-primary btn-sm ml-auto">
-              <i class="fas fa-search"></i>
-             加入購物車
+      <button @click="addCart(item._id)" type="button" class="btn btn-outline-secondary btn-sm ml-auto">
+              <i class="fas fa-user-plus"></i>
+             我要報名
              </button>
     </div>
   </div>
@@ -155,17 +129,21 @@ export default {
     products() {
       return store.state.products; 
     },
-    productTitle() {
-      const productId = [...this.productsId]
-        const idList = productId.map(item => Object.values(item)[0])
-        return idList
-      },
+    Order() {
+       return store.getters.orders
+    },
     newplanswiper(){
       return store.state.newplans
     },
-    Order() {
-      return store.state.orders
-    },
+    // 開團陣列解構
+    getnewplansId() {
+      const newplanswiper = [...this.newplanswiper]
+      const plansId = newplanswiper.map(item => {
+      return {p_id: item}
+      })
+      return  plansId
+      },
+    
     filterData() {
       const vm = this;
       if (vm.searchText) {
@@ -203,7 +181,7 @@ export default {
         })
         },
 
-        // 篩選資料
+      // 篩選資料
       getUnique() {
       const vm = this;
       const categories = new Set();
@@ -212,45 +190,62 @@ export default {
       });
       vm.categories = Array.from(categories);
     },
-        // 丟入訂單id
-        removeOrders (id) {  
-        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${id}`
-        Axios.delete(api).then((response) => {
-        const index = this.Order.findIndex( orders => {
-        return orders._id === id 
-          }) 
-          store.commit('delCart',index)
-          console.log('已刪除項目', response.data.result.order[0])
-        }
-        )
-      },
+      // 丟入訂單id
+      //   removeOrders (id) {  
+      //   const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+      //   Axios.delete(api).then((response) => {
+      //   const index = this.Order.findIndex( orders => {
+      //   return orders._id === id 
+      //     }) 
+      //     store.commit('delCart',index)
+      //     console.log('已刪除項目', response.data.result.order[0])
+      //   }
+      //   )
+      // },
         // 丟入item_id (開團id)
-      createOrders (id) {  
+      // createOrders (id) {  
+      //   const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+      //   Axios.post(api,{p_id:id}).then((response) => {
+      //       if(response.data.success){
+      //       store.commit('addCart',id)
+      //       console.log('已加入項目', response.data.result.order[0]);
+      //     } 
+      //   })
+      // },
+        createOrders (Order) {
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
-        Axios.post(api,{p_id:id}).then((response) => {
+        Axios.patch(api,Order).then((response) => {
             if(response.data.success){
-            store.commit('addCart',id)
-            console.log('已加入項目', response.data.result.order[0]);
-            // this.getOrders() 
+            console.log('已建立訂單', response.data.result);
           } 
         })
       },
+
+    addCart (id) {
+       if(id){
+        store.commit('addCart', id)
+        this.$router.push('/order/'+ id)
+         } 
+    },
+    delCart (index) {
+        store.commit('delCart', index)
+     
+    },
       // 取得訂單
-      getOrders() {  
+    getOrders() {  
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
         Axios.get(api).then((response) => {
           if(response.data.success){
-          store.commit('getOrdersInfo', response.data.result)
-          console.log('已取得訂單資料', response.data);
+          // store.commit('getOrdersInfo', response.data.result)
+          console.log('已取得訂單資料', response.data.result);
           } 
         })
       },
 
 
     },
-    mounted() {
+    created() {
       this.getNewPlans()
-      this.getOreders() 
       store.dispatch('getProductsInfo')
       store.dispatch('getNewPlansInfo')
     },
