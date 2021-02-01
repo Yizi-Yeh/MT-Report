@@ -12,6 +12,10 @@ import VueI18n from 'vue-i18n';
 import App from './App';
 import router from './router';
 import store from './store'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
+import 'swiper/swiper-bundle.css'
+import Introswiper from './components/pages/swiper'
 import { jarallax, jarallaxVideo } from 'jarallax';
 jarallaxVideo();
 
@@ -25,6 +29,9 @@ Vue.use(VueAxios, axios);
 Vue.use(VueSweetalert2)
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VueI18n);
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+Vue.component('Introswiper', Introswiper)
+swiper.use([Navigation, Pagination, Autoplay])
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);
 });

@@ -3,7 +3,7 @@
     <Navbar/>
     <Carousel/>
     <!-- 近期活動 -->
-        <transition name="slide-left">
+        <transition name="slide-left"></transition>
         <section id="section03">
         <div class="container">
         <h1 class="mb-5">近期活動</h1>
@@ -32,12 +32,14 @@
       </div>
     </div>
 
-<!-- 精選行程 -->
+<!-- 精選行程 -->ç
       <section id="section03">
         <div class="container mb-5">
         <h1 titleclass="mb-5">精選行程</h1>
         <div class="row h-100">
-        <div class="col-lg-4 d-flex" v-for="r in recommends" :key="r.id" >
+           <swiper :options="swiperOption">
+          <swiper-slide
+         class="col-lg-4 d-flex"  v-for="r in recommends" :key="r.id" >
           <a href="#"  @click.prevent="getProduct(r._id)">
         <div class="view mb-3 rounded">
             <img style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
@@ -48,7 +50,10 @@
                 </div>
               </div>
           </a>
-        </div>
+        
+         </swiper-slide>
+<div class="swiper-pagination" slot="pagination"></div> 
+           </swiper>
     </div>
   </div>
     </section>
@@ -79,11 +84,46 @@ import Carousel from '../components/Carousel'
 import Plans from '../components/pages/plan'
 import store from '@/store'
 import Axios from 'axios'
+import 'swiper/swiper-bundle.css' // require styles
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 
 export default {
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+        speed: 600, 
+        autoplay:{
+          delay: 2000,
+        },
+        pagination: {
+          
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          800: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          }
+        }
+      },
+    }
+  },
   name: 'home',
     components: {
+    swiper,
+    swiperSlide,
     Navbar,
     Carousel,
     Plans,
@@ -100,7 +140,7 @@ export default {
     },
     recommends () {
       const products = [...this.products]
-      return products.sort(() => Math.random() - 0.5).splice(0, 3)
+      return products.sort(() => Math.random() - 0.5).splice(0, 7)
     },
     
   },
@@ -147,3 +187,33 @@ mounted () {
   
 }
 </script>
+
+<style scoped>
+.swiper-container {
+  max-width: 1080px;
+  width: 100%;
+  height: 340px;
+  padding-bottom: 20px;
+}
+.swiper-slide{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  
+  .intro{
+    align-self: flex-start;
+    font-weight: 400;
+    color: #666;
+    font-size: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  }
+.swiper-pagination{
+  bottom: 0px;
+}
+</style>
