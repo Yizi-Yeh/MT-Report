@@ -80,10 +80,12 @@ export default {
                 this.$router.push('/')
               })
             } else {
+                              console.log(res.data.success)
               this.$swal({
                 icon: 'error',
                 title: '發生錯誤',
                 text: res.data.message
+
               })
             }
           })

@@ -12,6 +12,8 @@ export default new Vuex.Store({
     },
     products:[],
     newplans:[],
+    orders:[],
+    currentNumber:[],
   },
   mutations: {
 
@@ -29,15 +31,18 @@ export default new Vuex.Store({
     setNewplansInfo (state, data) {
       state.newplans = data;
     },
-    // getOrdersInfo (state, data) {
-    //   state.orders = data.order
-    // },
+    currentNumber (state, data) {
+      state.currentNumbe = data.currentNumber
+    },
     addCart (state, data) {
       state.orders.push(data)
     },
     delCart (state, data) {
       state.orders.splice(data, 1)
-    }
+    },
+    addNum (state, data) {
+      state.currentNumber.push(data)
+    },
     
   },
 
@@ -57,6 +62,7 @@ export default new Vuex.Store({
       Axios.get(api).then(res => {
         if(res.data.success) {
           commit('setNewplansInfo',res.data.result)
+          commit('currentNumber',res.data.result)
         }
       })
     }, 
@@ -66,6 +72,9 @@ export default new Vuex.Store({
   getters: {
     orders (state) {
       return state.orders
+    },
+    currentNumber (state) {
+      return state.currentNumber
     }
   },
   plugins: [Persistedstate()]

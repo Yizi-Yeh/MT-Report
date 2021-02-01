@@ -2,7 +2,6 @@
 <div>
   <Navbar/>
   <h2 class="eventSection" id="evDetail">活動確認</h2>
-     <hr class="featurette-divider">
      <div class="container marketing">
 <div class="table eventDetail container mt-5">
     <div class="ly_middle d-flex flex-row">
@@ -152,8 +151,8 @@
                 <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
-     <label for="identityNumber">身分證字號</label>
-      <input id="identityNumber" type="text" name="身分證字號欄位"  v-model="form.identityNumber"
+     <label for="identityNumber">身份證字號</label>
+      <input id="identityNumber" type="text" name="身份證號欄位"  v-model="form.identityNumber"
       class="form-control" :class="classes">
   <!-- 錯誤訊息 -->
    <span class="invalid-feedback">{{ errors }}</span>
@@ -262,21 +261,21 @@
 
 <validation-provider>
           <div class="form-group">
-           <label for="useraddress">相關疑問</label>
-           <textarea name="" id="" class="form-control" cols="30" rows="10"
-             v-model="form.message"></textarea>
-         </div>
-             </validation-provider>
+            <label for="useraddress">相關疑問</label>
+            <textarea name="" id="" class="form-control" cols="30" rows="10"
+              v-model="form.message"></textarea>
+          </div>
+              </validation-provider>
 
-         <div class="text-right">
-           <button @click="createOrder(order._id)" class="btn btn-danger" :disabled="invalid">送出訂單</button>
-         </div> 
-       </form>
-       
-       </validation-observer>
+          <div class="text-right">
+            <button @click="addNumber(order._id)" class="btn btn-danger" :disabled="invalid">送出報名資料</button>
+          </div> 
+        </form>
+        
+        </validation-observer>
         </div>
     </div>
- </div>
+  </div>
 </template>
 
 <script>
@@ -306,28 +305,28 @@ export default {
         }
       ,
       form: {
-           name: '',
-           insuranceName:'',
-           lineId:'',
-           lineName:'',
-           gender:'',
-           birth:'',
-           country:'',
-           blood:'',
-           identityNumber:'',
-           cellNumber:'',
-           email: '',
-           address:'',
-           emergency:'',
-           emergeRelationship:'',
-           eatingHabits:'',
-           disease:'',
-           climbExperience:'',
-           paidprice:'',
-           paidate:'',
-           message:''
-         },
-       }
+            name: '',
+            insuranceName:'',
+            lineId:'',
+            lineName:'',
+            gender:'',
+            birth:'',
+            country:'',
+            blood:'',
+            identityNumber:'',
+            cellNumber:'',
+            email: '',
+            address:'',
+            emergency:'',
+            emergeRelationship:'',
+            eatingHabits:'',
+            disease:'',
+            climbExperience:'',
+            paidprice:'',
+            paidate:'',
+            message:''
+          },
+        }
   },
   computed: {
     user () {
@@ -340,7 +339,7 @@ export default {
       return store.state.newplans
     },
     Order() {
-       return store.getters.orders
+        return store.getters.orders
     },
   },
     methods: {
@@ -365,16 +364,25 @@ export default {
         createOrder () {
         const id = this.$route.params.id;
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
-           Axios.patch(api,id).then((response) => {
+            Axios.patch(api,{p_id:id}).then((response) => {
             if(response.data.success){
-            this.createUserDetail()
+              this.$swal({
+                icon: 'success',
+                title: '報名成功'
+              })
+              .then(() => {
             console.log('已建立訂單', response.data.result);
+            this.createUserDetail()
+            this.$router.push('/order/'+ id + '/' + `${this.user.id}` )
+              })
           } 
         })
-         
       },
+      addNumber(id){
+        store.commit('addNum',id)
+      }
     },
-   created() {
+    created() {
     this.getNewPlan()
     store.dispatch('getProductsInfo')
     store.dispatch('getNewPlansInfo')
@@ -382,7 +390,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .ly_middle {
     max-width: 830px;
     margin: auto;

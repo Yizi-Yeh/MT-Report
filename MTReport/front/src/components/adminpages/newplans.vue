@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="text-right mt-4">
-      <button class="btn btn-dark"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的開團</button>
+      <button class="btn btn-dark d-none"  data-toggle="modal" data-target="#productModal"  @click="openModal(true)">建立新的開團</button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -14,9 +14,9 @@
           <th width="100">上架金額</th>
           <th width="100">開團人數</th>
           <th width="100">報名人數</th>
-          <th width="100">尚餘人數</th>
+          <!-- <th width="100">尚餘人數</th> -->
           <th width="100">募集狀況</th>
-          <th width="100">是否上架</th>
+          <!-- <th width="100">是否上架</th> -->
           <th width="80">編輯</th>
         </tr>
       </thead>
@@ -29,15 +29,15 @@
           <td>{{ item.date }}</td>
           <td>NT${{ item.price }}</td>
           <td>{{ item.totalNumber }}</td>
-          <td>{{ item.currentNumber}}</td>
-          <td>{{ item.remainNumber }}</td>
+          <td>{{ }}</td>
+          <!-- <td>{{ item.remainNumber }}</td> -->
           <td>
             <span v-if="item.is_closed" class="text-dark">額滿</span>
             <span v-else>募集中</span>
-            <td>
+            <!-- <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
-          </td>
+          </td> -->
           
         
           <td>
@@ -117,25 +117,25 @@
                 </div>
                 <hr>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="introduction">報名人數</label>
                   <textarea type="text" class="form-control" id="currentNumber"
                     v-model="newplan.currentNumber"
                     placeholder="請輸入報名人數"></textarea>
-                </div>
-                <div class="form-group">
+                </div> -->
+                <!-- <div class="form-group">
                   <label for="costinclude">尚餘人數</label>
                   <textarea type="text" class="form-control" id="remainNumber"
                     v-model="newplan.remainNumber"
                     placeholder="請輸入尚餘人數"></textarea>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="attention">募集狀況</label>
                   <textarea type="text" class="form-control" id="is_closed"
                     v-model="newplan.is_closed"
                     placeholder="請輸入募集狀況"></textarea>
                 </div>           
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
                       v-model="newplan.is_enabled"
@@ -146,7 +146,7 @@
                       狀態
                     </label>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -184,14 +184,15 @@ export default {
         }
     },
     computed:{
-      productsId() {
-      return store.state.productsId
+      currentNumber() {
+      return store.state.getters.currentNumber
         },
-      getproductId() {
-      const productId = [...this.productsId]
-       const idList = productId.map(item => Object.values(item)[0])
-       return idList
-      }
+    products() {
+      return store.state.products
+    },
+    newplanswiper(){
+      return store.state.newplans
+    },
     },
     methods: {
         getNewPlans() {
@@ -258,6 +259,7 @@ export default {
     created() {
         this.getNewPlans()
         store.dispatch('getProductsInfo')
+        store.dispatch('getNewPlansInfo')
     }
 }
 </script>

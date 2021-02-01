@@ -268,10 +268,8 @@ table {
 }
 table {
     display: table;
-    border-collapse: separate;
     box-sizing: border-box;
     text-indent: initial;
-    border-spacing: 2px;
     border-color: grey;
      color: #555;
     

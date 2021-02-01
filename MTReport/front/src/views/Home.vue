@@ -14,6 +14,7 @@
             <img style="height:300px; width:550px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
               <div class="text">     
             <h4 class="text-center">{{ item.p_id.title }}</h4>
+            <h5 class="text-center">活動日期：{{ item.date }}</h5>
              <h5 class="text-center">分類：{{ item.p_id.category }}</h5>
             <div  class="text-center">NT{{ item.price | commaFormat | dollarSign }} </div>
                </div>

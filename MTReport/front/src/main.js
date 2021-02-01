@@ -25,13 +25,17 @@ jarallax(document.querySelectorAll('.jarallax'), {
 });
 
 Vue.config.productionTip = false
-Vue.use(VueAxios, axios);
+
+axios.defaults.withCredentials = true
+
+Vue.use(VueAxios, axios); 
 Vue.use(VueSweetalert2)
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VueI18n);
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.component('Introswiper', Introswiper)
 swiper.use([Navigation, Pagination, Autoplay])
+
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);
 });

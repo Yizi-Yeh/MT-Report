@@ -45,17 +45,14 @@ export const login = async (req, res) => {
       account: req.body.account,
       password: md5(req.body.password)
     })
-    console.log(result)
     if (result === null) {
       console.log(result.length)
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
     } else {
       req.session.user = result
-      console.log(req.session)
       res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
-    console.log(error)
     if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
@@ -105,13 +102,22 @@ export const searchUsers = async (req, res) => {
 
 export const searchUsersOrders = async (req, res) => {
   try {
-    const result = await users.findById((req.params.id), 'order').populate('order.p_id')
+    const result = await users.findById(req.session.user._id)
+      .populate({
+        path: 'order.p_id',
+        populate: {
+          path: 'p_id',
+          model: 'products'
+        }
+      })
+
+    console.log(result)
     if (result !== undefined) {
       res.status(200)
       res.send({ success: true, message: '', result })
     } else {
       res.status(404)
-      res.send({ success: false, message: '找不到' })
+      res.send({ success: false, message: '找不到資料' })
     }
   } catch (error) {
     if (error.name === 'CastError') {
@@ -172,10 +178,8 @@ export const editOrder = async (req, res) => {
       {
         $push: {
           order: {
-            $each: [{
-              p_id: req.body.p_id,
-              orderDate: Date.now()
-            }]
+            p_id: req.body.p_id,
+            orderDate: Date.now()
           }
         }
       },

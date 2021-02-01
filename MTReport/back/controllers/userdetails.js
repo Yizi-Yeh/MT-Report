@@ -1,10 +1,10 @@
 import userdetails from '../models/userdetails.js'
-import users from '../models/users.js'
 
 export const addForm = async (req, res) => {
   try {
-    // if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
+    if (!req.session.user) return res.status(401).send({ success: false, message: '未登入' })
     const result = await userdetails.create({
+      p_id: req.session.user._id,
       name: req.body.name,
       insuranceName: req.body.insuranceName,
       lineId: req.body.lineId,
@@ -42,25 +42,6 @@ export const addForm = async (req, res) => {
   }
 }
 
-export const getForm = async (req, res) => {
-  try {
-    const result = await userdetails.findByIdAndUpdate(req.params.id,
-      { $push: { p_id: users._id } },
-      { new: true }
-    )
-    if (!result) return res.status(404).send({ success: false, message: '找不到行程' })
-
-    res.status(200).send({ success: true, message: '', result })
-  } catch (error) {
-    console.log(error)
-    if (error.name === 'CastError') {
-      res.status(404).send({ success: false, message: '找不到行程' })
-    } else {
-      res.status(500).send({ success: false, message: '發生錯誤' })
-    }
-  }
-}
-
 export const editForm = async (req, res) => {
   try {
     let result = await userdetails.findById(req.params.id)
@@ -90,12 +71,12 @@ export const deleteForm = async (req, res) => {
     if (result != null) {
       res.status(200).send({ success: true, message: '' })
     } else {
-      res.status(404).send({ success: false, message: '找不到行程' })
+      res.status(404).send({ success: false, message: '找不到資料' })
     }
   } catch (error) {
     console.log(error)
     if (error.name === 'CastError') {
-      res.status(404).send({ success: false, message: '找不到行程' })
+      res.status(404).send({ success: false, message: '找不到資料' })
     } else {
       res.status(500).send({ success: false, message: '發生錯誤' })
     }
@@ -119,7 +100,7 @@ export const searchForm = async (req, res) => {
 
 export const searchFormById = async (req, res) => {
   try {
-    const result = await userdetails.findById(req.params.id).populate('p_id')
+    const result = await userdetails.find({ p_id: req.session.user._id })
     console.log(result)
     if (result !== undefined) {
       res.status(200)
@@ -128,7 +109,7 @@ export const searchFormById = async (req, res) => {
       if (result === null) {
         res.status(404).send({ success: false, message: '找不到資料' })
       } else if (result.account !== req.session.user._id) {
-        res.status(403).send({ success: false, message: '沒有權限' })
+        res.status(403).send({ success: false, message: '未報名' })
       } else {
         res.status(500).send({ success: false, message: '伺服器錯誤' })
       }

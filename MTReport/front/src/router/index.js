@@ -18,6 +18,7 @@ import itemPlan from '../components/plans/itemplan.vue'
 import newplan from '../components/plans/newplan.vue'
 import Reg from '../components/members/Reg.vue'
 import Log from '../components/members/Log.vue'
+import UserConfirm from  '../components/pages/userconfirm.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -76,6 +77,14 @@ const routes = [
     path: '/order/:id',
     name: 'UsersOrder',
     component: UsersOrder,
+    mata: {
+      needLogin: true
+    },
+  },
+  {
+    path: '/order/:id/:id',
+    name: 'UserConfirm',
+    component: UserConfirm,
     mata: {
       needLogin: true
     },
