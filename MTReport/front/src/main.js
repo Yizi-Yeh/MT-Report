@@ -16,6 +16,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.css'
 import Introswiper from './components/pages/swiper'
+import './assets/all.scss';
 
 
 Vue.config.productionTip = false

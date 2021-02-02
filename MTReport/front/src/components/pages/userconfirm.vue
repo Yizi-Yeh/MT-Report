@@ -157,6 +157,26 @@ export default {
       
       },
       userConfirm:[{
+              name: '',
+            insuranceName:'',
+            lineId:'',
+            lineName:'',
+            gender:'',
+            birth:'',
+            country:'',
+            blood:'',
+            identityNumber:'',
+            cellNumber:'',
+            email: '',
+            address:'',
+            emergency:'',
+            emergeRelationship:'',
+            eatingHabits:'',
+            disease:'',
+            climbExperience:'',
+            paidprice:'',
+            paidate:'',
+            message:''
         
       }]
     }

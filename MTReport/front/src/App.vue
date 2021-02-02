@@ -66,7 +66,6 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import './assets/all';
   .slide-left-enter-active { animation: slideLeft 0.3s; } 
   @keyframes slideLeft { from { transform: translate3d(100%, 0, 0);/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
   to { transform: translate3d(0, 0, 0); } }
