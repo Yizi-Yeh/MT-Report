@@ -1,7 +1,6 @@
 <template>
 <div>
     <Navbar/>
-
     <main role="main">
       <div class="container marketing">
 <h2 class="eventSection">報名表單明細</h2>
