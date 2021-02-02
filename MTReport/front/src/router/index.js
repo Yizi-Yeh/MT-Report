@@ -134,6 +134,9 @@ const routes = [
     path: '/admin',
     name: 'Dashboard',
     component: Dashboard,
+    mata: {
+      needLogin: true
+    },
     children: [
       {
         path: 'products',

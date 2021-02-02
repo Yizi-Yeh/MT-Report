@@ -368,7 +368,7 @@ export default {
             if(response.data.success){
               this.$swal({
                 icon: 'success',
-                title: '報名成功'
+                title: '報名成功，請確認您的報名資料'
               })
               .then(() => {
             console.log('已建立訂單', response.data.result);

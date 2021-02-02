@@ -1,52 +1,81 @@
 <template>
 <div>
   <Navbar/>
-<div class="jarallax">
-    <div class="preamble" id="zen-preamble" role="article">
-        <h3>The Road to Enlightenment</h3>
-        <p>
-          Littering a dark and dreary road lay the past relics of
-          browser-specific tags, incompatible
-          <abbr title="Document Object Model">DOM</abbr>s, broken
-          <abbr title="Cascading Style Sheets">CSS</abbr> support, and
-          abandoned browsers.
-        </p>
-        <p>
-          We must clear the mind of the past. Web enlightenment has been
-          achieved thanks to the tireless efforts of folk like the
-          <abbr title="World Wide Web Consortium">W3C</abbr>,
-          <abbr title="Web Standards Project">WaSP</abbr>, and the major
-          browser creators.
-        </p>
-        <p>
-          The CSS Zen Garden invites you to relax and meditate on the
-          important lessons of the masters. Begin to see with clarity. Learn
-          to use the time-honored techniques in new and invigorating fashion.
-          Become one with the web.
-        </p>
-      </div>
-</div>
+<!-- <div class="container mt-5">
+  <div class="row mt-5">
+   <div class="col-8 mt-5">
+<div class="lr padding-lr">
+      <div class="col-8 mx-auto">
+         <img src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg"ç>
+      <span class="sub-txt txtCenter">心電圖結合山的意象<br>
+        象徵著人與山林的和諧<br class="hp_brPc">山林帶給我們一股最原始的悸動
+        <br class="hp_brPc">在山裡找到自己不再迷惘，<br>彷彿重獲新生。</span>
+   </div>
+    </div>
+  </div>
+  </div>
+  </div> -->
+  <mdb-container>
+    <mdb-carousel :interval="8000" :items="videoCarousel" indicators controlls></mdb-carousel>
+  </mdb-container>
   </div>
 </template>
 
 <script>
+import { mdbContainer, mdbCarousel } from 'mdbvue';
 import { jarallax, jarallaxVideo } from 'jarallax';
 jarallaxVideo();
-
 jarallax(document.querySelectorAll('.jarallax'), {
     speed: 0.2,
-    videoSrc: 'https://www.youtube.com/watch?v=DYptgVvkVLQ&list=RDQG_YH7jxVy0&index=5'
+    videoSrc: '.../assets/DJI_0269.MP4'
 });
 import Navbar from '../Navbar'
 import store from '@/store'
 export default {
   name: 'Brand',
   components: {
+    mdbContainer,
+    mdbCarousel,
     Navbar,
     },
   data () {
     return {
-         
+       videoCarousel: [
+        {
+          video: true,
+          src: "https://mdbootstrap.com/img/video/Nature-Sunset.mp4",
+          loop: true,
+          auto: true,
+          muted: true,
+          mask: 'black-strong',
+          caption: {
+            title: 'Strong mask'
+          }
+        },
+        {
+          video: true,
+          src: "https://mdbootstrap.com/img/video/Nature-Sunset.mp4",
+          loop: true,
+          auto: true,
+          muted: true,
+          mask: 'black-strong',
+          caption: {
+            title: 'Strong mask'
+          }
+        },
+        {
+          video: true,
+          src: "https://mdbootstrap.com/img/video/Nature-Sunset.mp4",
+          loop: true,
+          auto: true,
+          muted: true,
+          mask: 'black-strong',
+          caption: {
+            title: 'Strong mask'
+          }
+        }
+        
+      ]
        }
   },
   computed: {
@@ -74,4 +103,5 @@ export default {
 </script>
 
 <style>
+
 </style>

@@ -5,16 +5,16 @@
     </div>
     <table class="table mt-4">
       <thead>
-        <tr class="text-center">
-          <th width="100">行程分類</th>
-          <th width="100">行程名稱</th>
-          <th width="100">行程地點</th>
-          <th width="100">行程成本</th>
-          <th width="100">行程時間</th>
-          <th width="100">行程說明</th>
-          <th width="100">費用包含</th>
+        <tr class="text-center w-100">
+          <th width="60">分類</th>
+          <th width="50">名稱</th>
+          <th width="50">地點</th>
+          <th width="50">成本</th>
+          <th width="100">時間</th>
+          <th width="100">說明</th>
+          <th width="150">費用包含</th>
           <th width="100">注意事項</th>
-          <th width="100">行程日程</th>
+          <th width="100">日程</th>
           <th width="100">行程內容</th>
           <th width="100">餐食日程</th>
           <th width="100">餐食</th>

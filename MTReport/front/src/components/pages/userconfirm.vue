@@ -150,7 +150,7 @@ export default {
       orderConfirm:{
         order:[{
           p_id:{
-          p_id:{
+          p_id:{name:'',
           }
         }
         }]

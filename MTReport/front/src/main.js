@@ -17,11 +17,12 @@ import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.css'
 import Introswiper from './components/pages/swiper'
 import { jarallax, jarallaxVideo } from 'jarallax';
+
 jarallaxVideo();
 
 jarallax(document.querySelectorAll('.jarallax'), {
     speed: 0.2,
-    videoSrc: 'https://www.youtube.com/watch?v=ab0TSkLe-E0'
+    videoSrc: 'https://www.youtube.com/watch?v=vjj16qog4vQ'
 });
 
 Vue.config.productionTip = false

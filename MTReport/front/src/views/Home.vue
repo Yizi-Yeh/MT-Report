@@ -8,12 +8,12 @@
         <div class="container">
         <h1 class="mb-5">近期活動</h1>
         <div class="row h-100">
-        <div id="newplani" class="swiper-slide col-lg-6 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
+        <div id="newplani" class="swiper-slide col-lg-4 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
           <a href="#"  @click.prevent="getNewPlan(item._id)">
         <div class="view mb-3 rounded">
-            <img style="height:300px; width:550px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
+            <img style="height:300px; width:360px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
               <div class="text">     
-            <h4 class="text-center">{{ item.p_id.title }}</h4>
+            <h5 class="text-center">{{ item.p_id.title }}</h5>
             <h5 class="text-center">活動日期：{{ item.date }}</h5>
              <h5 class="text-center">分類：{{ item.p_id.category }}</h5>
             <div  class="text-center">NT{{ item.price | commaFormat | dollarSign }} </div>
@@ -33,10 +33,22 @@
       </div>
     </div>
 
-<!-- 精選行程 -->ç
+
+
+<div class="lr padding-lr">
+      <h5 class="title_mt">MT10x10登山社<br><span>HIKING CLUB</span></h5>
+      <h4 class="sub-mt txtCenter">展現渴望自由的你<br>Show your craving for freedom.</h4>
+      <div class="col-8 mx-auto">
+      <span class="sub-txt txtCenter">MT10x10（山來水去企業社）<br>
+        象徵著台灣最具代表性的一百座山岳，也表達我們對台灣山林的敬愛之情。<br class="hp_brPc">我們是由熱血的年輕人所創建的登山社，
+        <br class="hp_brPc">用10分熱情與10分愛山林的心，和山友們一步步一同完成百岳，<br>帶領更多人瞭解台灣的美。 <br><br>然而，一提到日本就想到莊嚴的富士山；<br class="hp_brPc">尼泊爾有崇高的聖母峰；瑞士有秀麗的阿爾卑斯山；<br>我們希望拓展台灣山域風景知名度，讓世界一提到台灣就想到有壯闊的玉山。<br><br>MT10x10登山社（山來水去企業社）歡迎您</span>
+   </div>
+    </div>
+    <br>
+    <!-- 精選行程 -->ç
       <section id="section03">
         <div class="container mb-5">
-        <h1 titleclass="mb-5">精選行程</h1>
+        <h1 titleclass="mt-5">精選行程</h1>
         <div class="row h-100">
            <swiper :options="swiperOption">
           <swiper-slide
@@ -50,32 +62,13 @@
             <div  class="text-center">NT{{ r.cost | commaFormat | dollarSign }} </div>
                 </div>
               </div>
-          </a>
-        
+          </a> 
          </swiper-slide>
 <div class="swiper-pagination" slot="pagination"></div> 
            </swiper>
     </div>
   </div>
     </section>
-
-<section id="section03">
-        <div class="container d-flex flex-">
-        <div class="row ">
-          <div class="col-8">
-             <h1 class="mb-3 text-center">MT10x10登山社</h1>
-          <h2 class="text-center mb-3">展現渴望自由的你</h2>
-          <h3 class="text-center mb-3">Show your craving for freedom.</h3>
-          </div>
-          <div class="col-12">
-          <h5 class="text-center">MT10x10（山來水去企業社）象徵著台灣最具代表性的一百座山岳，也表達我們對台灣山林的敬愛之情。   我們是由熱血的年輕人所創建的登山社，用10分熱情與10分愛山林的心，和山友們一步步一同完成百岳，帶領更多人瞭解台灣的美。    然而，一提到日本就想到莊嚴的富士山；尼泊爾有崇高的聖母峰；瑞士有秀麗的阿爾卑斯山，我們希望拓展台灣山域風景知名度，讓世界一提到台灣就想到有壯闊的玉山。 MT10x10登山社（山來水去企業社）歡迎您</h5>
-          </div>
-
-    </div>
-  </div>
-    </section>
-
-
 </div>
 </template>
 
@@ -204,7 +197,6 @@ mounted () {
   flex-direction: column;
   padding: 5px 15px;
   box-sizing: border-box;
-  
   .intro{
     align-self: flex-start;
     font-weight: 400;

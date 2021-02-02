@@ -6,10 +6,9 @@
       <thead>
         <tr class="text-center">
           <th width="100">訂單日期</th>
-          <th width="100">會員帳號</th>
-          <th width="100">會員姓名</th>
           <th width="100">活動名稱</th>
           <th width="100">活動日期</th>
+          <th width="100">會員姓名</th>
           <th width="100">訂單金額</th>
           <th width="100">匯款金額</th>
           <th width="100">匯款日期</th>
@@ -18,19 +17,14 @@
       </thead>
       <tbody  class="text-center">
         <tr v-for="order in orderConfirm" :key="order._id">
-          <!-- <td>{{ user.order[0].orderDate }}</td>
-          <td>{{ user._id }}</td>
+          <!-- <td>{{ order[0].date }}</td> -->
+          <!-- <td>{{ user._id }}</td>
           <td>{{ user.order[0].p_id }}</td>
           <td>{{ user.account }}</td>
           <td>{{ user.order[0].p_id }}</td> -->
         </tr>
-        <tr v-for="detail in userConfirm" :key="detail._id">
-          <!-- <td>{{ user.order[0].orderDate }}</td>
-          <td>{{ user._id }}</td>
-          <td>{{ user.order[0].p_id }}</td>
-          <td>{{ user.account }}</td>
-          <td>{{ user.order[0].p_id }}</td> -->
-        </tr>
+        <!-- <tr v-for="detail in userConfirm" :key="detail._id">
+        </tr> -->
       </tbody>
     </table>
    
@@ -69,7 +63,7 @@ export default {
   },     
     methods: {
         getOrder() {
-        const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
+        const api = `${process.env.VUE_APP_API}`+ '/users/'
         Axios.get(api).then((response) => {
         if(response.data.success){
         this.orderConfirm = response.data.result
@@ -78,7 +72,7 @@ export default {
         },
         // 取得報名資料
         getOrderUserDetails() {
-        const api = `${process.env.VUE_APP_API}`+ '/userdetails/' + `${this.user.id}`
+        const api = `${process.env.VUE_APP_API}`+ '/userdetails'
         Axios.get(api).then((response) => {
         if(response.data.success){
         this.userConfirm = response.data.result
@@ -87,7 +81,7 @@ export default {
         },
     },
     created() {
-      this.getOrder();
+      this.getOrder() 
       this.getOrderUserDetails()
     }
 }

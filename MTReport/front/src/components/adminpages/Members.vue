@@ -35,8 +35,6 @@ export default {
     methods: {
         getUsers() {
         const api = `${process.env.VUE_APP_API}`+ '/users'
-        const vm = this;
-        vm.isLoading = true;
         Axios.get(api).then((response) => {
         this.users = response.data.result
         console.log(response.data.result)
