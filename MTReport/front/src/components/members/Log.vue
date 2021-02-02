@@ -4,7 +4,7 @@
 <div class="container mt-5">
   <div class="row mt-5">
     <div class="col-12 mt-5 d-flex flex-column align-items-center">
-            <h2 text-center> Nice to meet you!</h2>
+            <h2 text-center> Feel free to join MT10x10</h2>
             <p>Are you ready to have a fantastic hiking with us?</p>
  <form class="form-signin rounded border d-flex flex-column align-items-center" @submit.prevent="signin" >
   <img class="mb-3 mt-5"  src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="" >
