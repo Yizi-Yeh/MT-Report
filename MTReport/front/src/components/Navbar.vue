@@ -27,7 +27,7 @@
         <a class="nav-link" href="#"> <router-link class="nav-link" to="/memberReg"><i class="fas fa-user fa-fw"></i>會員註冊</router-link></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> <router-link class="nav-link" to="/admin"><i class="fas fa-user-cog"></i>管理員登入</router-link></a>
+        <a class="nav-link" href="#"> <router-link class="nav-link" to="/Login"><i class="fas fa-user-cog"></i>管理員登入</router-link></a>
       </li>
     </ul>
     </div>

@@ -48,7 +48,6 @@ const userDetailSchema = new Schema({
   },
   emil: {
     type: String
-    // required: [true, '請輸入電子信箱']
   },
   address: {
     type: String,

@@ -1,19 +1,22 @@
 <template>
+<div class="container mt-5">
+  <div class="row mt-5">
+    <div class="col-12 mt-5">
  <form class="form-signin" @submit.prevent="signin">
-  <img class="mb-4" src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="" >
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <img class="mb-4 mt-5 ml-3"  src="https://mt10x10.files.wordpress.com/2020/07/cropped-e7b6b2e7ab99e6a899e9a18c-e6a899e8aa8c-4.jpg" alt="" >
+  <h1 class="h3 mb-3 font-weight-normal text-center">please sign in</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.account" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="user.password" required>
   <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Signin</button>
+  <p class="mt-5 mb-3 text-center">&copy; 2021 MT10x10 Cor.</p>
 </form>
+</div>
+</div>
+</div>
 </template>
 
 <script>

@@ -17,14 +17,8 @@
       </thead>
       <tbody  class="text-center">
         <tr v-for="order in orderConfirm" :key="order._id">
-          <!-- <td>{{ order[0].date }}</td> -->
-          <!-- <td>{{ user._id }}</td>
-          <td>{{ user.order[0].p_id }}</td>
-          <td>{{ user.account }}</td>
-          <td>{{ user.order[0].p_id }}</td> -->
+
         </tr>
-        <!-- <tr v-for="detail in userConfirm" :key="detail._id">
-        </tr> -->
       </tbody>
     </table>
    
@@ -38,8 +32,10 @@ export default {
     return {
       orderConfirm:{
         order:[{
+          orderDate:'',
           p_id:{
           p_id:{
+            title:''
           }
         }
         }]
@@ -63,7 +59,7 @@ export default {
   },     
     methods: {
         getOrder() {
-        const api = `${process.env.VUE_APP_API}`+ '/users/'
+        const api = `${process.env.VUE_APP_API}`+ '/users/order'
         Axios.get(api).then((response) => {
         if(response.data.success){
         this.orderConfirm = response.data.result
@@ -76,7 +72,7 @@ export default {
         Axios.get(api).then((response) => {
         if(response.data.success){
         this.userConfirm = response.data.result
-          }console.log('已取得報名資料',response.data.result)
+          }console.log('已取得報名資料',response.data)
         })
         },
     },

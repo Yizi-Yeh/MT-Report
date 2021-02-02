@@ -192,3 +192,32 @@ export const editOrder = async (req, res) => {
     console.log(error)
   }
 }
+
+export const searchAllOrders = async (req, res) => {
+  try {
+    const result = await users.find()
+      .populate({
+        path: 'order.p_id',
+        populate: {
+          path: 'p_id',
+          model: 'products'
+        }
+      })
+
+    console.log(result)
+    if (result !== undefined) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '找不到資料' })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: '格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+      console.log(error)
+    }
+  }
+}

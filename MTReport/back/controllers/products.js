@@ -68,10 +68,6 @@ export const uploadProduct = async (req, res) => {
 }
 
 export const editProduct = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     let result = await products.findById(req.params.id)
     if (result === null) {
@@ -95,11 +91,6 @@ export const editProduct = async (req, res) => {
 }
 
 export const deleteeProduct = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // } console.log(req.session.user)
-
   try {
     const result = await products.findByIdAndDelete(req.params.id)
     if (result != null) {
@@ -117,11 +108,6 @@ export const deleteeProduct = async (req, res) => {
   }
 }
 export const searchProduct = async (req, res) => {
-  // console.log(req.session)
-  // if (req.session.account === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     const result = await products.find()
     if (result.length > 0) {
@@ -138,10 +124,6 @@ export const searchProduct = async (req, res) => {
 }
 
 export const searchProductById = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
   try {
     const result = await products.findById(req.params.id)
     console.log(result)

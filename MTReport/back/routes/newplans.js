@@ -1,5 +1,5 @@
 import express from 'express'
-import { addToNewPlans, getIdToNewPlans, editNewPlans, deleteNewPlans, searchNewPlans, searchNewPlansById } from '../controllers/newplans.js'
+import { addToNewPlans, getIdToNewPlans, editNewPlans, deleteNewPlans, searchNewPlans, searchNewPlansById, addNum } from '../controllers/newplans.js'
 
 const router = express.Router()
 
@@ -14,5 +14,7 @@ router.delete('/:id', deleteNewPlans)
 // 查詢
 router.get('/', searchNewPlans)
 router.get('/:id', searchNewPlansById)
+
+router.patch('/:id', addNum)
 
 export default router

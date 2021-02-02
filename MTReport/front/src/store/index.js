@@ -13,7 +13,6 @@ export default new Vuex.Store({
     products:[],
     newplans:[],
     orders:[],
-    currentNumber:[],
   },
   mutations: {
 
@@ -39,9 +38,6 @@ export default new Vuex.Store({
     },
     delCart (state, data) {
       state.orders.splice(data, 1)
-    },
-    addNum (state, data) {
-      state.currentNumber.push(data)
     },
     
   },
@@ -73,9 +69,6 @@ export default new Vuex.Store({
     orders (state) {
       return state.orders
     },
-    currentNumber (state) {
-      return state.currentNumber
-    }
   },
   plugins: [Persistedstate()]
 })

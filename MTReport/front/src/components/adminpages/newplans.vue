@@ -29,7 +29,7 @@
           <td>{{ item.date }}</td>
           <td>NT${{ item.price }}</td>
           <td>{{ item.totalNumber }}</td>
-          <td>{{ }}</td>
+          <td>{{ item.currentNumber }}</td>
           <!-- <td>{{ item.remainNumber }}</td> -->
           <td>
             <span v-if="item.is_closed" class="text-dark">額滿</span>
@@ -184,9 +184,6 @@ export default {
         }
     },
     computed:{
-      currentNumber() {
-      return store.state.getters.currentNumber
-        },
     products() {
       return store.state.products
     },
@@ -249,7 +246,6 @@ export default {
         this.newplan = {p_id:{}};
         this.isNew = true;
       } else {
-        // 將item值寫入空物件
         this.newplan = Object.assign({}, item);
         this.isNew = false;
       }

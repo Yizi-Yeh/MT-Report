@@ -268,7 +268,7 @@
               </validation-provider>
 
           <div class="text-right">
-            <button @click="addNumber(order._id)" class="btn btn-danger" :disabled="invalid">送出報名資料</button>
+            <button  class="btn btn-danger" :disabled="invalid">送出報名資料</button>
           </div> 
         </form>
         
@@ -352,6 +352,18 @@ export default {
         console.log('已取得開團資料',response.data.result )
         })
         },
+
+      // 自動增加報名人數
+        addCurrentNum() {
+        const id = this.$route.params.id;
+        const api = `${process.env.VUE_APP_API}`+ '/newplans/' + id
+        Axios.patch(api).then((response) => {
+        if(response.data.success){
+            console.log('已增加報名人數',response.data.result)
+            // 已增加報名人數
+          }        
+        })
+        },
       // 建立會員表單
         createUserDetail() {
         const userDetail = this.form;
@@ -371,16 +383,14 @@ export default {
                 title: '報名成功，請確認您的報名資料'
               })
               .then(() => {
-            console.log('已建立訂單', response.data.result);
             this.createUserDetail()
+            this.addCurrentNum()
+            console.log('已建立訂單', response.data.result);
             this.$router.push('/order/'+ id + '/' + `${this.user.id}` )
               })
           } 
         })
       },
-      addNumber(id){
-        store.commit('addNum',id)
-      }
     },
     created() {
     this.getNewPlan()
