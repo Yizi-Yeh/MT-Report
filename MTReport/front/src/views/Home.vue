@@ -45,7 +45,7 @@
    </div>
     </div>
     <br>
-    <!-- 精選行程 -->ç
+    <!-- 精選行程 -->
       <section id="section03">
         <div class="container mb-5">
         <h1 titleclass="mt-5">精選行程</h1>
@@ -209,4 +209,6 @@ mounted () {
 .swiper-pagination{
   bottom: 0px;
 }
+
+
 </style>

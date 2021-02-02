@@ -1,7 +1,7 @@
 <template>
 <div>
   <Navbar/>
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5 h-100">
   <div class="row mt-5">
    <div class="col-12 mt-5">
 <div class="lr padding-lr">
