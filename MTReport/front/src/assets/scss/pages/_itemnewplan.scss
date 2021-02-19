@@ -1,0 +1,23 @@
+.act-container {
+  @include flex(column, center, center);
+
+  &-title {
+    @include flex(column, center, center);
+    color: $color-text-secondary;
+    font-size: $heading-font-sm;
+    width: 400px;
+    height: auto;
+    text-align: center !important;
+  }
+  &-txt {
+    color: $color-text-secondary;
+    font-size: $text-font-lg;
+    line-height: $line-height-lg;
+    vertical-align: sub;
+  }
+}
+.carousel-item-img {
+  width: auto;
+  height: 100% !important;
+  object-fit: cover;
+}

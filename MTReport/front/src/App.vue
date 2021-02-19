@@ -7,6 +7,7 @@
   </div>
 </template>
 <script>
+import '@/assets/scss/main.scss'
 import Footer from './components/Footer'
 export default {
   name: 'App',
@@ -65,6 +66,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
   .slide-left-enter-active { animation: slideLeft 0.3s; } 
   @keyframes slideLeft { from { transform: translate3d(100%, 0, 0);/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 

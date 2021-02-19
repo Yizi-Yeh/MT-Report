@@ -14,7 +14,6 @@
 
 <script>
 export default {
-
   methods: {
     signout() {
       const api = `${process.env.VUE_APP_API}/adminusers/logout`;
@@ -28,5 +27,4 @@ export default {
     }
   }
 }
-
 </script>

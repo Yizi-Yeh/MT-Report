@@ -1,0 +1,133 @@
+.carousel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10%;
+
+  &-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-item {
+    position: relative;
+    display: none;
+    float: left;
+    height: 100%;
+    width: 100%;
+    transition: -webkit-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+  }
+
+  &-caption {
+    margin-top: 10%;
+    position: absolute;
+    right: 15%;
+    bottom: 20%;
+    top: 0;
+    left: 15%;
+    z-index: 10;
+    padding-bottom: 20px;
+    color: $color-primary;
+    text-align: center;
+    line-height: $line-height-md;
+  }
+
+  &-indicators {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 80%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+
+    & li {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      text-indent: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.6s ease;
+
+      & .active {
+        opacity: 0.6;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        & span {
+          font-size: $heading-font-sm;
+        }
+      }
+    }
+  }
+
+  &-img {
+    @include img-objectfit;
+    @include filter(0.6);
+  }
+
+  &-title {
+    font-size: $heading-font-xs;
+    font-weight: bold;
+
+    @include media-breakpoint-up(md) {
+      font-size: $heading-font-md;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $heading-font-xl;
+    }
+  }
+
+  &-subtitle {
+    font-size: $heading-font-md;
+    margin-bottom: 10%;
+    line-height: $line-height-sm;
+
+    @include media-breakpoint-up(md) {
+      font-size: $heading-font-md;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $heading-font-lg;
+      margin-bottom: 5%;
+    }
+  }
+
+  &-text {
+    font-size: $heading-font-xs;
+    line-height: $line-height-md;
+    @include media-breakpoint-up(md) {
+      font-size: $heading-font-md;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $heading-font-sm;
+    }
+  }
+}
+
+.img-scaleBig {
+  animation: img-scaleBig 20s 1s ease forwards;
+}
+
+@keyframes img-scaleBig {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}

@@ -1,0 +1,20 @@
+.card {
+  &-body {
+    @include flex(column, center, end);
+  }
+  &-title {
+    color: $color-text-secondary;
+    font-size: $text-font-md;
+    @include flex(column, center, start);
+  }
+  &-txt {
+    color: $color-text-secondary;
+    font-size: $text-font-md;
+    text-align: left;
+    @include flex(column, center, start);
+  }
+  &-foot {
+    margin: 0 auto;
+    margin-bottom: 4%;
+  }
+}

@@ -1,27 +1,46 @@
 <template>
 <div>
     <Navbar/>
+    
 <div class="container d-flex flex-column">
   <div class="row mt-5 d-flex">
   <div>
     <div class="container main-content mb-3">
       <div class="row">
+       <div class="col-12 concept">
+         <p class="concept-title">所有行程</p>
+       </div>
+     </div>
+      <div class="row">
         <div class="col-2">
+
           <!-- 選單 (List group) -->
-          <div class="list-group sticky-top">
-            <a class="list-group-item list-group-item-action"
+          <div class="d-flex mb-4">
+            <!-- 搜尋列 -->
+            <!-- <form class="form-inline my-3 my-lg-0">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="searchText"
+                  placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                </div>
+              </div>
+            </form> -->
+          </div>
+          <div class="list-group sticky-top ">
+            <a class="list-group-item list-group-item-action rounded-top"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
               v-for="item in categories" :key="item">
-              <i class="fad fa-mountain"></i>
               {{ item }}
             </a>
-            <a href="#" class="list-group-item list-group-item-action"
+            <a href="#" class="list-group-item rounded-bottom list-group-item-action"
               @click.prevent="searchText = ''"
               :class="{ 'active': searchText === ''}">
               全部行程
             </a>
           </div>
+
+
         </div>
         <div class="col-10">
           <div class="tab-pane">
@@ -32,20 +51,16 @@
       :style="{backgroundImage:`url(${item.images[0].imgUrl})`}"
       > 
     </div>
-    <div class="card-body d-flex flex-column text-left">
-      <span class="card-title">
-        <span href="#" class="text-dark ">{{ item.title }}</span>
-      </span>
-      <h5>
-      <span class="badge badge-secondary"> {{ item.category }}</span>
+    <div class="card-body">
+      <h5 class="card-title">
+        <span href="#">{{ item.title }}</span>
       </h5>
-      <h5>
-      <span class="badge badge-secondary"> NT{{ item.cost | commaFormat | dollarSign }} </span>
-      </h5>
+      <span class="card-txt">分類：{{ item.category }}</span>
+      <br>
+      <span class="card-txt">費用： NT{{ item.cost | commaFormat | dollarSign }} </span>
     </div>
-    <div class="card-footer d-flex">
-      <button @click="getProduct(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
-        <i class="fas fa-search"></i>
+    <div class="card-foot">
+      <button @click="getProduct(item._id)" type="button" class="rounded btn btn-outline-secondary btn-md">
         詳細資訊
       </button>
     </div>
@@ -53,21 +68,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex mb-4">
-            <!-- 搜尋列 -->
-            <form class="form-inline my-3 my-lg-0">
-              <div class="input-group">
-                <input class="form-control d-none" type="text" v-model="searchText"
-                  placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary d-none" type="button"
-                    @click="searchText = ''">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+
             </div>
           </div>
         </div>
@@ -121,6 +122,12 @@ export default {
       products() {
       return this.$store.state.products; 
     },
+    get() {
+      return this.$store.state.keywords;
+    },
+    set(value) {
+      this.$store.commit('setKeywords', value)
+    }
 
   },
     methods: {

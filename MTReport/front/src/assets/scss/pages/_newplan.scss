@@ -1,0 +1,25 @@
+.card {
+  &-body {
+    @include flex(column, center, center);
+  }
+  &-title {
+    color: $color-text-secondary !important;
+    font-size: $text-font-md;
+    line-height: $line-height-sm;
+    font-weight: 800;
+    @include flex(column, center, center);
+  }
+  &-txt {
+    color: $color-text-secondary;
+    font-size: $text-font-md;
+    line-height: $line-height-sm;
+    @include flex(column, center, center);
+  }
+  &-status {
+    color: $color-success;
+    font-weight: 700;
+  }
+  &-footer {
+    @include flex(row, space-between, center);
+  }
+}

@@ -64,27 +64,3 @@
 
 </div>
 </template>
-
-<style scoped>
-
-#app > div > div.container-fluid > div > div > nav > div > ul > li > a > a > span {
-  color: black;
-}
-
-#app > div > div.container-fluid > div > div > nav > div > ul > h6:nth-child(2) > li > a > a > span{
-  color: black;
-}
-
-#app > div > div.container-fluid > div > div > nav > div > ul > h6:nth-child(3) > li > a > a > span{
-    color: black;
-}
-
-#app > div > div.container-fluid > div > div > nav > div > ul > h6:nth-child(4) > li > a > a > span{
-    color: black;
-}
-
-#app > div > div.container-fluid > div > div > nav > div > ul > h6:nth-child(5) > li > a > a > span{
-    color: black;
-}
-
-</style>

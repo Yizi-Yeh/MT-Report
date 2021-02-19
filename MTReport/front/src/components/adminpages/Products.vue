@@ -83,8 +83,6 @@
                   <input type="file" id="file" class="form-control" name="file"
                     ref="files" @change="updateImg"
                     >
-                    
-                    
                 </div>
               </div>
               <div class="col-sm-8">
@@ -143,6 +141,7 @@
                     v-model="form.attention"
                     placeholder="請輸入注意事項"></textarea>
                 </div>
+
                 <div class="form-group">
                   <label for="schedule">行程安排</label>
                   <textarea type="text" class="form-control mb-3" id="dateTime"
@@ -153,6 +152,30 @@
                     v-model="form.schedule[0].content"
                     placeholder="請輸入行程安排內容"></textarea>
                 </div>
+
+                <!-- <div class="form-group">
+                  <label for="schedule">行程安排</label>
+                  <textarea type="text" class="form-control mb-3" id="dateTime"
+                    v-model="form.schedule[1].dateTime"
+                    placeholder="請輸入行程安排日程"></textarea>
+
+                    <textarea type="text" class="form-control" id="content"
+                    v-model="form.schedule[1].content"
+                    placeholder="請輸入行程安排內容"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="schedule">行程安排</label>
+                  <textarea type="text" class="form-control mb-3" id="dateTime"
+                    v-model="form.schedule[2].dateTime"
+                    placeholder="請輸入行程安排日程"></textarea>
+
+                    <textarea type="text" class="form-control" id="content"
+                    v-model="form.schedule[2].content"
+                    placeholder="請輸入行程安排內容"></textarea>
+                </div> -->
+
+                
                 <div class="form-group">
                   <label for="meal">餐食安排</label>
                   <textarea type="text" class="form-control mb-3" id="mealdateTime"
@@ -163,6 +186,28 @@
                     v-model="form.meal[0].mealcontent"
                     placeholder="餐食安排請輸入內容"></textarea>
                 </div>
+<!-- 
+                <div class="form-group">
+                  <label for="meal">餐食安排</label>
+                  <textarea type="text" class="form-control mb-3" id="mealdateTime"
+                    v-model="form.meal[1].mealdateTime"
+                    placeholder="餐食安排請輸入日程"></textarea>
+
+                    <textarea type="text" class="form-control" id="mealcontent"
+                    v-model="form.meal[1].mealcontent"
+                    placeholder="餐食安排請輸入內容"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="meal">餐食安排</label>
+                  <textarea type="text" class="form-control mb-3" id="mealdateTime"
+                    v-model="form.meal[2].mealdateTime"
+                    placeholder="餐食安排請輸入日程"></textarea>
+
+                    <textarea type="text" class="form-control" id="mealcontent"
+                    v-model="form.meal[2].mealcontent"
+                    placeholder="餐食安排請輸入內容"></textarea>
+                </div> -->
 <!--                 
                 <div class="form-group">
                   <div class="form-check">
@@ -196,9 +241,34 @@ export default {
         return {
             plans:[],
             form:{
-              images:[{}],
-              schedule:[{}],
-              meal:[{}],
+              images:[{
+                description: '',
+                file:'',
+                imgUrl: '',
+              }],
+              schedule:[{
+                dateTime: '',
+                content: '',
+              },
+              {
+                dateTime: '',
+                content: '',
+              },{
+                dateTime: '',
+                content: '',
+              }],
+              meal:[{
+               mealdateTime: '',
+               mealcontent: ''
+              },
+              {
+               mealdateTime: '',
+               mealcontent: ''
+              },
+              {
+               mealdateTime: '',
+               mealcontent: ''
+              }],
             },
             isNew: false,
         }
@@ -313,7 +383,7 @@ export default {
       }
         $('#productModal').modal('show');
       },
-        getProductsInfo() {
+      getProductsInfo() {
         this.$store.dispatch('getProductsInfo');
       },
       createPlan (id) {  

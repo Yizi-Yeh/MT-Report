@@ -1,0 +1,70 @@
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  background-color: $color-primary;
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  &-content {
+    position: relative;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  & a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: $heading-font-sm;
+    color: $color-text-secondary;
+    display: block;
+    transition: 0.3s;
+
+    &:hover,
+    :focus {
+      color: $color-secondary-light;
+      cursor: pointer;
+    }
+  }
+
+  &-closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: $text-font-md;
+  }
+  .overlay .closebtn {
+    font-size: $text-font-lg;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  bottom: 50;
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  &-icon {
+    color: $color-primary !important;
+    font-size: $heading-font-xl;
+  }
+
+  & span:hover {
+    cursor: pointer;
+  }
+}

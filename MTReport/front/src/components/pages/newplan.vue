@@ -6,18 +6,23 @@
     
   <div>
     <div class="container main-content mb-3">
+       <div class="row">
+       <div class="col-12 concept">
+         <p class="concept-title">近期開團</p>
+       </div>
+     </div>
       <div class="row">
         <div class="col-2">
           <!-- 選單 (List group) -->
           <div class="list-group sticky-top">
-            <a class="list-group-item list-group-item-action"
+            <a class="list-group-item list-group-item-action  rounded-top"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
               v-for="item in categories" :key="item">
               <i class="fad fa-mountain"></i>
               {{ item }}
             </a>
-            <a href="#" class="list-group-item list-group-item-action"
+            <a href="#" class="list-group-item rounded-bottom list-group-item-action"
               @click.prevent="searchText = ''"
               :class="{ 'active': searchText === ''}">
               全部行程
@@ -33,30 +38,30 @@
       :style="{backgroundImage:`url(${item.p_id.images[0].imgUrl})`}"
       > 
     </div>
-    <div class="card-body d-flex flex-column text-left">
+    <div class="card-body">
       <span class="card-title">
-        <span href="#" class="text-dark ">{{ item.p_id.title }}</span>
+        <span href="#">{{ item.p_id.title }}</span>
       </span>
       <h5>
-      <span class="badge badge-secondary"> 分類：{{ item.p_id.category }}</span>
+      <span class="card-txt "> 分類：{{ item.p_id.category }}</span>
       </h5>
       <h5>
-      <span class="badge badge-secondary" v-if="item.is_closed">報名狀態：額滿</span>
-      <span class="badge badge-secondary" v-else>報名狀態：招募中</span>
+      <span class="card-txt " v-if="item.is_closed">報名狀態：額滿</span>
+      <span class="card-txt card-status" v-else>報名狀態：招募中</span>
       </h5>
       <h5>
-      <span class="badge badge-secondary">活動日期：{{ item.date }}</span>
+      <span class="card-txt badge">活動日期：{{ item.date }}</span>
       </h5>  
       <h5>
-      <span class="badge badge-secondary"> NT{{ item.price | commaFormat | dollarSign }} </span>
+      <span class="card-txt badge">費用： NT{{ item.price | commaFormat | dollarSign }} </span>
       </h5>
     </div>
-    <div class="card-footer d-flex">
-      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm">
+    <div class="card-footer">
+      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm rounded">
         <i class="fas fa-search"></i>
         詳細資訊
       </button>
-      <button @click="addCart(item._id)" type="button" class="btn btn-outline-secondary btn-sm ml-auto">
+      <button @click="addCart(item._id)" type="button" class="btn btn-outline-secondary btn-sm rounded ">
               <i class="fas fa-user-plus"></i>
              我要報名
              </button>

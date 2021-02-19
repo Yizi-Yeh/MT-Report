@@ -12,7 +12,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-                     <img class="first-slide" :src="`${plan.p_id.images[0].imgUrl}`" alt="First slide">
+                     <img class="first-slide carousel-item-img" :src="`${plan.p_id.images[0].imgUrl}`" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
     
@@ -56,43 +56,42 @@
 
 
         <!-- START THE FEATURETTES -->
-<h2 class="eventSection" id="evDetail">活動詳細<br><span></span></h2>
 <div class="table eventDetail container">
   <div class="row">
           <table id="actDetail">
              <tr >
-                <th>活動名稱</th>
-                <td>{{ plan.p_id.title }}</td>
+                <th class="act-container-title">活動名稱</th>
+                <td class="act-container-txt">{{ plan.p_id.title }}</td>
               </tr>
                <tr >
-                <th>活動日程</th>
-                <td>{{ plan.date }}</td>
+                <th class="act-container-title">活動日程</th>
+                <td class="act-container-txt">{{ plan.date }}</td>
               </tr>
               <tr>
-                <th>活動說明</th>
-                <td>{{ plan.p_id.introduction  }}</td>
+                <th class="act-container-title">活動說明</th>
+                <td class="act-container-txt">{{ plan.p_id.introduction  }}</td>
               </tr>
               <tr>
-                <th>位置</th>
-                <td>{{ plan.p_id.site }}</td>
+                <th class="act-container-title">位置</th>
+                <td class="act-container-txt">{{ plan.p_id.site }}</td>
               </tr>
             <tbody>
               
               <tr>
-                <th>活動時間</th>
-                <td>{{ plan.p_id.time }}</td>
+                <th class="act-container-title">活動時間</th>
+                <td class="act-container-txt">{{ plan.p_id.time }}</td>
               </tr>
                <tr>
-                <th>活動費用</th>
-                <td>NT$ {{ plan.price }}</td>
+                <th class="act-container-title">活動費用</th>
+                <td class="act-container-txt">NT$ {{ plan.price }}</td>
               </tr>
               <tr>
-                <th>費用包含</th>
-                <td>{{ plan.p_id.costinclude }}</td>
+                <th class="act-container-title">費用包含</th>
+                <td class="act-container-txt">{{ plan.p_id.costinclude }}</td>
               </tr>
               <tr>
-                <th>注意事項</th>
-                <td>{{ plan.p_id.attention }}</td>
+                <th class="act-container-title">注意事項</th>
+                <td class="act-container-txt">{{ plan.p_id.attention }}</td>
               </tr>        
             </tbody>
           </table>
@@ -101,24 +100,21 @@
 
         <hr class="featurette-divider">
 
-   <h2 class="eventSection" id="evFlow">活動流程</h2>
+   <h2 class="act-flow">活動流程</h2>
  <div class="container">
         <div class="row d-flex flex-row align-items-center justify-content-center">
           <div class="col-lg-3">
-                   <h3 class="eventDayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
-            <hr class="featurette-divider">
+                   <h3 class="DayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
                    <p>{{ plan.p_id.schedule[0].content}}</p>
             
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-                      <h3 class="eventDayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
-            <hr class="featurette-divider">
+                      <h3 class="DayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
                    <p>{{ plan.p_id.schedule[0].content}}</p>
             
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-                    <h3 class="eventDayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
-            <hr class="featurette-divider">
+                    <h3 class="DayTitle">{{ plan.p_id.schedule[0].dateTime}}</h3>
                    <p>{{ plan.p_id.schedule[0].content}}</p>
             
           </div><!-- /.col-lg-4 -->
@@ -127,19 +123,19 @@
         </div><!-- /.row -->
         </div>
    <hr class="featurette-divider">
-    <h2 class="eventSection" id="evFlow">餐食安排</h2>
+    <h2 class="act-flow" id="evFlow">餐食安排</h2>
    <div class="container">
         <div  class="row d-flex flex-row align-items-center justify-content-center">
           <div class="col-lg-3">
-                      <h3 class="eventDayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
+                      <h3 class="DayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
          <p>{{ plan.p_id.meal[0].mealcontent}}</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-                   <h3 class="eventDayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
+                   <h3 class="DayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
          <p>{{ plan.p_id.meal[0].mealcontent}}</p>
           </div><!-- /.col-lg-4 -->
         <div class="col-lg-3">
-               <h3 class="eventDayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
+               <h3 class="DayTitle">{{ plan.p_id.meal[0].mealdateTime}}</h3>
          <p>{{ plan.p_id.meal[0].mealcontent}}</p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
@@ -189,102 +185,121 @@ export default {
 }
 </script>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+  <style scoped>
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      h3.eventDayTitle {
-    border: solid 1px #dcdcdc;
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
 }
-h3.eventDayTitle {
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 40rem;
+  
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+/* rtl:end:ignore */
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+
+.act-flow {
+  text-align: center;
+  font-family: EB Garamond, serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  line-height: 1.4em;
+  margin: 120px 0 70px 0;
+  color:grey;
+}
+.DayTitle {
+    border: 1px solid #dcdcdc;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100px;
-    height: 100px;
+    height: 101px;
     margin: 0 auto 50px auto;
     padding: 0;
     border-radius: 50px;
-    border: solid 1px gray;
-}
-.pageContent h3 {
-    color: #000;
-    font-family: "游明朝",YuMincho,"ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","Sawarabi Mincho","HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 1.8em;
-    margin: 2em 0 1em 0;
-}
-h2.eventSection {
-    text-align: center;
-    font-family: "EB Garamond",serif;
-    font-size: 1.8rem;
-    letter-spacing: .4em;
-    text-indent: .4em;
-    line-height: 1.4em;
-    margin: 120px 0 70px 0;
-}
-.pageContent h2 {
-     color: #555;
-    font-family: "游明朝",YuMincho,"ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","Sawarabi Mincho","HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 1.8em;
-    margin: 2em 0;
-}
-.eventDetail {
-    margin-top: -2.5em;
-    margin-bottom: 50px;
-}
-.pageContent {
-    max-width: 1230px;
-    margin: 0 auto 60px auto;
-    color: #555;
-}
-.pageContent div.table table {
-    width: 100%;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
+    border: 1px solid grey;
+    color:grey;
 }
 
-.table table th {
-    display: table-cell;
-    padding: 2.5em 0;
-    width: 22%;
-    font-size: 17px;
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
 }
-table {
-    display: table;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-color: grey;
-     color: #555;
-    
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
 }
-.table table td {
-  font-size: 17px;
-    display: block;
-    padding: 1em 0 2.5em 0;
-    line-height: 1.8em;
-    word-break: break-all;
-    display: table-cell;
-    padding: 2.5em 0;
-}
-* {
-    font-size: inherit;
-    line-height: inherit;
-}
-    </style>
+</style>

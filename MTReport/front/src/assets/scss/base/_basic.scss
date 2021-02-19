@@ -1,0 +1,32 @@
+body,
+html {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
+    "ＭＳ 明朝", serif !important;
+  letter-spacing: 0.1 rem;
+}
+#section01,
+#section02,
+#section03,
+#section04 {
+  width: 100vw;
+  height: 100vh;
+  margin-bottom: 3%;
+}
+
+#section02 {
+  margin-bottom: 20%;
+}
+#section05 {
+  width: 100vw;
+  height: 60vh;
+}
+
+.fab {
+  color: rgb(68, 66, 66);
+  font-size: 2rem;
+}
+.fas {
+  color: rgb(68, 66, 66);
+  font-size: 2rem;
+}

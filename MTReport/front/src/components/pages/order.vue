@@ -1,9 +1,9 @@
 <template>
 <div>
   <Navbar/>
-  <h2 class="eventSection" id="evDetail">活動確認</h2>
-     <div class="container marketing">
-<div class="table eventDetail container mt-5">
+  <h2 class="act-flow">活動確認</h2>
+     <div class="container">
+<div class="table container mt-5">
     <div class="ly_middle d-flex flex-row">
            <div class="col-7">
           <table id="actDetail">
@@ -27,14 +27,16 @@
             </tbody>
           </table>
         </div>
-        <div class="col-4 mt-5">
+        <div class="col-4">
             <img  :src="`${order.p_id.images[0].imgUrl}`" width="400">
             </div>
           </div>
          </div>
   </div>
-   <hr class="featurette-divider">
-  <h2 class="eventSection" id="evDetail">填寫報名表單</h2>
+
+  
+
+  <h2 class="act-flow">填寫報名表單</h2>
     <div class="container marketing">
 
      <div class="my-5 row justify-content-center">
@@ -42,7 +44,8 @@
        <form  @submit.prevent="createOrder(order._id)">
          
       
-
+ <div class="row">
+   <div class="col-6">
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -53,7 +56,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+    </div>
 
 
     <validation-provider rules="required|email" v-slot="{ errors, classes }">
@@ -66,21 +69,10 @@
    <span class="invalid-feedback">{{ errors[0] }}</span>
     </div>
     </validation-provider>
+</div>
 
-
-
-<validation-provider rules="required" v-slot="{ errors, classes }">
-    <!-- 輸入框 -->
-    <div class="form-group">
-     <label for="登山保險用本名">登山保險用本名</label>
-      <input id="insuranceName" type="text" name="登山保險用本名欄位"  v-model="form.insuranceName"
-      class="form-control" :class="classes">
-  <!-- 錯誤訊息 -->
-   <span class="invalid-feedback">{{ errors }}</span>
-    </div>
-    </validation-provider>
-
-
+<div class="row">
+  <div class="col-6">
 <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -91,8 +83,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
-
+</div>
 <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -103,7 +94,10 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
+</div>
 
+<div class="row">
+  <div class="col-6">
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -114,19 +108,22 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+</div>
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
-     <label for="birth">出生年月日</label>
+     <label for="birth">出生年月日(year/month/day)</label>
       <input id="birth" type="text" name="出生年月欄位"  v-model="form.birth"
       class="form-control" :class="classes">
   <!-- 錯誤訊息 -->
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
+</div>
 
-        <validation-provider rules="required" v-slot="{ errors, classes }">
+<div class="row">
+  <div class="col-6">
+    <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="country">國籍</label>
@@ -136,7 +133,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+</div>
             <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -147,8 +144,11 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
+</div>
 
-                <validation-provider rules="required" v-slot="{ errors, classes }">
+<div class="row">
+  <div class="col-6">
+<validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="identityNumber">身份證字號</label>
@@ -158,7 +158,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+</div>
                     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -169,7 +169,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+</div>
                         <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -181,7 +181,9 @@
     </div>
     </validation-provider>
 
-                        <validation-provider rules="required" v-slot="{ errors, classes }">
+<div class="row">
+  <div class="col-6">
+ <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="emergency">緊急聯絡人</label>
@@ -191,8 +193,8 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
-                            <validation-provider rules="required" v-slot="{ errors, classes }">
+</div>
+     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="emergeRelationship">緊急聯絡人關係</label>
@@ -202,8 +204,11 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
+</div>
 
-                            <validation-provider v-slot="{ errors, classes }">
+<div class="row">
+  <div class="col-6">
+ <validation-provider v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="eatingHabits">飲食習慣</label>
@@ -213,7 +218,7 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
-
+</div>
                                 <validation-provider v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
@@ -224,9 +229,9 @@
    <span class="invalid-feedback">{{ errors }}</span>
     </div>
     </validation-provider>
+</div>
 
-
-                                <validation-provider v-slot="{ errors, classes }">
+ <validation-provider v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="climbExperience">登山經驗</label>
@@ -399,12 +404,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.ly_middle {
-    max-width: 830px;
-    margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-</style>

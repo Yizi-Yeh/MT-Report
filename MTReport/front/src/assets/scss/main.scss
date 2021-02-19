@@ -1,0 +1,26 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "~bootswatch/dist/minty/_bootswatch.scss";
+// base
+@import "base/basic";
+
+// utils
+@import "utils/variables";
+@import "utils/mixin";
+
+// components
+@import "components/navbar";
+@import "components/carousel";
+@import "components/footer";
+
+// pages
+@import "pages/itemplan";
+@import "pages/plan";
+@import "pages/itemnewplan";
+@import "pages/newplan";
+@import "pages/member";
+@import "pages/reg";
+@import "pages/home";
+@import "pages/brand";
+@import "pages/userconfirm";

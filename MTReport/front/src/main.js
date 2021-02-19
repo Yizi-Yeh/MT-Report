@@ -16,7 +16,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.css'
 import Introswiper from './components/pages/swiper'
-import './assets/all.scss';
+import './assets/scss/main.scss';
+import VueAnimateOnScroll from 'vue-animate-onscroll'
+import VideoBackground from 'vue-responsive-video-background-player'
+
 
 
 Vue.config.productionTip = false
@@ -30,6 +33,8 @@ Vue.use(VueI18n);
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.component('Introswiper', Introswiper)
 swiper.use([Navigation, Pagination, Autoplay])
+Vue.use(VueAnimateOnScroll)
+Vue.component('video-background', VideoBackground);
 
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);

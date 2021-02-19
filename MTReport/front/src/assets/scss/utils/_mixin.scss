@@ -1,0 +1,18 @@
+@mixin img-objectfit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+@mixin filter($opacity) {
+  filter: brightness($opacity);
+}
+
+@mixin flex($direct, $main, $cross) {
+  display: flex;
+  flex-direction: $direct;
+  justify-content: $main;
+  align-items: $cross;
+}

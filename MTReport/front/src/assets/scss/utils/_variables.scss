@@ -1,0 +1,29 @@
+$color-primary: #eee;
+$color-secondary: #212121;
+$color-danger: #a40000;
+$color-success: rgb(79, 156, 79);
+$color-text: #fff;
+$color-text-secondary: #818181;
+
+$color-secondary-light: lighten($color-secondary, 70%);
+$color-secondary-darken: darken($color-secondary, 70%);
+
+$text-font-xs: 0.8125rem;
+$text-font-sm: 0.9375rem;
+$text-font-md: 1rem;
+$text-font-lg: 1.2rem;
+
+$heading-font-xs: 1.3rem;
+$heading-font-sm: 1.6rem;
+$heading-font-md: 2rem;
+$heading-font-lg: 2.2rem;
+$heading-font-xl: 3rem;
+
+$line-height-sm: 1.4;
+$line-height-md: 1.6;
+$line-height-lg: 2;
+
+$letter-spacing-xs: 0.5px;
+$letter-spacing-sm: 1px;
+$letter-spacing-md: 5px;
+$letter-spacing-lg: 10px;
