@@ -1,6 +1,5 @@
 <template>
 <div>
-
     <Navbar/>
       <Carousel/>
         <!-- 近期開團 -->
@@ -9,7 +8,7 @@
           <div class="container">
            <p class="act-title">近期開團</p>
               <div class="row h-100">
-              <div id="newplani" class="swiper-slide col-lg-4 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
+              <div id="newplani" class="swiper-slide col-lg-4 col-xs-12 col-sm-12 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
             <a href="#"  @click.prevent="getNewPlan(item._id)">
               
               <div class="act-view mb-3 rounded">
@@ -29,7 +28,7 @@
     </section>
 
     <section id="section03">
-   <div class="container-full container-banner">
+   <div class="container-full  container-banner">
       <div class="container">
         <h2 class="container-banner-title">Welcome to join MT10x10 and follow us!</h2>
         <div class="container-banner-sub-title">|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</div>

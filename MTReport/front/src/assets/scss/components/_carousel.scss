@@ -82,6 +82,14 @@
     font-size: $heading-font-xs;
     font-weight: bold;
 
+    @include media-breakpoint-up(xs) {
+      font-size: $heading-font-md;
+    }
+
+    @include media-breakpoint-up(sm) {
+      font-size: $heading-font-md;
+    }
+
     @include media-breakpoint-up(md) {
       font-size: $heading-font-md;
     }
@@ -96,6 +104,13 @@
     margin-bottom: 10%;
     line-height: $line-height-sm;
 
+    @include media-breakpoint-up(xs) {
+      font-size: $heading-font-xs;
+    }
+    @include media-breakpoint-up(sm) {
+      font-size: $heading-font-xs;
+    }
+
     @include media-breakpoint-up(md) {
       font-size: $heading-font-md;
     }
@@ -109,6 +124,11 @@
   &-text {
     font-size: $heading-font-xs;
     line-height: $line-height-md;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 1em;
+    }
+
     @include media-breakpoint-up(md) {
       font-size: $heading-font-md;
     }

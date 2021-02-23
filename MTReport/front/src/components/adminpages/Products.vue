@@ -9,17 +9,18 @@
           <th width="60">分類</th>
           <th width="50">名稱</th>
           <th width="50">地點</th>
-          <th width="50">成本</th>
+          <th width="50">價格</th>
           <th width="100">時間</th>
           <th width="100">說明</th>
           <th width="150">費用包含</th>
           <th width="100">注意事項</th>
+          <th width="100">報名須知</th>
           <th width="100">日程</th>
           <th width="100">行程內容</th>
           <th width="100">餐食日程</th>
           <th width="100">餐食</th>
           <th width="100">活動圖片</th>
-          <!-- <th width="100">上架</th> -->
+          <th width="100">上架</th>
           <th width="80">編輯</th>
           <th width="80">開團</th>
         </tr>
@@ -35,16 +36,17 @@
           <td>{{ item.introduction}}</td>
           <td>{{ item.costinclude}}</td>
           <td>{{ item.attention}}</td>
+          <td>{{ item.noteForJoin}}</td>
           <td>{{ item.schedule[0].dateTime}}</td>
           <td>{{ item.schedule[0].content}}</td>
           <td>{{ item.meal[0].mealdateTime}}</td>
           <td>{{ item.meal[0].mealcontent}}</td>
           <td v-if="item.images[0].imgUrl !== undefined"><img :src= item.images[0].imgUrl width="100"></td>
           <td v-else><img :src="form.file" width="100" ></td>
-          <!-- <td>
+          <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
-          </td> -->
+          </td>
           <td>
         <button class="btn btn-outline-success btn-sm" @click="openModal(false, item)">編輯</button>
         <button class="btn btn-outline-danger btn-sm" @click="delProducts(item._id)">刪除</button>
@@ -78,10 +80,9 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-            
                   </label>
                   <input type="file" id="file" class="form-control" name="file"
-                    ref="files" @change="updateImg"
+                    ref="files" 
                     >
                 </div>
               </div>
@@ -140,6 +141,13 @@
                   <textarea type="text" class="form-control" id="attention"
                     v-model="form.attention"
                     placeholder="請輸入注意事項"></textarea>
+                </div>
+
+                 <div class="form-group">
+                  <label for="noteForJoin">報名須知</label>
+                  <textarea type="text" class="form-control" id="noteForJoin"
+                    v-model="form.noteForJoin"
+                    placeholder="請輸入報名須知"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -326,7 +334,7 @@ export default {
           alert(error.response.data.message)
         }) 
         },    
-        //修改產品 
+        //修改行程 
         addProduct() {
         let api = `${process.env.VUE_APP_API}`+ '/products'
         let httpMethod = 'post';
@@ -356,7 +364,6 @@ export default {
       // 然後透過 append 加入欄位 ，傳入圖片
       fd.append('file', updated);
       const api = `${process.env.VUE_APP_API}`+ '/products';
-      vm.status.fileUploading = true;
       // post fd本身，並設置表單名稱
       this.$http.post(api, fd, { headers: {
           'Content-Type': 'multipart/form-data',
@@ -365,11 +372,10 @@ export default {
         // console.log(response.data);
         if (response.data.succuss) {
         vm.$set(vm.form,'file',process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file)
-        vm.status.fileUploading = false;
         } console.log(vm.form.file)
       });
     },
-      getImgUrl (id) {
+      getImgUrl () {
       return process.env.VUE_APP_API + '/products/file/' + response.data.result.images[0].file
       },
       openModal(isNew, item) {

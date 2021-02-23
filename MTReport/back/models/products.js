@@ -80,6 +80,9 @@ const productSchema = new Schema(
     is_enabled: {
       type: Boolean
     },
+    noteForJoin: {
+      type: String
+    },
     images: {
       type: [imgSchema]
       // required: [true, '請上傳活動圖片']

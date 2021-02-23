@@ -43,6 +43,7 @@ export const uploadProduct = async (req, res) => {
       costinclude: reqq.body.costinclude,
       attention: reqq.body.attention,
       is_enabled: reqq.body.is_enabled,
+      noteForJoin: reqq.body.noteForJoin,
       images: [images],
       schedule: [schedule],
       meal: [meal]

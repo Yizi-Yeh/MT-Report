@@ -1,5 +1,6 @@
 <template>
 <div>
+    <Navbar/>
 <div>
 <div class="container mt-5">
   <div class="row mt-5">
@@ -15,15 +16,15 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" :state="passwordState" required >
   <div class="checkbox mb-3">
   </div>
-  <button class="btn btn-lg btn-dark btn-block" type="submit" @click="onSubmit">Signin</button>
-  <button class="btn btn-lg btn-dark btn-block" type="reset" @reset="onReset"> Reset</button>
+  <button class="btn btn-lg btn-dark btn-block rounded" type="submit" @click="onSubmit">Signin</button>
+  <button class="btn btn-lg btn-dark btn-block rounded" type="reset" @reset="onReset"> Reset</button>
   <div class="row">
     <div class="col-12 mt-4 mr-0">
    <router-link to="/memberReg">
-             <button  class="btn btn-secondary ml-2">註冊</button>
+             <button  class="btn btn-dark ml-2 rounded">註冊</button>
           </router-link>
           <router-link to="/memberLogin">
-             <button  class="btn btn-secondary ml-2">登入</button>
+             <button  class="btn btn-dark ml-2 rounded">登入</button>
           </router-link>
         </div>
           </div>
@@ -37,9 +38,13 @@
 </template>
 
 <script>
+import Navbar from '../Navbar'
 export default {
 
   name: 'Log',
+    components: {
+    Navbar,
+    },
   data () {
     return {
       account: '',
