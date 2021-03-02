@@ -2,7 +2,7 @@
 
 .act-title {
   text-align: center;
-  font-size: $heading-font-xl;
+  font-size: $heading-font-sm;
   margin-bottom: 5%;
   color: $color-text-secondary !important;
 }
@@ -167,4 +167,7 @@
 }
 .swiper-pagination {
   bottom: 0px;
+}
+.d-xs-none {
+  display: none;
 }

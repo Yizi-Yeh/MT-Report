@@ -1,43 +1,39 @@
 <template>
-<!-- The overlay -->
-<div id="app">
-  <div class="navbar">
-    <span @click="openNav()"><i class="navbar-icon fas fa-bars"></i></span>
-   <a  href="#" @click="logout"><i class="navbar-icon fas fa-sign-out-alt"></i></a>  
 
-   </div>
-  <div ref="myNav" class="overlay">
-
-    <a class="overlay-closebtn" @click="closeNav()">&times;</a>
-    
-    <div class="overlay-content">
-      <ul class="navbar-nav mr-auto">
-        <a class="navbar-brand" href="#"><router-link to="/">
-  <img src="../assets/logo-1.svg" alt="MT10x10登山社" width="100">
-    </router-link>
-</a>
+<div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="row ">
+      <div class="nav-log mr-3">
+          <!-- logout icon -->
+        <a class="nav-link" href="#"> <router-link to="/memberReg"><i class="fas fa-user"></i></router-link></a>
+          <a class="nav-link mr-0"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>    
+      </div>
+    <ul class="navbar-nav  d-flex flex-column align-items-center justify-content-center">
+        <a class="navbar-brand mb-2" href="#"><router-link to="/">
+         <img src="../assets/logo.jpg" alt="MT10x10登山社" width="100">
+         </router-link>
+        </a>
+      <div class="navbar-item d-flex flex-row">
       <li class="nav-item active">
         <a class="nav-link" href="#">
-  <router-link class="nav-link" to="/brand"><i class="fas fa-heartbeat"></i>品牌故事</router-link>
+          <router-link class="nav-link" to="/brand">關於MT</router-link>
         </a>
       </li>
       <i class="fad fa-heart-rate"></i>
       <li class="nav-item">
-        <a class="nav-link">  <router-link class="nav-link" to="/plan"><i class="fas fa-user-friends"></i>行程資訊</router-link></a>
+        <a class="nav-link">  <router-link class="nav-link" to="/plan">行程資訊</router-link></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" > <router-link class="nav-link" to="/newplan"><i class="fas fa-bullhorn"></i>近期開團</router-link></a>
+        <a class="nav-link" > <router-link class="nav-link" to="/newplan">近期開團</router-link></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> <router-link class="nav-link" to="/memberReg"><i class="fas fa-user fa-fw"></i>會員註冊</router-link></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> <router-link class="nav-link" to="/Login"><i class="fas fa-user-cog"></i>管理員登入</router-link></a>
-      </li>
+        <a class="nav-link" href="#"> <router-link class="nav-link" to="/Login">管理員登入</router-link></a>
+      </li>  
+      </div>
     </ul>
     </div>
-  </div>
-
+</nav>
+ 
 </div>
 </template>
 
@@ -46,14 +42,8 @@ export default {
   name: 'App',
   computed: {
   },
- methods:{
-    closeNav(){
-      this.$refs.myNav.style.width = "0%";
-    },
-    openNav(){
-      this.$refs.myNav.style.width = "100%";
-    },
-     logout() {
+  methods: {
+    logout() {
       this.axios
         .delete(process.env.VUE_APP_API + '/users/logout')
         .then((res) => {
@@ -69,7 +59,6 @@ export default {
           }
         })
     },
-    
   },
 }
 </script>

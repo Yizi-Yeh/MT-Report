@@ -1,7 +1,8 @@
 $color-primary: #eee;
-$color-secondary: #212121;
+$color-secondary: #3e3a39;
 $color-danger: #a40000;
 $color-success: rgb(79, 156, 79);
+$color-info: #00aed9;
 $color-text: #fff;
 $color-text-secondary: #818181;
 
@@ -13,7 +14,8 @@ $text-font-sm: 0.9375rem;
 $text-font-md: 1rem;
 $text-font-lg: 1.2rem;
 
-$heading-font-xs: 1.3rem;
+$heading-font-xxs: 0.9rem;
+$heading-font-xs: 1rem;
 $heading-font-sm: 1.6rem;
 $heading-font-md: 2rem;
 $heading-font-lg: 2.2rem;
@@ -27,3 +29,9 @@ $letter-spacing-xs: 0.5px;
 $letter-spacing-sm: 1px;
 $letter-spacing-md: 5px;
 $letter-spacing-lg: 10px;
+
+// breakpoints: (
+//   sm: 576px, 手機
+//   md: 768px, 平板
+//   lg: 992px, 電腦
+// );

@@ -5,13 +5,19 @@ html {
     "ＭＳ 明朝", serif !important;
   letter-spacing: 0.1 rem;
 }
-#section01,
+
+#section01 {
+  @include media-breakpoint-up(lg) {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
 #section02,
 #section03,
 #section04 {
   width: 100vw;
   height: 100vh;
-  margin-bottom: 3%;
 }
 
 #section02 {
@@ -20,13 +26,4 @@ html {
 #section05 {
   width: 100vw;
   height: 60vh;
-}
-
-.fab {
-  color: rgb(68, 66, 66);
-  font-size: 2rem;
-}
-.fas {
-  color: rgb(68, 66, 66);
-  font-size: 2rem;
 }

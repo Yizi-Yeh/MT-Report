@@ -1,7 +1,14 @@
 .carousel {
   position: relative;
-  height: 100%;
+  height: 50%;
+  @include media-breakpoint-up(lg) {
+    height: 70%;
+  }
   width: 100%;
+  @include media-breakpoint-up(lg) {
+    margin: auto;
+    width: 90%;
+  }
   margin-bottom: 10%;
 
   &-inner {
@@ -79,63 +86,34 @@
   }
 
   &-title {
-    font-size: $heading-font-xs;
-    font-weight: bold;
-
-    @include media-breakpoint-up(xs) {
-      font-size: $heading-font-md;
+    margin-top: 0%;
+    @include media-breakpoint-up(lg) {
+      margin-top: -5%;
     }
-
-    @include media-breakpoint-up(sm) {
-      font-size: $heading-font-md;
-    }
-
+    font-size: $heading-font-sm;
     @include media-breakpoint-up(md) {
       font-size: $heading-font-md;
     }
-
     @include media-breakpoint-up(lg) {
       font-size: $heading-font-xl;
     }
+    line-height: $line-height-lg;
   }
 
   &-subtitle {
-    font-size: $heading-font-md;
-    margin-bottom: 10%;
-    line-height: $line-height-sm;
-
-    @include media-breakpoint-up(xs) {
-      font-size: $heading-font-xs;
-    }
-    @include media-breakpoint-up(sm) {
-      font-size: $heading-font-xs;
-    }
-
-    @include media-breakpoint-up(md) {
-      font-size: $heading-font-md;
-    }
-
-    @include media-breakpoint-up(lg) {
-      font-size: $heading-font-lg;
-      margin-bottom: 5%;
-    }
-  }
-
-  &-text {
-    font-size: $heading-font-xs;
-    line-height: $line-height-md;
-
-    @include media-breakpoint-up(sm) {
-      font-size: 1em;
-    }
-
-    @include media-breakpoint-up(md) {
-      font-size: $heading-font-md;
-    }
-
+    font-size: $heading-font-xxs;
     @include media-breakpoint-up(lg) {
       font-size: $heading-font-sm;
     }
+    line-height: $line-height-lg;
+  }
+
+  &-text {
+    font-size: $heading-font-xxs;
+    @include media-breakpoint-up(lg) {
+      font-size: $heading-font-xxs;
+    }
+    line-height: $line-height-lg;
   }
 }
 
@@ -148,6 +126,6 @@
     transform: scale(1);
   }
   to {
-    transform: scale(1.2);
+    transform: scale(1.3);
   }
 }

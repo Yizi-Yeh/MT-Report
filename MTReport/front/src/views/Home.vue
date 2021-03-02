@@ -8,9 +8,8 @@
           <div class="container">
            <p class="act-title">近期開團</p>
               <div class="row h-100">
-              <div id="newplani" class="swiper-slide col-lg-4 col-xs-12 col-sm-12 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
-            <a href="#"  @click.prevent="getNewPlan(item._id)">
-              
+              <div id="newplani" class="swiper-slide col-lg-4 col-xs-12 col-sm-12 d-flex" v-for="(item) in newplanswipersort" :key="item._id" >
+            <a href="#"  @click.prevent="getNewPlan(item._id)">      
               <div class="act-view mb-3 rounded">
             <img class="act-img" :src="item.p_id.images[0].imgUrl">
               <div class="text">     
@@ -27,7 +26,7 @@
  </div>
     </section>
 
-    <section id="section03">
+    <section id="section03" >
    <div class="container-full  container-banner">
       <div class="container">
         <h2 class="container-banner-title">Welcome to join MT10x10 and follow us!</h2>
@@ -140,6 +139,10 @@ export default {
     },
     newplanswiper(){
       return store.state.newplans
+    },
+    newplanswipersort(){
+     const newplan = [...this.newplanswiper]
+      return newplan.slice(0,3)
     },
     recommends () {
       const products = [...this.products]

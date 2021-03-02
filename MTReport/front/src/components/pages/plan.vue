@@ -16,15 +16,6 @@
 
           <!-- 選單 (List group) -->
           <div class="d-flex mb-4">
-            <!-- 搜尋列 -->
-            <!-- <form class="form-inline my-3 my-lg-0">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="searchText"
-                  placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                </div>
-              </div>
-            </form> -->
           </div>
           <div class="list-group sticky-top ">
             <a class="list-group-item list-group-item-action rounded-top"
@@ -78,6 +69,7 @@
 
 </div>
 </template>
+
 
 <script>
 import Vue from 'vue'
