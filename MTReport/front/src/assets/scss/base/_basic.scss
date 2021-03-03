@@ -13,17 +13,26 @@ html {
   }
 }
 
-#section02,
-#section03,
-#section04 {
+#section02 {
   width: 100vw;
   height: 100vh;
 }
 
 #section02 {
-  margin-bottom: 20%;
+  margin-bottom: 130%;
+}
+#section03 {
+  width: 100vw;
+  height: 70vh;
+}
+#section04 {
+  width: 100vw;
+  height: 90vh;
+  @include media-breakpoint-up(md) {
+    height: 60vh;
+  }
 }
 #section05 {
   width: 100vw;
-  height: 60vh;
+  height: 50vh;
 }
