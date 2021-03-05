@@ -111,7 +111,7 @@
   &-text {
     font-size: $heading-font-xxs;
     @include media-breakpoint-up(lg) {
-      font-size: $heading-font-xxs;
+      font-size: $heading-font-xs;
     }
     line-height: $line-height-lg;
   }

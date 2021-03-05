@@ -1,14 +1,14 @@
 <template>
-
 <div>
   <nav class="navbar navbar-expand-lg">
-    <div class="row ">
+    <div class="row">
       <div class="nav-log mr-3">
           <!-- logout icon -->
         <a class="nav-link" href="#"> <router-link to="/memberReg"><i class="fas fa-user"></i></router-link></a>
           <a class="nav-link mr-0"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>    
       </div>
-    <ul class="navbar-nav  d-flex flex-column align-items-center justify-content-center">
+    
+    <ul class="navbar-nav d-flex flex-column align-items-center justify-content-center">
         <a class="navbar-brand mb-2" href="#"><router-link to="/">
          <img src="../assets/logo.jpg" alt="MT10x10登山社" width="100">
          </router-link>

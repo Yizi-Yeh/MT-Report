@@ -6,9 +6,11 @@
 <Footer/>
   </div>
 </template>
+
 <script>
 import '@/assets/scss/main.scss'
 import Footer from './components/Footer'
+import $ from 'jquery'
 export default {
   name: 'App',
   data () { return { index:0 } },
@@ -56,20 +58,32 @@ export default {
             this.$router.push('/')
           }
         })
-    }
+    },
+    scroller () {
+        $(window).scroll(function(){
+        if($(window).scrollTop() > 80)
+        {
+          $(".navbar-nav").addClass("scrollTop")
+        
+        }
+         else if(
+          $(window).scrollTop() < 40)$(".navbar-nav").removeClass("scrollTop")
+   })
+    },
    },
   mounted () {
     this.heartbeat()
     setInterval(() => {
       this.heartbeat()
     }, 5000)
+    this.scroller()
   }
 }
 </script>
 
 <style lang="scss">
-  .slide-left-enter-active { animation: slideLeft 0.3s; } 
-  @keyframes slideLeft { from { transform: translate3d(100%, 0, 0);/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
+  .slide-left-enter-active { animation: slideLeft 0.4s ease-in-out; } 
+  @keyframes slideLeft { from { transform: translate3d(0, 100%,0 );/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
   to { transform: translate3d(0, 0, 0); } }
   </style>
 

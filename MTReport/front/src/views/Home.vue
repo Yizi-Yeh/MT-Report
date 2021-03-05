@@ -7,12 +7,12 @@
         <transition name="slide-left"></transition>
         <section id="section02">
           <div class="container">
-           <p class="act-title">近期開團</p>
-              <div class="row h-100 ">
-              <div  class="swiper-slide col-lg-4 col-md-10 col-sm-12 d-flex flex-lg-row" v-for="(item) in newplanswipersort" :key="item._id" >
+           <p class="act-title" data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1">近期開團</p>
+              <div class="row h-100 d-flex flex-lg-row">
+              <div  data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="swiper-slide col-lg-4 col-md-10 col-sm-12 d-flex flex-lg-row" v-for="(item) in newplanswipersort" :key="item._id" >
             <a href="#"  @click.prevent="getNewPlan(item._id)">      
-              <div data-0="transform:translateX(-400px);" data-top=";transform:translateX(0px);"  class="mb-1 rounded">
-            <img  class="act-img act-view act-re-view rounded" :src="item.p_id.images[0].imgUrl">
+              <div class="mb-1 rounded ">
+            <img  class="act-img  rounded" :src="item.p_id.images[0].imgUrl">
               <div class="text mt-2">
                 <p class="list_category"></p>   
             <h5 class="act-text">{{ item.p_id.title }}</h5>
@@ -68,10 +68,10 @@
           <swiper-slide
          class="col-lg-4 col-md-6  d-flex"  v-for="r in recommends" :key="r.id" >
           <a href="#"  @click.prevent="getProduct(r._id)">
-        <div class="act-re-view rounded">
-            <img style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
+        <div class="act-img">
+            <img class="rounded" style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
               <div class="text">     
-            <h2 class="act-text mt-3">{{ r.title }}</h2>
+            <h2 class="act-text-bt mt-3 mb-5">{{ r.title }}</h2>
               <!-- <span class="act-text">分類：{{ r.category }}</span>
             <div  class="act-text">NT{{ r.cost | commaFormat | dollarSign }} </div> -->
                 </div>
