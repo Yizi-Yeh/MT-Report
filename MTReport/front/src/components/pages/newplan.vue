@@ -1,25 +1,27 @@
 <template>
 <div>
     <Navbar/>
-<div class="container d-flex flex-column">
-  <div class="row mt-5 d-flex">
-    
-  <div>
-    <div class="container main-content mb-3">
+<div class="container d-flex flex-column bg-dark">
+  <div class="row mt-5 d-flex bg-secondary">
+       
        <div class="row">
        <div class="col-12 concept">
          <p class="concept-title">近期開團</p>
        </div>
      </div>
-      <div class="row">
-        <div class="col-2">
+
+      <div class="row bg-info col-12 d-flex flex-row">
+        <div class="col-2 bg-warning text-center fixed-top filter-container">
+
+            <input v-model.trim="plan.title" class="form-control" placeholder="活動關鍵字" type="text">
+           <h4 class="p-1">分類</h4>
+                       <hr>
           <!-- 選單 (List group) -->
-          <div class="list-group sticky-top">
+          <div class="list-group">
             <a class="list-group-item list-group-item-action  rounded-top"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
               v-for="item in categories" :key="item">
-              <i class="fad fa-mountain"></i>
               {{ item }}
             </a>
             <a href="#" class="list-group-item rounded-bottom list-group-item-action"
@@ -28,12 +30,25 @@
               全部行程
             </a>
           </div>
+            <h4 class="p-1">天數</h4>
+                   <hr>
+            <a class="list-group-item list-group-item-action  rounded-top"
+              href="#" @click.prevent="searchText = item"
+              :class="{ 'active': item === searchText}"
+              v-for="item in time" :key="item">
+              {{ item }}
+            </a>
+            <a href="#" class="list-group-item rounded-bottom list-group-item-action"
+              @click.prevent="searchText = ''"
+              :class="{ 'active': searchText === ''}">
+              全部行程
+            </a>
+
         </div>
-        <div class="col-10">
-          <div class="tab-pane">
-            <div class="row align-items-stretch">
-              <div class="col-6 mb-4" v-for="(item) in filterData" :key="item._id">
-                  <div class="card border-0 shadow-sm ml-2">
+
+        <div class="col-10 bg-success d-flex flex-row flex-wrap">
+              <div class="col-6 mb-4" v-for="(item) in filterTitle" :key="item._id">
+                  <div v-if="item.is_enabled" class="card border-0 shadow-sm ml-2">
     <div style="height:300px; background-size:cover; background-position:center"
       :style="{backgroundImage:`url(${item.p_id.images[0].imgUrl})`}"
       > 
@@ -67,8 +82,6 @@
              </button>
     </div>
   </div>
-              </div>
-            </div>
           </div>
           <div class="d-flex mb-4">
             <!-- 搜尋列 -->
@@ -87,8 +100,6 @@
           </div>
             </div>
           </div>
-        </div>
-      </div>
 </div>
 </div>
   </div>
@@ -123,8 +134,12 @@ export default {
     return {
     searchText: '',
     categories: [],
+    date:[],
+    time:[],
     newplans:[],
-    plan:{},
+    plan:{
+      title:'',
+    },
     } 
   },
   computed: {
@@ -148,18 +163,30 @@ export default {
       })
       return  plansId
       },
-    
     filterData() {
       const vm = this;
       if (vm.searchText) {
         return vm.newplans.filter((item) => {
-          const data = item.p_id.category.toLowerCase().includes(vm.searchText.toLowerCase());
-          return data;
-        });
-      }
+          const data = 
+          item.p_id.category.toLowerCase().includes(vm.searchText.toLowerCase()) ||
+          item.p_id.time.toLowerCase().includes(vm.searchText.toLowerCase());
+          return data 
+        })
+      } 
       return this.newplans;
     }, 
-
+      filterTitle () { 
+     if (this.plan.title){
+       return this.filterData.filter(item=>{
+         let content = item.p_id.title.toLowerCase()
+         let inputext = this.plan.title.toLowerCase()
+         return content.indexOf(inputext) !== -1
+       })
+     } 
+     else {
+       return this.filterData
+     }
+    },
   },
     methods: {
       // 取得所有開團資料
@@ -172,7 +199,6 @@ export default {
         vm.getUnique()    
         })
         },
-
         // 取得個別開團資料
         getNewPlan(id) {
         const api = `${process.env.VUE_APP_API}`+ '/newplans/' + id
@@ -190,33 +216,14 @@ export default {
       getUnique() {
       const vm = this;
       const categories = new Set();
+      const time = new Set();
       vm.newplans.forEach((item) => {
         categories.add(item.p_id.category);
+         time.add(item.p_id.time);
       });
       vm.categories = Array.from(categories);
+      vm.time = Array.from(time);
     },
-      // 丟入訂單id
-      //   removeOrders (id) {  
-      //   const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
-      //   Axios.delete(api).then((response) => {
-      //   const index = this.Order.findIndex( orders => {
-      //   return orders._id === id 
-      //     }) 
-      //     store.commit('delCart',index)
-      //     console.log('已刪除項目', response.data.result.order[0])
-      //   }
-      //   )
-      // },
-        // 丟入item_id (開團id)
-      // createOrders (id) {  
-      //   const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
-      //   Axios.post(api,{p_id:id}).then((response) => {
-      //       if(response.data.success){
-      //       store.commit('addCart',id)
-      //       console.log('已加入項目', response.data.result.order[0]);
-      //     } 
-      //   })
-      // },
         createOrders (Order) {
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
         Axios.patch(api,Order).then((response) => {
@@ -246,8 +253,6 @@ export default {
           } 
         })
       },
-
-
     },
     created() {
       this.getNewPlans()

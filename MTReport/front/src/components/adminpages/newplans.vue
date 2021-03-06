@@ -34,10 +34,10 @@
           <td>
             <span v-if="item.is_closed" class="text-dark">額滿</span>
             <span v-else>募集中</span>
-            <!-- <td>
+            <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
-          </td> -->
+          </td>
           
         
           <td>
@@ -130,23 +130,24 @@
                     placeholder="請輸入尚餘人數"></textarea>
                 </div> -->
                 <div class="form-group">
-                  <label for="attention">募集狀況</label>
+                  <label for="attention">請輸入募集狀況(true/false)</label>
                   <textarea type="text" class="form-control" id="is_closed"
                     v-model="newplan.is_closed"
-                    placeholder="請輸入募集狀況"></textarea>
-                </div>           
-                <!-- <div class="form-group">
+                    placeholder="請輸入募集狀況(true/false)"></textarea>
+                </div>   
+                        
+                <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                      v-model="newplan.is_enabled"
+                      v-model.trim="newplan.is_enabled"
                       :true-value="true"
                       :false-value="false"
                       id="is_enabled">
                     <label class="form-check-label" for="is_enabled">
-                      狀態
+                      是否上架
                     </label>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>

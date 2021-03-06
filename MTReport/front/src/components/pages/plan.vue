@@ -13,7 +13,7 @@
           <div class="filter-container text-center list-group stick-top  col-lg-3">
             <h4 class="p-3">分類</h4>
              <hr>
-            <input v-model.trim="plan.title" class="form-control" placeholder="關鍵字" type="text">
+            <input v-model.trim="plan.title" class="form-control" placeholder="活動關鍵字" type="text">
             <a class="list-group-item list-group-item-action serch-control"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
@@ -28,6 +28,7 @@
             </a>
           </div>
 
+        <transition name="fade" mode="out-in">
         <div class="col-lg-9">
           <div class="row flex-row">
               <div class="col-lg-6 mb-4 " v-for="(item) in filterTitle" :key="item.id">
@@ -55,6 +56,9 @@
                 </div>
                 </div>
             </div>
+            </transition>
+
+
         </div>
    </div>
 </div>
@@ -152,3 +156,12 @@ export default {
     },
 }
 </script>
+<style lang="scss">
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active{
+transition: opacity 0.5s;
+}
+</style>

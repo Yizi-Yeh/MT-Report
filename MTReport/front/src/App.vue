@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide-left">
+    <transition name="fade" mode="out-in" appear>
     <router-view/>
 </transition>
 <Footer/>
@@ -64,10 +64,15 @@ export default {
         if($(window).scrollTop() > 80)
         {
           $(".navbar-nav").addClass("scrollTop")
-        
+          $(".nav-link").css("color",'#fff')
         }
          else if(
-          $(window).scrollTop() < 40)$(".navbar-nav").removeClass("scrollTop")
+          $(window).scrollTop() < 40)
+          {$(".navbar-nav").removeClass("scrollTop")
+          $(".nav-link").css(
+            "color","#818181",
+            "font-weight","heavy"
+            )}
    })
     },
    },
@@ -81,9 +86,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .slide-left-enter-active { animation: slideLeft 0.4s ease-in-out; } 
-  @keyframes slideLeft { from { transform: translate3d(0, 100%,0 );/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
-  to { transform: translate3d(0, 0, 0); } }
-  </style>
 
+
+<style lang="scss">
+  // .slide-left-enter-active { animation: slideLeft 0.4s ease-in-out; } 
+  // @keyframes slideLeft { from { transform: translate3d(0, 100%,0 );/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
+  // to { transform: translate3d(0, 0, 0); } }
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active{
+transition: opacity 0.5s;
+}
+</style>

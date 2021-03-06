@@ -9,8 +9,8 @@
       </div>
     
     <ul class="navbar-nav d-flex flex-column align-items-center justify-content-center">
-        <a class="navbar-brand mb-2" href="#"><router-link to="/">
-         <img src="../assets/logo.jpg" alt="MT10x10登山社" width="100">
+        <a class="navbar-brand" href="#"><router-link to="/">
+         <img src="../assets/logo-1.svg" alt="MT10x10登山社" width="100">
          </router-link>
         </a>
       <div class="navbar-item d-flex flex-row">

@@ -4,7 +4,6 @@
       <Carousel/>
       
         <!-- 近期開團 -->
-        <transition name="slide-left"></transition>
         <section id="section02">
           <div class="container">
            <p class="act-title" data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1">近期開團</p>
@@ -27,7 +26,7 @@
  </div>
            <div class="btn-wrap">
               <a class="btn-view btn-outline-info rounded btn-sm">
-               <router-link class="nav-link" to="/newplan">查看更多</router-link></a>
+               <router-link  to="/newplan">查看更多</router-link></a>
           </div>
     </section>
 
@@ -54,7 +53,7 @@
     </div>
                <div class="btn-wrap">
               <a class="btn-view btn-outline-info rounded btn-sm">
-               <router-link class="nav-link" to="/brand">關於MT</router-link></a>
+               <router-link to="/brand">關於MT</router-link></a>
           </div>
   </section>
     <br>
