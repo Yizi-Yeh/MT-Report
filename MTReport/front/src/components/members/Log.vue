@@ -2,8 +2,8 @@
 <div>
     <Navbar/>
 <div>
-<div class="container mt-5">
-  <div class="row mt-5">
+<div class="container">
+  <div class="row">
     <div class="col-12 mt-5 d-flex flex-column align-items-center">
             <h2 text-center> Feel free to join MT10x10</h2>
             <p>Are you ready to have a fantastic hiking with us?</p>
@@ -16,12 +16,12 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" :state="passwordState" required >
   <div class="checkbox mb-3">
   </div>
-  <button class="btn btn-lg btn-dark btn-block rounded" type="submit" @click="onSubmit">Signin</button>
-  <button class="btn btn-lg btn-dark btn-block rounded" type="reset" @reset="onReset"> Reset</button>
+  <button class="btn btn-sm btn-dark btn-block rounded" type="submit" @click="onSubmit">Signin</button>
+  <button class="log-btn btn btn-sm btn-dark btn-block rounded" type="reset" @reset="onReset"> Reset</button>
   <div class="row">
     <div class="col-12 mt-4 mr-0">
    <router-link to="/memberReg">
-             <button  class="btn btn-dark ml-2 rounded">註冊</button>
+             <button  class="btn btn-dark ml-2  rounded">註冊</button>
           </router-link>
           <router-link to="/memberLogin">
              <button  class="btn btn-dark ml-2 rounded">登入</button>

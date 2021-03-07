@@ -1,23 +1,23 @@
 <template>
 <div>
     <Navbar/>
-<div class="container d-flex flex-column bg-dark">
-  <div class="row mt-5 d-flex bg-secondary">
+<div class="container d-flex flex-column">
+  <div class="row  d-flex">
        
-       <div class="row">
-       <div class="col-12 concept">
+  <div class="row">
+           <div class="col-12 concept">
          <p class="concept-title">近期開團</p>
        </div>
-     </div>
+  </div>
 
-      <div class="row bg-info col-12 d-flex flex-row">
-        <div class="col-2 bg-warning text-center fixed-top filter-container">
+      <div class="row mt-5 col-12 d-flex flex-flex-sm-column flex-lg-row align-items-start ">
 
-            <input v-model.trim="plan.title" class="form-control" placeholder="活動關鍵字" type="text">
+        <div class="col-sm-6 col-md-12 col-lg-2  text-center new-filter-container ">
+            <input v-model.trim="plan.title" class="mb-3 form-control" placeholder="活動關鍵字" type="text">
            <h4 class="p-1">分類</h4>
                        <hr>
           <!-- 選單 (List group) -->
-          <div class="list-group">
+          <div class="list-group mb-3">
             <a class="list-group-item list-group-item-action  rounded-top"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
@@ -30,7 +30,7 @@
               全部行程
             </a>
           </div>
-            <h4 class="p-1">天數</h4>
+            <h4 class="p-1">活動天數</h4>
                    <hr>
             <a class="list-group-item list-group-item-action  rounded-top"
               href="#" @click.prevent="searchText = item"
@@ -43,12 +43,10 @@
               :class="{ 'active': searchText === ''}">
               全部行程
             </a>
-
         </div>
-
-        <div class="col-10 bg-success d-flex flex-row flex-wrap">
-              <div class="col-6 mb-4" v-for="(item) in filterTitle" :key="item._id">
-                  <div v-if="item.is_enabled" class="card border-0 shadow-sm ml-2">
+        <div class=" col-lg-10 col-md-12 d-flex flex-lg-row flex-wrap">
+              <div class="col-sm-12 col-lg-6 mb-2" v-for="(item) in filterTitle" :key="item._id">
+                  <div v-if="item.is_enabled" class="card  mb-3 shadow-md ">
     <div style="height:300px; background-size:cover; background-position:center"
       :style="{backgroundImage:`url(${item.p_id.images[0].imgUrl})`}"
       > 
@@ -71,41 +69,27 @@
       <span class="card-txt badge">費用： NT{{ item.price | commaFormat | dollarSign }} </span>
       </h5>
     </div>
-    <div class="card-footer">
-      <button @click="getNewPlan(item._id)" type="button" class="btn btn-outline-secondary btn-sm rounded">
-        <i class="fas fa-search"></i>
+    <div class="new-card-foot">
+      
+      <div class="new-btn-detail rounded mb-3">
+      <a @click="getNewPlan(item._id)" >
         詳細資訊
-      </button>
-      <button @click="addCart(item._id)" type="button" class="btn btn-outline-secondary btn-sm rounded ">
-              <i class="fas fa-user-plus"></i>
-             我要報名
-             </button>
-    </div>
+      </a>
+      </div>
+      <div class="new-btn-detail rounded border-0">
+      <a @click="addCart(item._id)" >
+          我要報名
+          </a>
+        </div>
   </div>
-          </div>
-          <div class="d-flex mb-4">
-            <!-- 搜尋列 -->
-            <form class="form-inline my-3 my-lg-0">
-              <div class="input-group">
-                <input class="form-control d-none" type="text" v-model="searchText"
-                  placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary d-none" type="button"
-                    @click="searchText = ''">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
+  </div>
+  </div>
           </div>
             </div>
           </div>
 </div>
 </div>
   </div>
-
-
-
 </template>
 
 <script>
@@ -170,9 +154,9 @@ export default {
           const data = 
           item.p_id.category.toLowerCase().includes(vm.searchText.toLowerCase()) ||
           item.p_id.time.toLowerCase().includes(vm.searchText.toLowerCase());
-          return data 
+          return data
         })
-      } 
+      }
       return this.newplans;
     }, 
       filterTitle () { 
@@ -211,7 +195,6 @@ export default {
           }        
         })
         },
-
       // 篩選資料
       getUnique() {
       const vm = this;
@@ -221,8 +204,10 @@ export default {
         categories.add(item.p_id.category);
          time.add(item.p_id.time);
       });
-      vm.categories = Array.from(categories);
-      vm.time = Array.from(time);
+      vm.categories = Array.from(categories).sort();
+      vm.time = Array.from(time).sort(function(a, b){
+        return a.localeCompare(b, "zh","TW", "");
+      })
     },
         createOrders (Order) {
         const api = `${process.env.VUE_APP_API}`+ '/users/order/'+ `${this.user.id}`
@@ -241,7 +226,6 @@ export default {
     },
     delCart (index) {
         store.commit('delCart', index)
-     
     },
       // 取得訂單
     getOrders() {  

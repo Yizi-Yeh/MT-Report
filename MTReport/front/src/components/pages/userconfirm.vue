@@ -3,7 +3,7 @@
     <Navbar/>
     <main role="main">
       <div class="container marketing">
-<h2 class="eventSection">報名表單明細</h2>
+<h2 class="eventSection text-center mb-5">報名表單明細</h2>
 
 <div class="table eventDetail container">
   <div class="row">
@@ -33,16 +33,6 @@
                 <th>姓名</th>
                 <td>{{ userConfirm[0].name }}</td>
               </tr>
-
-              <!-- <tr >
-                <th>Email</th>
-                <td>{{ userConfirm[0].email }}</td>
-              </tr> -->
-
-              <!-- <tr >
-                <th>登山保險用本名</th>
-                <td>{{ userConfirm[0].insuranceName }}</td>
-              </tr> -->
 
               <tr >
                 <th>LINE ID</th>
@@ -156,8 +146,7 @@ export default {
       
       },
       userConfirm:[{
-              name: '',
-            insuranceName:'',
+            name:'',
             lineId:'',
             lineName:'',
             gender:'',

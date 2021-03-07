@@ -1,10 +1,17 @@
 .card {
+  display: block;
+  background-color: #fff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 4px 0;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  word-wrap: break-word;
   &-body {
     @include flex(column, center, center);
   }
   &-title {
     color: $color-text-secondary !important;
-    font-size: $text-font-md;
+
     line-height: $line-height-sm;
     font-weight: 800;
     @include flex(column, center, center);
@@ -20,6 +27,44 @@
     font-weight: 700;
   }
   &-footer {
+    margin: 0 auto;
+    margin-bottom: 4%;
     @include flex(row, space-between, center);
   }
+}
+.new-filter-container {
+  display: block;
+  background-color: #fff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 4px 0;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  word-wrap: break-word;
+  margin-bottom: 10%;
+}
+
+.new-btn-detail {
+  text-align: center;
+  width: calc(100% - 80px);
+  @include media-breakpoint-up(md) {
+    width: calc(100% - 400px);
+  }
+  @include media-breakpoint-up(lg) {
+    width: calc(100% - 200px);
+  }
+
+  font-weight: bold;
+
+  border-color: $color-info;
+  background-color: $color-info;
+}
+.new-btn-detail a {
+  color: $color-text !important;
+}
+.new-btn-detail:hover {
+  cursor: pointer;
+}
+.new-card-foot {
+  @include flex(column, center, center);
+  flex-wrap: wrap;
 }

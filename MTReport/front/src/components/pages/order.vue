@@ -311,7 +311,6 @@ export default {
       ,
       form: {
             name: '',
-            insuranceName:'',
             lineId:'',
             lineName:'',
             gender:'',

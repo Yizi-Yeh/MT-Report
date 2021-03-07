@@ -2,10 +2,9 @@
 <div>
     <Navbar/>
 <div class="container">
-  <div class="row">
+ <div class="row">
            <div class="col-12 concept">
-             <!--    標題  -->
-         <p class="concept-title">所有行程</p>
+         <p class="concept-title">行程資訊</p>
        </div>
   </div>
   <div class="row mt-5 d-flex flex-row align-items-start ">
@@ -29,9 +28,9 @@
           </div>
 
         <transition name="fade" mode="out-in">
-        <div class="col-lg-9">
-          <div class="row flex-row">
-              <div class="col-lg-6 mb-4 " v-for="(item) in filterTitle" :key="item.id">
+        <div class="col-lg-9 ">
+          <div class="row flex-row ">
+              <div class="col-lg-6  col-sm-12 mb-4 " v-for="(item) in filterTitle" :key="item.id">
                   <div class="card rounded border-2 shadow-md ml-2">
     <div style="height:300px; background-size:cover; background-position:center"
       :style="{backgroundImage:`url(${item.images[0].imgUrl})`}"
@@ -46,8 +45,8 @@
       <span class="card-txt">費用： NT{{ item.cost | commaFormat | dollarSign }} </span>
     </div>
     <div class="card-foot">
-      <div class="btn-wrap">
-      <a @click="getProduct(item._id)"  class="btn-outline-info rounded">
+      <div class="btn-detail text-center rounded">
+      <a @click="getProduct(item._id)"  class="rounded">
         詳細資訊
       </a>
       </div>
@@ -113,6 +112,7 @@ export default {
        return this.filterData.filter(item=>{
          let content = item.title.toLowerCase()
          let inputext = this.plan.title.toLowerCase()
+          // content陣列中找符合的元素（若存在 !==-1 則回傳）
          return content.indexOf(inputext) !== -1
        })
      }

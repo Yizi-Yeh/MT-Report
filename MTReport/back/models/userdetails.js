@@ -10,10 +10,6 @@ const userDetailSchema = new Schema({
     type: String,
     required: [true, '請輸入會員姓名']
   },
-  insuranceName: {
-    type: String,
-    required: [true, '請輸入登山保險用本名']
-  },
   lineId: {
     type: String,
     required: [true, '請輸入LINE ID']

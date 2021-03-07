@@ -1,6 +1,6 @@
 <template>
   <section id="section01">
-    <div id="MT-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-ineterval="4000">
+    <div id="MT-carousel" class="rounded carousel slide carousel-fade" data-ride="carousel" data-ineterval="4000">
       <!-- 指示器 -->
       <ol class="carousel-indicators">
         <li data-target="#MT-carousel" data-slide-to="0" class="active">

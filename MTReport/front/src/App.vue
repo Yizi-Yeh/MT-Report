@@ -61,7 +61,7 @@ export default {
     },
     scroller () {
         $(window).scroll(function(){
-        if($(window).scrollTop() > 80)
+        if($(window).scrollTop() > 100)
         {
           $(".navbar-nav").addClass("scrollTop")
           $(".nav-link").css("color",'#fff')
@@ -98,5 +98,6 @@ export default {
 .fade-enter-active,
 .fade-leave-active{
 transition: opacity 0.5s;
+  
 }
 </style>

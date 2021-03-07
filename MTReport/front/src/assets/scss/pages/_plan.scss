@@ -1,4 +1,11 @@
 .card {
+  display: block;
+  background-color: #fff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 4px 0;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  word-wrap: break-word;
   &-body {
     @include flex(column, center, end);
   }
@@ -27,6 +34,16 @@
   padding: 1.5rem;
   border-radius: 0.4rem;
   word-wrap: break-word;
+  margin-bottom: 10%;
+  @include media-breakpoint-up(lg) {
+    display: block;
+    background-color: #fff;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 1px 4px 0;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+    word-wrap: break-word;
+  }
 }
 .form-control {
   text-align: center;
@@ -50,4 +67,21 @@
 .list-group-item.active {
   border-color: $color-info;
   background-color: $color-info;
+}
+
+.btn-detail {
+  height: 10%;
+  font-weight: bold;
+  border: 3px solid $color-info;
+  border-color: $color-info;
+  background-color: $color-info;
+}
+.btn-detail a {
+  color: $color-text !important;
+}
+.btn-detail:hover {
+  cursor: pointer;
+}
+.card-foot {
+  @include flex(column, center, center);
 }

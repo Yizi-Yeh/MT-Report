@@ -103,17 +103,16 @@
     color: $color-text-secondary;
     font-size: $heading-font-lg;
     line-height: $line-height-sm;
-    margin-bottom: 4%;
     &::after {
       content: "";
       display: block;
+      width: 60px;
+      height: 2px;
+      background-color: #879394;
       position: absolute;
-      bottom: 30px;
-      width: 222px;
-      height: 1px;
       left: 50%;
-      background-color: $color-text-secondary;
-      transform: translateX(-50%);
+      bottom: -20%;
+      margin-left: -30px;
     }
   }
   &-text {
@@ -127,7 +126,6 @@
       content: "";
       display: block;
       position: absolute;
-      bottom: -1%;
       width: 200px;
       height: 1px;
       left: 50%;
@@ -183,17 +181,4 @@
     background-position: center center;
     background-size: cover;
   }
-}
-
-.brand-intro-img-yula {
-  @include flex(column, center, center);
-  margin: auto;
-  width: 25vw;
-  height: 60vh;
-  opacity: 0.92;
-  color: $color-secondary;
-  z-index: 9999;
-  text-align: center;
-  font-size: $text-font-md;
-  line-height: $line-height-md;
 }

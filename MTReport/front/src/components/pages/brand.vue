@@ -1,17 +1,15 @@
 <template>
 <div>
   <Navbar/>
- 
-
-<div class="container mt-5 h-100">
-  <div class="row mt-5">
-   <div class="col-12 mt-5 brand-intro-outer">
+<div class="container  h-100">
+  <div class="row ">
+   <div class="col-12  brand-intro-outer">
      
-     <div class="row">
-       <div class="col-12 concept">
-         <p class="concept-title">CONCEPT</p>
+  <div class="row">
+           <div class="col-12 concept mb-5">
+         <p class="concept-title">關於我們</p>
        </div>
-     </div>
+  </div>
 
        <video-background 
     src="../intro.mp4"
@@ -45,9 +43,11 @@
   </div>
   </div>
     <div class="row">
-       <div class="col-12 concept-text">
-        <p> 那些想和你分享的感動</p>
-        </div>
+  <div class="row mt-5 mb-5">
+           <div class="col-12 concept">
+         <p class="concept-title">那些想和你分享的感動</p>
+       </div>
+  </div>
       <div class="col-10 brand-intro-img">
         <img src="@/assets/自由狼_200915_101.jpg" class="w-50 mr-3">
         <img src="@/assets/自由狼_200915_160.jpg" class="w-50 ml-3">

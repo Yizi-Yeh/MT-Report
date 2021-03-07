@@ -87,7 +87,7 @@ a,
 .btn-wrap {
   width: 100%;
   margin-top: 5%;
-  @include flex(row, center, center);
+  @include flex(column, center, center);
 }
 .btn-view {
   width: 50%;

@@ -6,7 +6,6 @@ export const addForm = async (req, res) => {
     const result = await userdetails.create({
       p_id: req.session.user._id,
       name: req.body.name,
-      insuranceName: req.body.insuranceName,
       lineId: req.body.lineId,
       lineName: req.body.lineName,
       gender: req.body.gender,
