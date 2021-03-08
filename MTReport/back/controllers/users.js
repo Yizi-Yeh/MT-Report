@@ -221,3 +221,23 @@ export const searchAllOrders = async (req, res) => {
     }
   }
 }
+
+export const delUser = async (req, res) => {
+  try {
+    const result = await users.findByIdAndDelete(req.params.id)
+    if (result != null) {
+      res.status(200).send({ success: true, message: '' })
+    } else {
+      res.status(404).send({ success: false, message: '找不到該會員' })
+    }
+  } catch (error) {
+   
+    if (error.name === 'CastError') {
+      console.log(error)
+      res.status(404).send({ success: false, message: '發生錯誤' })
+    } else {
+      console.log(error)
+      res.status(500).send({ success: false, message: '發生錯誤' })
+    }
+  }
+}

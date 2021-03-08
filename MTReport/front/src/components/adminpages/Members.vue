@@ -14,7 +14,7 @@
         <tr v-for="item in users" :key="item._id">
           <td>{{ item.account }}</td>
           <td>
-        <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+        <button @click="delUsers(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -41,8 +41,9 @@ export default {
         })
         },
 
-        delProducts(id) {
-        const api = `${process.env.VUE_APP_API}`+ '/users/logout/'
+        delUsers(id) {
+          // const api = `${process.env.VUE_APP_API}/users`
+        const api = `${process.env.VUE_APP_API}/users/${id}`
         Axios.delete(api).then((response) => {
           const index = this.users.findIndex( item => {
           return item._id === id 
@@ -51,6 +52,7 @@ export default {
           })
         .catch(error => {
           alert(error.response.data.message)
+          console.log(error)
         }) 
         },    
     },

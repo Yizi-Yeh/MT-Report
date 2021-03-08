@@ -13,6 +13,8 @@ export default new Vuex.Store({
     products:[],
     newplans:[],
     orders:[],
+    currentOrder:[],
+    currentOrderDetails:[],
   },
   mutations: {
 
@@ -39,6 +41,12 @@ export default new Vuex.Store({
     delCart (state, data) {
       state.orders.splice(data, 1)
     },
+    currentOrder(state,data){
+      state.currentOrder = data
+    },
+    currentOrderDetails(state,data){
+      state.currentOrderDetails = data
+    }
     
   },
 
@@ -62,6 +70,24 @@ export default new Vuex.Store({
         }
       })
     }, 
+    getOrders({ commit, state}) {
+      const api = `${process.env.VUE_APP_API}`+ '/users/order'
+      Axios.get(api).then(res => {
+      if(res.data.success){
+        console.log('store',res.data.result)
+      commit('currentOrder',res.data.result)
+        }
+      })
+      },
+    getOrderUserDetails({ commit, state}) {
+      const api = `${process.env.VUE_APP_API}`+ '/userdetails'
+      Axios.get(api).then(res => {
+      if(res.data.success){
+        console.log('store',res.data.result)
+        commit('currentOrderDetails',res.data.result)
+        }
+      })
+      },
   },
   modules: {
   },

@@ -7,9 +7,9 @@
          <p class="concept-title">行程資訊</p>
        </div>
   </div>
-  <div class="row mt-5 d-flex flex-row align-items-start ">
+  <div class="row mt-5 d-flex flex-row align-items-start sticky ">
           <!-- 選單 (List group) -->
-          <div class="filter-container text-center list-group stick-top  col-lg-3">
+          <div class="filter-container text-center list-group  sticky col-lg-3">
             <h4 class="p-3">分類</h4>
              <hr>
             <input v-model.trim="plan.title" class="form-control" placeholder="活動關鍵字" type="text">
@@ -31,7 +31,7 @@
         <div class="col-lg-9 ">
           <div class="row flex-row ">
               <div class="col-lg-6  col-sm-12 mb-4 " v-for="(item) in filterTitle" :key="item.id">
-                  <div class="card rounded border-2 shadow-md ml-2">
+                  <div v-if="item.is_enabled" class="card rounded border-2 shadow-md ml-2">
     <div style="height:300px; background-size:cover; background-position:center"
       :style="{backgroundImage:`url(${item.images[0].imgUrl})`}"
       > 
@@ -91,6 +91,7 @@ export default {
     plan:{
       title:''
     },
+    index:0
     } 
   },
   computed: {
@@ -119,7 +120,7 @@ export default {
      else {
        return this.filterData
      }
-    }
+    },
   },
     methods: {
         getProducts() {
@@ -150,6 +151,7 @@ export default {
           }        
         })
         },
+ 
     },
     created() {
       this.getProducts()

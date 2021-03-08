@@ -4,7 +4,7 @@
   <h2 class="act-flow">活動確認</h2>
      <div class="container">
 <div class="table container mt-5">
-    <div class="ly_middle d-flex flex-row">
+    <div class="ly_middle d-flex flex-row ">
            <div class="col-7">
           <table id="actDetail">
              <tr >
@@ -37,18 +37,18 @@
   
 
   <h2 class="act-flow">填寫報名表單</h2>
-    <div class="container marketing">
+    <div class="container marketing  text-center border-3">
 
-     <div class="my-5 row justify-content-center">
+     <div class="my-5 row justify-content-center ">
        <validation-observer v-slot="{ invalid }"  >
        <form  @submit.prevent="createOrder(order._id)">
          
       
- <div class="row">
+ <div class="row form-01">
    <div class="col-6">
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
-    <div class="form-group">
+    <div class="form-group ">
      <label for="name">姓名</label>
       <input id="name" type="text" name="姓名欄位"  v-model="form.name"
       class="form-control" :class="classes">
@@ -71,7 +71,7 @@
     </validation-provider>
 </div>
 
-<div class="row">
+ <div class="row  form-02">
   <div class="col-6">
 <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -96,7 +96,7 @@
     </validation-provider>
 </div>
 
-<div class="row">
+<div class="row form-03">
   <div class="col-6">
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -121,7 +121,7 @@
     </validation-provider>
 </div>
 
-<div class="row">
+<div class="row form-04">
   <div class="col-6">
     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -146,7 +146,7 @@
     </validation-provider>
 </div>
 
-<div class="row">
+<div class="row form-05">
   <div class="col-6">
 <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -170,7 +170,7 @@
     </div>
     </validation-provider>
 </div>
-                        <validation-provider rules="required" v-slot="{ errors, classes }">
+     <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
     <div class="form-group">
      <label for="address">地址</label>
@@ -181,7 +181,7 @@
     </div>
     </validation-provider>
 
-<div class="row">
+<div class="row form-06">
   <div class="col-6">
  <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -206,7 +206,7 @@
     </validation-provider>
 </div>
 
-<div class="row">
+<div class="row form-07">
   <div class="col-6">
  <validation-provider v-slot="{ errors, classes }">
     <!-- 輸入框 -->
@@ -244,7 +244,7 @@
 
                             <validation-provider rules="required" v-slot="{ errors, classes }">
     <!-- 輸入框 -->
-    <div class="form-group">
+    <div class="form-group form">
      <label for="paidprice">匯款金額</label>
       <input id="paidprice" type="text" name="匯款金額欄位"  v-model="form.paidprice"
       class="form-control" :class="classes">

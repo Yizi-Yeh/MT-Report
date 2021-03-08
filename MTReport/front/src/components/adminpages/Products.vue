@@ -216,7 +216,7 @@
                     v-model="form.meal[2].mealcontent"
                     placeholder="餐食安排請輸入內容"></textarea>
                 </div> -->
-<!--                 
+                
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
@@ -225,10 +225,10 @@
                       :false-value="false"
                       id="is_enabled">
                     <label class="form-check-label" for="is_enabled">
-                      狀態
+                      是否上架
                     </label>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>

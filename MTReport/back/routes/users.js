@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders, deleteOrder, editOrder, searchAllOrders } from '../controllers/users.js'
+import { create, login, logout, heartbeat, searchUsers, createOrder, searchUsersOrders, deleteOrder, editOrder, searchAllOrders, delUser } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -13,6 +13,8 @@ router.delete('/logout', logout)
 router.get('/heartbeat', heartbeat)
 // 查詢全部使用者
 router.get('/', searchUsers)
+// 刪除使用者
+router.delete('/:id', delUser)
 
 // 建立訂單
 router.post('/order/:id', createOrder)
