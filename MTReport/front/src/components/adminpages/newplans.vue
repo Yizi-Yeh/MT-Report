@@ -3,29 +3,30 @@
 <div class="text-right mt-4">
       <button class="btn btn-dark d-none"  data-toggle="modal" data-target="#productModal"  @click="openModal(true)">建立新的開團</button>
     </div>
-    <table class="table mt-4">
+    <table class="table mt-4 table-sm">
       <thead>
         <tr class="text-center">
           <!-- <th width="100">開團編號</th> -->
-          <th width="100">行程編號</th>
-          <th width="100">行程分類</th>
-          <th width="100">行程名稱</th>
-          <th width="100">開團日程</th>
-          <th width="100">上架金額</th>
-          <th width="100">開團人數</th>
-          <th width="100">報名人數</th>
+          
+          <!-- <th >行程分類</th> -->
+          <th >行程名稱</th>
+          <th >開團日程</th>
+          <th >上架金額</th>
+          <th >開團人數</th>
+          <th >報名人數</th>
           <!-- <th width="100">尚餘人數</th> -->
-          <th width="100">募集狀況</th>
+          <th >募集狀況</th>
+          <th >是否上架</th>
           <!-- <th width="100">是否上架</th> -->
-          <th width="80">編輯</th>
+          <th >編輯/刪除</th>
         </tr>
       </thead>
       <tbody  class="text-center">
         <tr v-for="(item) in newplans" :key="item._id">
           <!-- <td>{{ item._id }}</td> -->
-          <td>{{ item.p_id._id }}</td>
-          <td>{{ item.p_id.category }}</td>
-          <td>{{ item.p_id.title }}</td>
+          
+          <!-- <td>{{ item.p_id.category }}</td> -->
+          <td class="long-text" >{{ item.p_id.title }}</td>
           <td>{{ item.date }}</td>
           <td>NT${{ item.price }}</td>
           <td>{{ item.totalNumber }}</td>
@@ -41,9 +42,9 @@
           
         
           <td>
-              <button class="btn btn-outline-success btn-sm"
+              <button class="btn btn-outline-success btn-sm rounded"
               @click="openModal(false, item)">編輯</button>
-        <button @click="delNewPlans(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+        <button @click="delNewPlans(item._id)"  class="btn btn-outline-danger rounded btn-sm">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -260,3 +261,19 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+table{
+   table-layout: fixed;
+}
+tr{
+  white-space:nowrap;
+}
+.long-text {white-space:nowrap!important;overflow:hidden!important;text-overflow: ellipsis!important }
+
+.btn-outline-success{
+  border: 2px solid #c5d1cc;
+  color:#c5d1cc ;
+}
+
+
+</style>

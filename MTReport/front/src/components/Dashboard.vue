@@ -3,13 +3,16 @@
      <Navbar/>
      <div class="container-fluid">
        <div class="row admin-main">
+         <div class="col-2">
          <Sidebar></Sidebar>
-         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+         </div>
+         <main class="filter-container col-md-9 ml-auto col-lg-10 mt-5">
            <router-view></router-view>
          </main>
        </div>
      </div>
    </div>
+
 </template>
 
 
@@ -31,5 +34,7 @@ components: {
  flex-direction: row !important;
  align-items: start;
 }
-
+main{
+  width: 200%;
+}
 </style>

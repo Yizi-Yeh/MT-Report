@@ -20,3 +20,7 @@
 .form-07 {
   @include flex(row, center, center !important);
 }
+
+.index-box {
+  display: inline !important;
+}

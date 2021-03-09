@@ -1,31 +1,55 @@
 <template>
 <div>
 <div class="text-right mt-4">
-    </div>
-    <table class="table mt-4">
+    <table class="table mt-4 table-sm">
       <thead>
         <tr class="text-center">
-          <th width="100">訂單日期</th>
-          <th width="100">訂單編號</th>
-          <th width="100">活動名稱</th>
-          <th width="100">活動日期</th>
-          <th width="100">訂單金額</th>
-          <th width="80">編輯</th> 
-          <th width="80">刪除</th> 
+          <th>會員帳號</th>
+          <th>訂單編號</th>
+          <th>訂單日期</th>
+          <th>活動名稱</th>
+          <th>活動日期</th>
+          <td>活動金額</td>
         </tr>
       </thead>
       <tbody  class="text-center">
-        <tr v-for="item in this.totalOrder" :key="item._id">
-           <td>{{ item.orderDate }}</td>
-           <td>{{ item._id }}</td>
-           <td>{{ item.p_id.p_id.title }}</td>
-           <td>{{ item.p_id.date }}</td>
-           <td>{{ item.p_id.price | commaFormat | dollarSign }}</td>
+        <tr v-for="item in this.OrderLists" :key="item._id" >
+           <td>{{ item.account }}</td>
+           <td>
+             <div v-for="(value) in item.order" :key="value._id">
+               <div class="index-box">
+                {{value._id}} 
+              </div>
+            </div>  
+
+            <td>
+             <div v-for="value in item.order" :key="value._id" class="d-felx flex-column flex-wrap" >
+	            {{value.orderDate}} 
+            </div> 
+		    		</td>
+
+            <td>
+              <div v-for="value in item.order" :key="value._id" class="d-felx flex-column flex-wrap" >
+	               {{value.p_id.p_id.title}} 
+              </div> 
+            </td>	
+
+            <td>
+              <div v-for="value in item.order" :key="value._id" class="d-felx flex-column flex-wrap" >
+	               {{value.p_id.date}}
+              </div> 
+            </td>
+
+            <td>
+              <div v-for="value in item.order" :key="value._id" class="d-felx flex-column flex-wrap" >
+	               {{value.p_id.price}}
+              </div> 
+            </td>
         </tr>
       </tbody>
     </table>
-   
-</div>
+ </div>
+  </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -72,7 +96,7 @@ export default {
     OrderLists() {
     return store.state.currentOrder; 
       },     
-      OrderDetails() {
+    OrderDetails() {
     return store.state.currentOrderDetails; 
   }, 
   },

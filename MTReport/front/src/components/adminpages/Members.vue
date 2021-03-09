@@ -14,7 +14,7 @@
         <tr v-for="item in users" :key="item._id">
           <td>{{ item.account }}</td>
           <td>
-        <button @click="delUsers(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+        <button @click="delUsers(item._id)"  class="btn rounded btn-outline-danger btn-sm">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -61,3 +61,18 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+table{
+   table-layout: fixed;
+}
+tr{
+  white-space:nowrap;
+}
+.long-text {white-space:nowrap!important;overflow:hidden!important;text-overflow: ellipsis!important }
+
+.btn-outline-success{
+  border: 2px solid #c5d1cc;
+  color:#c5d1cc ;
+}
+
+</style>

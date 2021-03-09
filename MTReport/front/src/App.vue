@@ -72,7 +72,7 @@ export default {
           $(".nav-link").css(
             "color","#818181",
             "font-weight","heavy"
-            )}
+          )}
    })
     },
    },
