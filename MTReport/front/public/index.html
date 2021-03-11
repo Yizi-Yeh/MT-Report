@@ -9,22 +9,25 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
+<!-- font-awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
     integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
-
-    	
+<!-- slrollr -->
    <link rel="stylesheet" type="text/css" href="style.css" data-skrollr-stylesheet />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+<!-- animate.css -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
   <noscript>
+
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
         properly without JavaScript enabled. Please enable it to
-        continue.</strong>
-        <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+        continue.</strong> 
         <script type="text/javascript" src="skrollr.min.js"></script>
-    <script type="text/javascript">
+        <script type="text/javascript">
     
-    var s = skrollr.init();//初始化
+        
+
+    var s = skrollr.init()
+    var tl = new TimelineMax({});
     </script>
   </noscript>
   <div id="app"></div>

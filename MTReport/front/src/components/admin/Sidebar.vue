@@ -11,19 +11,19 @@
                     
                 </li>
                 <li>
-                    <a href="#"> <router-link to="/admin/products"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">首頁</span>  </router-link></a>
+                    <a href="#"> <router-link to="/admin/products"><i class="fas fa-home"></i> <span style="margin-left:10px;">首頁</span>  </router-link></a>
                 </li>
                 <li>
-                    <a href="#">  <router-link to="/admin/users"><i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;">會員管理</span> </router-link></a>
+                    <a href="#">  <router-link to="/admin/users"><i class="fas fa-users"></i> <span style="margin-left:10px;">會員管理</span> </router-link></a>
                 </li>
                 <li>
                     <a href="#">  <router-link to="/admin/orders"><i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;">訂單管理</span> </router-link></a>
                 </li>
                 <li>
-                    <a href="#"> <router-link to="/admin/newplans"><i class="fa fa-font" aria-hidden="true"> </i> <span style="margin-left:10px;">開團管理</span> </router-link></a>
+                    <a href="#"> <router-link to="/admin/newplans"><i class="fas fa-pen"></i> <span style="margin-left:10px;">開團管理</span> </router-link></a>
                 </li>
                 <li>
-                    <a href="#"> <router-link to="/admin/products"><i class="fa fa-info-circle " aria-hidden="true"> </i> <span style="margin-left:10px;">行程管理</span> </router-link></a>
+                    <a href="#"> <router-link to="/admin/products"><i class="far fa-file-image"></i> <span style="margin-left:10px;">行程管理</span> </router-link></a>
                 </li>
                 <li>
                     <a @click.prevent="signout" href="#"> <i class="fa fa-info-circle " aria-hidden="true"> </i> <span style="margin-left:10px;">登出</span> </a>

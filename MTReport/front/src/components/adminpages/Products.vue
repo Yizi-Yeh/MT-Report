@@ -233,8 +233,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-dark" @click="addProduct()">確認</button>
+            <button type="button" class="btn  btn-sm rounded btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-sm rounded btn-dark" @click="addProduct()">確認</button>
           </div>
         </div>
       </div>

@@ -121,7 +121,6 @@
     text-align: center;
     font-size: $heading-font-md;
     color: $color-text-secondary;
-
     ::after {
       content: "";
       display: block;
@@ -134,15 +133,14 @@
     }
   }
 }
-
+.brand-intro-img img {
+  height: 50%;
+}
 .brand-intro-img {
-  @include flex(row, center, center);
-  margin: auto;
-
   &-txt {
     @include flex(row, center, center);
-    margin: auto;
-    margin-top: -3%;
+    margin-right: 0%;
+    margin-top: 48%;
     width: 50vw;
     height: 40vh;
     background: $color-primary;
@@ -160,25 +158,101 @@
   }
 }
 
-.container {
-  position: relative;
-  display: block;
+// sub-intro
+
+.left-col {
+  position: absolute;
   width: 100%;
+  height: 60vh;
+}
 
-  &-full-yula {
-    display: block;
-    width: 100%;
-    height: 600px;
-  }
+.cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  background: url("https://mt10x10.files.wordpress.com/2020/12/13240350576265.jpg")
+    no-repeat 50% 50%;
+  background-size: cover;
+  opacity: 0;
+  animation: appear-text 0.0001s linear forwards;
+  animation-delay: 2s;
+  z-index: 999;
+}
 
-  &-banner-yula {
-    position: relative;
-    display: block;
-    // background: url(https://mt10x10.files.wordpress.com/2020/07/img_0806-2.jpg)
-    //   no-repeat;
-    opacity: (0.7);
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
+.block-cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.block-cover::after {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-image: linear-gradient(
+    270deg,
+    rgba(247, 247, 247, 1) 23.8%,
+    rgba(252, 221, 221, 1) 92%
+  );
+  animation: rev-block 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 1s;
+}
+
+@keyframes appear-text {
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rev-block {
+  0% {
+    left: 0;
+    width: 0%;
+  }
+  100% {
+    left: 0;
+    width: 98%;
+  }
+}
+.brand-img-01 {
+  margin-top: 5%;
+  margin-left: 55%;
+  z-index: 999;
+  opacity: 0.8;
+}
+.brand-img-02 {
+  margin-top: -25%;
+  margin-left: -55%;
+  z-index: 999;
+  opacity: 0.8;
+}
+.brand-img-03 {
+  margin-top: 5%;
+  margin-left: 55%;
+  z-index: 999;
+  opacity: 0.8;
+}
+.brand-img-04 {
+  margin-top: -25%;
+  margin-left: -55%;
+  z-index: 999;
+  opacity: 0.8;
+}
+
+.bot-col {
+  position: absolute;
+  width: 100%;
+  height: 60vh;
 }

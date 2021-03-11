@@ -6,7 +6,7 @@
          <div class="col-2">
          <Sidebar></Sidebar>
          </div>
-         <main class="filter-container col-md-9 ml-auto col-lg-10 mt-5">
+         <main class="mr-3 filter-container col-md-9 ml-auto col-lg-10 ">
            <router-view></router-view>
          </main>
        </div>

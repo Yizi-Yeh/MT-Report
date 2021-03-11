@@ -3,19 +3,17 @@
     <transition name="fade" mode="out-in" appear>
     <router-view/>
 </transition>
-<Footer/>
   </div>
+  
 </template>
 
 <script>
 import '@/assets/scss/main.scss'
-import Footer from './components/Footer'
 import $ from 'jquery'
 export default {
   name: 'App',
   data () { return { index:0 } },
    components: {
-    Footer
   },
   computed: {
     user() {
@@ -82,6 +80,7 @@ export default {
       this.heartbeat()
     }, 5000)
     this.scroller()
+    
   }
 }
 </script>

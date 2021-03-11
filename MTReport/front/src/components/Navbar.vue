@@ -27,7 +27,7 @@
         <a class="nav-link" > <router-link class="nav-link" to="/newplan">近期開團</router-link></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> <router-link class="nav-link" to="/Login">管理員登入</router-link></a>
+        <a class="nav-link" href="#"> <router-link class="nav-link" to="/admin/products">後台管理</router-link></a>
       </li>  
       </div>
     </ul>

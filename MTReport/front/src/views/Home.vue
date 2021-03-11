@@ -6,7 +6,7 @@
         <!-- 近期開團 -->
         <section id="section02">
           <div class="container">
-           <p class="act-title" data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1">近期開團</p>
+           <p class="act-title mx-auto">近期開團</p>
               <div class="row h-100 d-flex flex-lg-row">
               <div  data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="swiper-slide col-lg-4 col-md-10 col-sm-12 d-flex flex-lg-row" v-for="(item) in newplanswipersort" :key="item._id" >
             <a href="#"  @click.prevent="getNewPlan(item._id)">      
@@ -61,7 +61,7 @@
 
       <section id="section05">
         <div class="container">
-       <h1 class="act-title">活動相片</h1>
+       <h1 class="act-title mx-auto">活動相片</h1>
         <div class="row h-100 rounded">
            <swiper :options="swiperOption">
           <swiper-slide
@@ -82,13 +82,14 @@
          </div>
          </div>
     </section>
-
+<Footer/>
 
 </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import Carousel from '../components/Carousel'
 import Plans from '../components/pages/plan'
 import store from '@/store'
@@ -135,6 +136,7 @@ export default {
     swiper,
     swiperSlide,
     Navbar,
+    Footer,
     Carousel,
     Plans,
   },

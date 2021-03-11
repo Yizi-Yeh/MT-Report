@@ -3,6 +3,18 @@
 .act-title {
   text-align: center;
   font-size: $heading-font-xs;
+  background: linear-gradient(transparent 50%, #fff0d2 50%);
+  background-image: linear-gradient(transparent 50%, rgb(255, 240, 210) 50%);
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  width: fit-content;
   @include media-breakpoint-up(md) {
     font-size: $heading-font-md;
   }
