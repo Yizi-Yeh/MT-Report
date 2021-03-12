@@ -57,6 +57,24 @@
         <p>
             The most beautiful part of the journey is not necessarily the scenery, <br>
             but sometimes the friends who are with you</p>   
+      </div>   
+    </div> 
+      <div class="col-6 brand-img-01">
+        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-01.jpg">
+    </div>
+ 
+     <div class="col-6 brand-img-02">
+        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-02.jpg">
+    </div>
+    <div class="col-6 brand-img-03">
+        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-03.jpg">
+    </div>
+    <div class="col-6 brand-img-04">
+        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-04.jpg">
+    </div>
+    </div>
+        <div data-bottom-top="opacity: 0.5" data-center="opacity: 1" class="row brand-intro-img-txt-2 rounded">
+      <div class="col-12">  
         <p>
           我們是由熱血的年輕人所創建的登山社，<br>
           用10分熱情與10分愛山林的心，<br>和山友們一步步一同完成百岳，<br>
@@ -67,19 +85,6 @@
           It’s time to go on an epic outdoor adventure with MT10x10!
         </p>
       </div>   
-    </div> 
-      <div class="col-6 brand-img-01">
-        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-01.jpg">
-    </div>
-     <div class="col-6 brand-img-02">
-        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-02.jpg">
-    </div>
-    <div class="col-6 brand-img-03">
-        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-03.jpg">
-    </div>
-    <div class="col-6 brand-img-04">
-        <img data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="rounded ml-5 w-100" src="@/assets/brand-04.jpg">
-    </div>
     </div>
   </div>
   </div>
